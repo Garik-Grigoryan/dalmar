@@ -1,0 +1,24 @@
+{
+  "name": "ArmMall",
+  "version": "1.0.0",
+  "description": "Sale online from anywhere",
+  "author": "Garik",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "awesome-phonenumber": "^2.31.0",
+    "nuxt": "^2.0.0",
+    "nuxt-validate": "^1.0.1",
+    "swiper": "^5.3.7",
+    "vee-validate": "^3.2.5"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0"
+  }
+}
