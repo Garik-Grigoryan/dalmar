@@ -195,7 +195,7 @@
             :items="languages"
             label="Overflow Btn"
             target="#dropdown-language"
-            style="width: 85px; height: 50px; margin-top: 0;"
+            style="width: 85px; height: 50px; margin-top: 0; padding: 0;"
           >
               <template v-slot:selection="{item, index}">
                   <v-img  :src="item.icon" max-width="50"></v-img>
