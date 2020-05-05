@@ -2,7 +2,7 @@
     <div  v-resize="onResize">
       <v-container>
         <v-row justify="center">
-          <v-col lg="12" md="12">
+          <v-col lg="8" md="12">
             <v-row>
               <v-col lg="8" md="12">
                 <v-row>

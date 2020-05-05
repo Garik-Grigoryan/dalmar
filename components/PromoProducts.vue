@@ -1,6 +1,7 @@
 <template>
   <v-sheet
     class="mx-auto"
+    max-width="1300"
   >
     <v-slide-group
       v-model="model"

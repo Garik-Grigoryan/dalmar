@@ -17,6 +17,11 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  router: {
+    middleware: [
+      'clearValidationErrors'
+    ]
+  },
   /*
   ** Customize the progress-bar color
   */
@@ -31,7 +36,31 @@ export default {
   */
   plugins: [
     '~/node_modules/vee-validate',
+    './plugins/mixins/validation',
+    './plugins/mixins/user',
+    './plugins/axios'
   ],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login', method: 'post', propertyName: 'token'
+          },
+          user: {
+            url: 'account', method: 'get', propertyName: 'data'
+          },
+          logout: {
+            url: 'logout', method: 'get'
+          }
+        }
+      }
+    },
+    redirect: {
+      login: '/auth/login',
+      home: '/'
+    }
+  },
   /*
   ** Nuxt.js dev-modules
   */
@@ -44,12 +73,39 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    ['nuxt-i18n', {
+      lazy:true,
+      locales: [
+        {
+          name: 'Armenian',
+          code: 'am',
+          iso: 'am-ER',
+          file: 'am-ER.js'
+        },
+        {
+          name: 'Russian',
+          code: 'ru',
+          iso: 'ru-MOS',
+          file: 'ru-MOS.js'
+        },
+        {
+          name: 'English',
+          code: 'en',
+          iso: 'en-US',
+          file: 'en-US.js'
+        },
+      ],
+      langDir: 'lang/',
+      defaultLocale: 'am',
+    }]
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'http://localhost:8000/api'
   },
   /*
   ** vuetify module configuration

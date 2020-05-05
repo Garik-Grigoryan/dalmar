@@ -160,7 +160,7 @@
 <script>
   var PhoneNumber = require( 'awesome-phonenumber' );
     export default {
-        name: "cart",
+      name: "cart",
       data () {
           return {
             settings: true,
