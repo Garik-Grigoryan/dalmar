@@ -208,8 +208,7 @@
           </v-overflow-btn>
 
       </v-row>
-      <v-app-bar-nav-icon class="hidden-md-and-up" style="position: absolute; right: 0" @click.stop="drawer = !drawer" />
-      <v-speed-dial class="hidden-lg-and-up"  v-model="fab" :top="top" :bottom="bottom" :right="right" :left="left" :direction="direction" :open-on-hover="hover" :transition="transition" >
+      <v-speed-dial class="show-in-lg"  v-model="fab" :top="top" :bottom="bottom" :right="right" :left="left" :direction="direction" :open-on-hover="hover" :transition="transition" >
         <template v-slot:activator>
           <v-btn small  v-model="fab" color="#01235E" dark fab >
             <v-icon style="margin: 0;" v-if="fab">mdi-close</v-icon>
@@ -238,6 +237,7 @@
           <v-img :src="item.icon" max-width="50"></v-img>
         </v-btn>
       </v-speed-dial>
+      <v-app-bar-nav-icon class="hidden-md-and-up" style="position: absolute; right: 0" @click.stop="drawer = !drawer" />
     </v-system-bar>
 
   </div>
@@ -487,4 +487,16 @@
   #create .v-speed-dial--bottom {
     bottom: 13px;
   }
+  @media (min-width: 1904px) {
+    .show-in-lg {
+      display: none;
+    }
+  }
+  @media (max-width: 959px) {
+    .show-in-lg{
+      display: none;
+    }
+  }
+
+
 </style>
