@@ -61,7 +61,7 @@
           </v-menu>
         </v-row>
       </v-col>
-      <v-col cols="2" class="text-center">
+      <v-col lg="2" md="12" class="text-center">
         <nuxt-link :to="localePath('/')" style="text-decoration: none;">
           <v-toolbar-title class="font-weight-bold" style="color: #b20839; font-size: 35px" v-text="$t('title')" />
         </nuxt-link>
