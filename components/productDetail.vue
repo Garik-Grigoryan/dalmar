@@ -46,7 +46,7 @@
                         v-if="active"
                         color="white"
                         size="20"
-                        v-text="'mdi-close-circle-outline'"
+                        v-text="'mdi-check-circle-outline'"
                         class="mx-auto"
                       ></v-icon>
                     </v-scroll-y-transition>
