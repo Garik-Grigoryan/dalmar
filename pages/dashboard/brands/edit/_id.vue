@@ -13,22 +13,22 @@
           <v-row>
             <v-col v-if="selectedImages !== ''" class=" d-flex child-flex" cols="3" >
               <v-hover v-slot:default="{ hover }">
-                  <v-card class="d-flex">
-                    <v-img :src="selectedImages"  aspect-ratio="1" class="grey lighten-2" >
-                      <template v-slot:placeholder>
-                        <v-row class="fill-height ma-0" align="center" justify="center" >
-                          <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                        </v-row>
-                      </template>
-                      <div v-show="hover" class="align-self-center" style="position:relative; height: 100%;">
-                        <v-btn @click="removeImage"  icon fab style=" position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); ">
-                          <v-icon size="50" color="error">
-                            mdi-delete
-                          </v-icon>
-                        </v-btn>
-                      </div>
-                    </v-img>
-                  </v-card>
+                <v-card class="d-flex">
+                  <v-img :src="selectedImages"  aspect-ratio="1" class="grey lighten-2" >
+                    <template v-slot:placeholder>
+                      <v-row class="fill-height ma-0" align="center" justify="center" >
+                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                      </v-row>
+                    </template>
+                    <div v-show="hover" class="align-self-center" style="position:relative; height: 100%;">
+                      <v-btn @click="removeImage"  icon fab style=" position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); ">
+                        <v-icon size="50" color="error">
+                          mdi-delete
+                        </v-icon>
+                      </v-btn>
+                    </div>
+                  </v-img>
+                </v-card>
               </v-hover>
             </v-col>
             <v-col cols="3" class="pl-0">
@@ -39,7 +39,7 @@
           </v-row>
 
 
-          <v-btn :disabled="!valid" @click="addBrand" color="success" class="mr-4" >Save</v-btn>
+          <v-btn :disabled="!valid" @click="updateBrand" color="success" class="mr-4" >Update</v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -91,70 +91,76 @@
 
 <script>
     export default {
-      name: "new",
-      layout: 'dashboard',
-      middleware: 'admin',
-      async fetch({store}) {
-        if(store.getters['multimedia/images'].length === 0){
-          await store.dispatch('multimedia/fetch')
-        }
-      },
-      data () {
-        return {
-          valid: true,
-          imageUpladForm: true,
-          name: '',
-          imageName: '',
-          order: '',
-          dialog: false,
-          uploadDialog: false,
-          selectedImages: '',
-          nameRules: [
-            v => !!v || 'Field is required',
-          ],
-          files: [],
-          fileRules: [
-            v => !!v || 'File is required',
-            v => !!v && v.size < 500000 || 'File should be les then 500 KB',
-          ]
-        }
-      },
-      methods: {
-        removeImage() {
-          this.selectedImages = '';
+        name: "",
+        layout: 'dashboard',
+        middleware: 'admin',
+        async fetch({route, store}) {
+          await store.dispatch('brands/getBrand', [route.params.id])
         },
-        selectImage(event, imageUrl) {
-          this.dialog = false;
-          this.selectedImages = imageUrl;
+        data () {
+          return {
+            valid: true,
+            imageUpladForm: true,
+            name: '',
+            imageName: '',
+            order: '',
+            dialog: false,
+            uploadDialog: false,
+            selectedImages: '',
+            nameRules: [
+              v => !!v || 'Field is required',
+            ],
+            files: [],
+            fileRules: [
+              v => !!v || 'File is required',
+              v => !!v && v.size < 500000 || 'File should be les then 500 KB',
+            ]
+          }
         },
-        changeFunc() {
-          console.log(this.files);
+        methods: {
+          removeImage() {
+            this.selectedImages = '';
+          },
+          selectImage(event, imageUrl) {
+            this.dialog = false;
+            this.selectedImages = imageUrl;
+          },
+          changeFunc() {
+            console.log(this.files);
+          },
+          uploadImage() {
+            this.uploadDialog = false;
+            let data = new FormData();
+            data.append('name', this.imageName);
+            data.append('image', this.files);
+            this.$axios.$post('http://localhost:8000/api/multimedia/upload', data).then(
+              response => {
+                this.files = []
+                this.$store.dispatch('multimedia/fetch')
+              }
+            ).catch(e => {
+              console.log(e);
+            })
+          },
+          updateBrand() {
+            this.$store.dispatch('brands/updateBrand', [this.$route.params.id, this.name, this.order, this.selectedImages]).then(r => {
+              this.$router.push('/dashboard/brands')
+            })
+          }
         },
-        uploadImage() {
-          this.uploadDialog = false;
-          let data = new FormData();
-          data.append('name', this.imageName);
-          data.append('image', this.files);
-          this.$axios.$post('http://localhost:8000/api/multimedia/upload', data).then(
-            response => {
-              this.files = []
-              this.$store.dispatch('multimedia/fetch')
-            }
-          ).catch(e => {
-            console.log(e);
-          })
+        mounted() {
+          this.name = this.brand[0].name;
+          this.selectedImages = this.brand[0].image;
+          this.order = this.brand[0].order;
         },
-        addBrand() {
-          this.$store.dispatch('brands/addBrand', [this.name, this.order, this.selectedImages]).then(r => {
-            this.$router.push('/dashboard/brands')
-          })
-        }
-      },
       computed: {
-        images() {
-          return this.$store.getters['multimedia/images'];
-        }
-      },
+          brand() {
+            return this.$store.getters['brands/brand'];
+          },
+          images() {
+            return this.$store.getters['multimedia/images'];
+          }
+        },
     }
 </script>
 
