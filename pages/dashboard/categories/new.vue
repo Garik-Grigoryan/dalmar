@@ -3,10 +3,12 @@
     <v-row justify="center">
       <v-col cols="6">
         <v-toolbar-title style="display: flex; justify-content: space-between;">
-          Add new brands
+          Add new category
         </v-toolbar-title>
         <v-form ref="form" v-model="valid" >
-          <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required ></v-text-field>
+          <v-text-field v-model="name_en" :counter="10" :rules="nameRules" label="Name (eng)" required ></v-text-field>
+          <v-text-field v-model="name_ru" :counter="10" :rules="nameRules" label="Name (rus)" required ></v-text-field>
+          <v-text-field v-model="name_am" :counter="10" :rules="nameRules" label="Name (am)" required ></v-text-field>
           <v-row >
             <v-col cols="6" >
               <v-autocomplete v-model="parentCategory" :items="categories" label="Parent Category" item-text="name" item-value="id">
@@ -143,7 +145,9 @@
       return {
         valid: true,
         imageUpladForm: true,
-        name: '',
+        name_en: '',
+        name_ru: '',
+        name_am: '',
         imageName: '',
         order: '',
         dialog: false,
@@ -188,7 +192,7 @@
         })
       },
       addCategory() {
-        this.$store.dispatch('categories/addCategory', [this.name, this.order, this.selectedImages, this.color, this.selectedBrand, this.parentCategory]).then(r => {
+        this.$store.dispatch('categories/addCategory', [this.name_en, this.name_ru, this.name_am, this.order, this.selectedImages, this.color, this.selectedBrand, this.parentCategory]).then(r => {
           this.$router.push('/dashboard/categories')
         })
       }

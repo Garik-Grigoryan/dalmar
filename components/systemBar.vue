@@ -373,10 +373,17 @@
           this.cartCount = cookieResCart.length
         }
         this.onResize();
-        this.brands.forEach(elem => {
+        // this.brands.forEach(elem => {
+        //   this.leftSide[0].items.push(
+        //     { title: elem.name,
+        //       to: '/brand/'+elem.id+'?page=1',
+        //     }
+        //   )
+        // });
+        this.categories.forEach(elem => {
           this.leftSide[0].items.push(
-            { title: elem.name,
-              to: '/brand/'+elem.id+'?page=1',
+            { title: elem.name_en,
+              to: '/category/'+elem.id+'?page=1',
             }
           )
         })

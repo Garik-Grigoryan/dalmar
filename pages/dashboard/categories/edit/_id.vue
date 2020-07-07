@@ -3,10 +3,12 @@
     <v-row justify="center">
       <v-col cols="6">
         <v-toolbar-title style="display: flex; justify-content: space-between;">
-          Add new brands
+          Edit new category
         </v-toolbar-title>
         <v-form ref="form" v-model="valid" >
-          <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required ></v-text-field>
+          <v-text-field v-model="name_en" :counter="10" :rules="nameRules" label="Name (eng)" required ></v-text-field>
+          <v-text-field v-model="name_ru" :counter="10" :rules="nameRules" label="Name (ru)" required ></v-text-field>
+          <v-text-field v-model="name_am" :counter="10" :rules="nameRules" label="Name (am)" required ></v-text-field>
           <v-row >
             <v-col cols="6" >
               <v-autocomplete v-model="parentCategory" :items="categories" label="Parent Category" item-text="name" item-value="id">
@@ -143,7 +145,9 @@
           return {
             valid: true,
             imageUpladForm: true,
-            name: '',
+            name_en: '',
+            name_ru: '',
+            name_am: '',
             imageName: '',
             order: '',
             dialog: false,
@@ -188,13 +192,15 @@
             })
           },
           updateCategory() {
-            this.$store.dispatch('categories/updateCategory', [this.$route.params.id, this.name, this.order, this.selectedImages, this.color, this.selectedBrand, this.parentCategory]).then(r => {
+            this.$store.dispatch('categories/updateCategory', [this.$route.params.id, this.name_en, this.name_ru, this.name_am, this.order, this.selectedImages, this.color, this.selectedBrand, this.parentCategory]).then(r => {
               this.$router.push('/dashboard/categories')
             })
           }
         },
       mounted() {
-        this.name = this.category.name;
+        this.name_en = this.category.name_en;
+        this.name_ru = this.category.name_ru;
+        this.name_am = this.category.name_am;
         this.order = this.category.order;
         this.selectedImages = JSON.parse(this.category.image);
         this.color = this.category.color;

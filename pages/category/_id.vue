@@ -7,7 +7,7 @@
           :key="i"
           :image="JSON.parse(product.images)[0]"
           :id="product.id"
-          :title="product.name"
+          :title="product.name_en"
           :price="product.price"
         ></productCard>
 

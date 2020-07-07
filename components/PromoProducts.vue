@@ -59,7 +59,7 @@
                   <v-icon>mdi-heart</v-icon>
                 </v-btn>
                 <nuxt-link :to="`/product/${product.id}`">
-                <h3 class=" font-weight-light font-weight-bold white--text mb-2">QW cooking utensils</h3>
+                <h3 class=" font-weight-light font-weight-bold white--text mb-2">{{ product.name_en }}</h3>
                 <p class="price white--text"><span class="font-weight-bold">Price</span> 15.000 AMD</p>
                 </nuxt-link>
               </v-card-text>
