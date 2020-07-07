@@ -10,7 +10,7 @@
       :show-arrows="false"
     >
       <v-slide-item
-        v-for="n in count"
+        v-for="(product, n) in products"
         :key="n"
         v-slot:default="{ active, toggle }"
       >
@@ -20,15 +20,19 @@
             color="grey lighten-4"
             class="ma-4"
             width="270"
+            height="270"
           >
+            <nuxt-link :to="`/product/${product.id}`">
             <v-img
               :aspect-ratio="16/9"
-              src="https://cdn.vuetifyjs.com/images/cards/kitchen.png"
+              :src="JSON.parse(product.images)[0]"
+              height="100%"
+              cover
             >
             </v-img>
+            </nuxt-link>
             <v-slide-y-reverse-transition>
               <v-card-text
-                v-show="hover"
                 class="pt-6"
                 style="position: absolute; bottom: 0; background-color: #b20839c9; height: 80px"
               >
@@ -39,6 +43,7 @@
                   fab
                   right
                   top
+                  @click="addToCart($event, product.id)"
                 >
                   <v-icon>mdi-cart</v-icon>
                 </v-btn>
@@ -49,11 +54,14 @@
                   fab
                   top
                   style="right: 90px"
+                  @click="addToWishlist($event, product.id)"
                 >
                   <v-icon>mdi-heart</v-icon>
                 </v-btn>
+                <nuxt-link :to="`/product/${product.id}`">
                 <h3 class=" font-weight-light font-weight-bold white--text mb-2">QW cooking utensils</h3>
                 <p class="price white--text"><span class="font-weight-bold">Price</span> 15.000 AMD</p>
+                </nuxt-link>
               </v-card-text>
             </v-slide-y-reverse-transition>
           </v-card>
@@ -65,10 +73,38 @@
 
 <script>
   export default {
-    props: ['count'],
+    props: ['count', 'type'],
+    name: 'promoProductComponent',
     data: () => ({
       model: null,
     }),
+    methods: {
+      addToWishlist(e, id) {
+        let user_id = 0;
+        if(this.user){
+          user_id = this.user.id
+        }
+        this.$store.dispatch('wishListAndCart/setWishList', [id, user_id])
+      },
+      addToCart(e, id) {
+        let user_id = 0;
+        if(this.user){
+          user_id = this.user.id
+        }
+        this.$store.dispatch('wishListAndCart/setCArt', [id, user_id])
+      }
+    },
+    computed: {
+      products() {
+        if(this.type === 'new'){
+          return this.$store.getters['products/newProducts'];
+        }else if(this.type === 'best'){
+          return this.$store.getters['products/bestProducts'];
+        }else if(this.type === 'sales'){
+          return this.$store.getters['products/salesProducts'];
+        }
+      },
+    }
   }
 </script>
 

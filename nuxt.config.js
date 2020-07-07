@@ -38,7 +38,12 @@ export default {
     '~/node_modules/vee-validate',
     './plugins/mixins/validation',
     './plugins/mixins/user',
-    './plugins/axios'
+    './plugins/axios',
+    {
+      src: './plugins/GoogleAnalytics.js',
+      mode: 'client'
+    },
+    { src: '~plugins/vuedraggable.js', ssr: false }
   ],
   auth: {
     strategies: {
@@ -98,7 +103,8 @@ export default {
       ],
       langDir: 'lang/',
       defaultLocale: 'am',
-    }]
+    }],
+    'cookie-universal-nuxt',
   ],
   /*
   ** Axios module configuration

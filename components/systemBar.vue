@@ -114,12 +114,12 @@
         </v-row>
       </v-col>
       <v-row justify="end" class="hidden-lg-and-down" no-gutters style="position: absolute; right: 0" id="dropdown-language">
-        <v-badge color="error" content="6" >
+        <v-badge color="error" :content="wishListLength" >
           <v-btn :to="localePath('/wishlist')" color="#fff" text class="my-2 nav_button" width="50px" >
             <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
         </v-badge>
-        <v-badge color="error" content="6" >
+        <v-badge color="error" :content="cartLength" >
           <v-btn :to="localePath('/cart')" color="#fff" text class="my-2 nav_button" width="50px" >
             <v-icon >mdi-cart-outline</v-icon>
           </v-btn>
@@ -245,218 +245,173 @@
 
 <script>
     export default {
+      props: ['header'],
+      async fetch({store}) {
+        await store.dispatch('brands/fetch');
+        await store.dispatch('menus/fetch');
+      },
       data () {
-          return {
-            registrationError: false,
-            loginError: false,
-            fab: false,
-            direction: 'bottom',
-            fling: false,
-            hover: false,
-            tabs: null,
-            top: false,
-            bottom: true,
-            left: false,
-            transition: 'slide-y-reverse-transition',
-            registerForm: {
-              name: '',
-              email: '',
-              password: '',
-              password_confirmation: '',
+        return {
+          wishlistCount: 0,
+          cartCount: 0,
+          registrationError: false,
+          loginError: false,
+          fab: false,
+          direction: 'bottom',
+          fling: false,
+          hover: false,
+          tabs: null,
+          top: false,
+          bottom: true,
+          headerHeight: 190,
+          left: false,
+          menuAbsolute: false,
+          transition: 'slide-y-reverse-transition',
+          registerForm: {
+            name: '',
+            email: '',
+            password: '',
+            password_confirmation: '',
+          },
+          loginForm: {
+            email: '',
+            password: ''
+          },
+          passwordRules: [
+            v => !!v || 'Password is required',
+          ],
+          passwordConfirmation: [
+            v => !!v || 'Confirm password',
+            v => v === this.registerForm.password || 'Password is note correct'
+          ],
+          nameRules: [
+            v => !!v || 'Name is required',
+          ],
+          emailRules: [
+            v => !!v || 'E-mail is required',
+            v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+          ],
+          clipped: true,
+          right: true,
+          miniVariant: false,
+          drawer: false,
+          valid: true,
+          checkbox: false,
+          menu: false,
+          MainLanguage: "english",
+          languages: [
+            { text: 'armenian', to: 'am', icon: '/arm.png', callback: () => console.log('list') },
+            { text: 'russian', to: 'ru', icon: '/rus.png', callback: () => console.log('favorite') },
+            { text: 'english', to: 'en', icon: '/eng.png', callback: () => console.log('delete') },
+          ],
+          leftSide: [
+            { title: 'Brands',
+              to: '/',
+              items: [
+
+              ],
             },
-            loginForm: {
-              email: '',
-              password: ''
+            { title: 'Sales',
+              to: '/sales'
             },
-            passwordRules: [
-              v => !!v || 'Password is required',
-            ],
-            passwordConfirmation: [
-              v => !!v || 'Confirm password',
-              v => v === this.registerForm.password || 'Password is note correct'
-            ],
-            nameRules: [
-              v => !!v || 'Name is required',
-            ],
-            emailRules: [
-              v => !!v || 'E-mail is required',
-              v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-            ],
-            clipped: true,
-            right: true,
-            miniVariant: false,
-            drawer: false,
-            valid: true,
-            checkbox: false,
-            menu: false,
-            MainLanguage: "armenian",
-            languages: [
-              { text: 'armenian', to: 'am', icon: '/arm.png', callback: () => console.log('list') },
-              { text: 'russian', to: 'ru', icon: '/rus.png', callback: () => console.log('favorite') },
-              { text: 'english', to: 'en', icon: '/eng.png', callback: () => console.log('delete') },
-            ],
-            leftSide: [
-              { title: 'Brands',
-                to: '/',
-                items: [
-                  { title: 'Polo',
-                    to: '/brand/polo',
-                    items: [
-                      {
-                        title: 'For Men',
-                        to: '/brand/polo',
-                        items: [
-                          {title: 'Shoes', to: '/'},
-                          {title: 'Clothing', to: '/'},
-                          {title: 'Bags', to: '/'},
-                          {title: 'Eyewear', to: '/'},
-                          {title: 'Watches', to: '/'},
-                        ],
-                      },
-                      {
-                        title: 'For Women',
-                        to: '/brand/polo',
-                        items: [
-                          {title: 'Shoes', to: '/'},
-                          {title: 'Clothing', to: '/'},
-                          {title: 'Bags', to: '/'},
-                          {title: 'Eyewear', to: '/'},
-                          {title: 'Watches', to: '/'},
-                        ],
-                      }
-                    ],
-                  },
-                  { title: 'Giordano',
-                    to: '/brand/Giordano',
-                    items: [
-                      {
-                        title: 'For Men',
-                        to: '/brand/polo',
-                        items: [
-                          {title: 'Shoes', to: '/'},
-                          {title: 'Clothing', to: '/'},
-                          {title: 'Bags', to: '/'},
-                          {title: 'Eyewear', to: '/'},
-                          {title: 'Watches', to: '/'},
-                        ],
-                      }
-                    ],
-                  },
-                  { title: 'Giordano',
-                    to: '/brand/Giordano',
-                    items: [
-                      {
-                        title: 'For Women',
-                        to: '/brand/polo',
-                        items: [
-                          {title: 'Shoes', to: '/'},
-                          {title: 'Clothing', to: '/'},
-                          {title: 'Bags', to: '/'},
-                          {title: 'Eyewear', to: '/'},
-                          {title: 'Watches', to: '/'},
-                        ],
-                      }
-                    ],
-                  },
-                ],
-              },
-              { title: 'Sales',
-                to: '/'
-              },
-              { title: 'News',
-                to: '/'
-              }
-            ],
-            rightSide: [
-              {
-                title: 'For Men',
-                to: '/brand/polo',
-                items: [
-                  {
-                    title: 'Shoes',
-                    to: '/',
-                    items: [
-                      {title: 'Shoes', to: '/'},
-                      {title: 'Clothing', to: '/'},
-                      {title: 'Bags', to: '/'},
-                      {title: 'Eyewear', to: '/'},
-                      {title: 'Watches', to: '/'},
-                    ],
-                  },
-                  {title: 'Clothing',  to: '/',
-                    items: [
-                      {title: 'Shoes', to: '/'},
-                      {title: 'Clothing', to: '/'},
-                      {title: 'Bags', to: '/'},
-                      {title: 'Eyewear', to: '/'},
-                      {title: 'Watches', to: '/'},
-                    ],
-                  },
-                  {title: 'Bags', to: '/',
-                    items: [
-                      {title: 'Shoes', to: '/'},
-                      {title: 'Clothing', to: '/'},
-                      {title: 'Bags', to: '/'},
-                      {title: 'Eyewear', to: '/'},
-                      {title: 'Watches', to: '/'},
-                    ],
-                  },
-                  {title: 'Eyewear',  to: '/',
-                    items: [
-                      {title: 'Shoes', to: '/'},
-                      {title: 'Clothing', to: '/'},
-                      {title: 'Bags', to: '/'},
-                      {title: 'Eyewear', to: '/'},
-                      {title: 'Watches', to: '/'},
-                    ],
-                  },
-                ],
-              },
-              {
-                title: 'For Women',
-                to: '/brand/polo',
-                items: [
-                  {title: 'Shoes', to: '/'},
-                  {title: 'Clothing', to: '/'},
-                  {title: 'Bags', to: '/'},
-                  {title: 'Eyewear', to: '/'},
-                  {title: 'Watches', to: '/'},
-                ],
-              },
-              {
-                title: 'Contact Us',
-                to: '/'
-              }
-            ],
-          }
+            {
+              title: 'Delivery conditions',
+              to: '/deliveryCondition'
+            },
+          ],
+          rightSide: [
+            {
+              title: 'About us',
+              to: '/aboutUs'
+            }
+          ],
+        }
+      },
+      computed: {
+        brands() {
+          return this.$store.getters['brands/brands'];
+        },
+        categories(){
+          return this.$store.getters['categories/categories'];
+        },
+        wishListLength(){
+          return this.$store.getters['wishListAndCart/wishListLength']
+        },
+        cartLength(){
+          return this.$store.getters['wishListAndCart/cartLength']
+        },
+        menus() {
+          return this.$store.getters['menus/menus'];
+        }
       },
       mounted () {
-        this.onResize()
+        for(let menu of this.menus.menus){
+          let menusConstruct = JSON.parse(this.menus.menus[0].construction);
+          for(let item of menusConstruct){
+            let mainMenu = {
+              title: item.name,
+              to: '/category/' + item.id + '?page=1',
+              items: []
+            };
+            if(item.menus.length > 0){
+              for(let menuItem of item.menus){
+                console.log(menuItem);
+
+                mainMenu.items.push({title: menuItem.name, to: '/category/' + menuItem.id + '?page=1'})
+              }
+            }
+            this.rightSide.unshift(mainMenu);
+          }
+
+        }
+        let cookieResWishlist = this.$cookies.get('davmar_wishlist');
+        if(cookieResWishlist !== undefined){
+          this.wishlistCount = cookieResWishlist.length
+        }
+        let cookieResCart = this.$cookies.get('davmar_cart');
+        if(cookieResCart !== undefined){
+          this.cartCount = cookieResCart.length
+        }
+        this.onResize();
+        this.brands.forEach(elem => {
+          this.leftSide[0].items.push(
+            { title: elem.name,
+              to: '/brand/'+elem.id+'?page=1',
+            }
+          )
+        })
       },
 
       methods: {
         onResize () {
           if(window.innerWidth >= 960){
             this.drawer = false;
+            this.headerHeight = 190;
+          }else if(window.innerWidth >= 796){
+            this.headerHeight = 150;
+          }else if(window.innerWidth < 600){
+            this.headerHeight = 145;
+          }else{
+            this.headerHeight = 115;
           }
           this.windowSize = { x: window.innerWidth, y: window.innerHeight }
         },
-       async registerAction() {
+        async registerAction() {
 
-         await this.$axios.post('http://localhost:8000/api/auth/register', this.registerForm).then(response => {
-           this.menu = false;
-           this.$auth.login({data: this.registerForm});
-         }).catch(e => {
-           this.registrationError = e.response;
-         });
+          await this.$axios.post('http://apidavmar.neoteric-software.com/api/auth/register', this.registerForm).then(response => {
+            this.menu = false;
+            this.$auth.login({data: this.registerForm});
+          }).catch(e => {
+            this.registrationError = e.response;
+          });
         },
-       async loginAction() {
-         await this.$auth.login({data: this.loginForm}).then(response => {
-           this.menu = false;
-         }).catch(e => {
-           this.loginError = e.response;
-         });
-       },
+        async loginAction() {
+          await this.$auth.login({data: this.loginForm}).then(response => {
+            this.menu = false;
+          }).catch(e => {
+            this.loginError = e.response;
+          });
+        },
         async logout(){
           await this.$auth.logout().then(response => {
             this.menu = false;

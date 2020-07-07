@@ -12,19 +12,19 @@
           style="max-height: 600px;"
         >
           <v-carousel-item
-            v-for="(slide, i) in slides"
+            v-for="(slide, i) in JSON.parse(product.images)"
             :key="i"
-            :src="slide.image"
+            :src="slide"
             top
           >
           </v-carousel-item>
         </v-carousel>
       </v-col>
       <v-col md="6" sm="12">
-        <h2 class="text-center">{{$route.params.name}}</h2>
+        <h2 class="text-center">{{product.name}}</h2>
         <v-col md="12" lg="12">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus ad ducimus expedita hic impedit in incidunt inventore ipsa, iste maxime minima necessitatibus numquam omnis quasi quos recusandae reiciendis tempora? Ab corporis impedit incidunt iure optio quam, quas repellat veritatis?
+            {{product.description}}
           </p>
           <div class="mt-5">
             <p class="ma-0">Colors</p>
@@ -39,7 +39,8 @@
                     dark
                     height="30"
                     width="30"
-                    @click="toggle"
+                    :data-value="color.toLowerCase()"
+                    @click="toggle(), selectColor($event)"
                   >
                     <v-scroll-y-transition>
                       <v-icon
@@ -48,6 +49,7 @@
                         size="20"
                         v-text="'mdi-check-circle-outline'"
                         class="mx-auto"
+                        :data-value="color.toLowerCase()"
                       ></v-icon>
                     </v-scroll-y-transition>
                   </v-card>
@@ -67,7 +69,8 @@
                     :color="active? 'green' : '#fff'"
                     height="30"
                     width="30"
-                    @click="toggle"
+                    :data-value="size"
+                    @click="toggle(), selectSize($event)"
                   >
                     {{size}}
                   </v-card>
@@ -82,13 +85,14 @@
               <v-text-field
                 type="number"
                 placeholder="0"
+                v-model="count"
               ></v-text-field>
             </v-col>
           </div>
           <div class="pl-0">
             <p class="ma-0">
               <span>
-                Price: 15.000 AMD
+                Price: {{product.price}} AMD
               </span>
             </p>
           </div>
@@ -99,6 +103,7 @@
                 color="#01235e"
                 class="white--text"
                 rounded
+                @click="addToCart($event, product.id)"
               >
                 <v-icon left>mdi-cart</v-icon> Cart
               </v-btn>
@@ -106,6 +111,7 @@
                 color="#01235e"
                 class="white--text"
                 rounded
+                @click="addToWishlist($event, product.id)"
               >
                 <v-icon left>mdi-heart</v-icon> Wish list
               </v-btn>
@@ -122,23 +128,63 @@
   export default {
     data () {
       return {
-        colors: [
-          'green',
-          'secondary',
-          'yellow darken-4',
-          'red lighten-2',
-          'orange darken-1',
-        ],
-        productColors: ['#dbdbdb', 'Green', 'Black', 'Red'],
-        productSizes: ['S', 'M', 'XS', 'L'],
+        productColors: [],
+        productSizes: [],
+        selectedColor: [],
+        selectedSize: [],
         cycle: false,
-        slides: [
-          {text: 'First', image: '/jins1.jpg' },
-          {text: 'Second', image: '/jins3.jpg' },
-          {text: 'Third', image: '/jins1.jpg' },
-          {text: 'Fourth', image: '/jins3.jpg' },
-          {text: 'Fifth', image: '/jins1.jpg' },
-        ],
+        count: 1,
+      }
+    },
+    mounted() {
+      this.product.product_color.forEach(elem => {
+        this.productColors.push(elem.color)
+      });
+      this.product.product_size.forEach(elem => {
+        this.productSizes.push(elem.name)
+      });
+    },
+    methods: {
+      addToWishlist(e, id) {
+        let user_id = 0;
+        if(this.user){
+          user_id = this.user.id
+        }
+        this.$store.dispatch('wishListAndCart/setWishList', [id, user_id, this.selectedColor, this.selectedSize, this.count])
+      },
+      addToCart(e, id) {
+        let user_id = 0;
+        if(this.user){
+          user_id = this.user.id
+        }
+        this.$store.dispatch('wishListAndCart/setCArt', [id, user_id, this.selectedColor, this.selectedSize, this.count])
+      },
+      selectColor(e) {
+        if(e.target !== undefined){
+          if(e.target.tagName === 'DIV' || e.target.tagName === 'I'){
+            if(e.target.tagName === 'I'){
+              console.log(e.target.getAttribute('data-value'));
+              console.log(this.selectedColor.indexOf(e.target.getAttribute('data-value')));
+              this.$delete(this.selectedColor, this.selectedColor.indexOf(e.target.getAttribute('data-value')));
+            }else{
+              this.selectedColor.push(e.target.getAttribute('data-value'));
+            }
+          }
+        }
+      },
+      selectSize(e) {
+        if(e.target !== undefined){
+          if(e.target.getAttribute('data-active') === 'active'){
+            this.$delete(this.selectedSize, this.selectedSize.indexOf(e.target.getAttribute('data-value')));
+          }else{
+            this.selectedSize.push(e.target.getAttribute('data-value'));
+          }
+        }
+      }
+    },
+    computed: {
+      product() {
+        return this.$store.getters['products/product'];
       }
     },
   }

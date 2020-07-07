@@ -9,22 +9,6 @@
           <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required ></v-text-field>
           <v-row >
             <v-col cols="6" >
-              <v-autocomplete v-model="category" :items="categories" label="Category" item-text="name" item-value="id">
-                <template v-slot:selection="category">
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      {{category.item.name}}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </template>
-                <template v-slot:item="category">
-                  <v-list-item-content>
-                    <v-list-item-title>{{category.item.name}}</v-list-item-title>
-                  </v-list-item-content>
-                </template>
-              </v-autocomplete>
-            </v-col>
-            <v-col cols="6" >
               <v-autocomplete v-model="selectedBrand" :items="brands" label="Brand" item-text="name" item-value="id">
                 <template v-slot:selection="brand">
                   <v-list-item-content>
@@ -42,6 +26,23 @@
                 </template>
               </v-autocomplete>
             </v-col>
+            <v-col cols="6" >
+              <v-autocomplete v-model="category" :items="categories.filter(c => c.brand == selectedBrand)" label="Category" item-text="name" item-value="id">
+                <template v-slot:selection="category">
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      {{category.item.name}}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </template>
+                <template v-slot:item="category">
+                  <v-list-item-content>
+                    <v-list-item-title>{{category.item.name}}</v-list-item-title>
+                  </v-list-item-content>
+                </template>
+              </v-autocomplete>
+            </v-col>
+
           </v-row>
           <v-col cols="5" class="pl-0">
             <v-text-field type="number" v-model="price" :rules="nameRules" label="Price" required ></v-text-field>
@@ -288,6 +289,9 @@
         discountType: 'none',
         discount: '',
       }
+    },
+    mounted() {
+      console.log(this.categories)
     },
     methods: {
       removeImage(event, i) {
