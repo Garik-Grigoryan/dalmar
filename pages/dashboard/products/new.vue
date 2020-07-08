@@ -11,7 +11,7 @@
           <v-text-field v-model="name_am" :rules="nameRules" label="Name (am)" required ></v-text-field>
           <v-row >
             <v-col cols="6" >
-              <v-autocomplete v-model="selectedBrand" :items="brands" label="Brand" item-text="name" item-value="id">
+              <v-autocomplete v-model="selectedBrand" :items="brands.brands" label="Brand" item-text="name" item-value="id">
                 <template v-slot:selection="brand">
                   <v-list-item-content>
                     <v-list-item-title>
