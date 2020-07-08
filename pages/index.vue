@@ -5,9 +5,9 @@
         <Brands></Brands>
         <MiddleBanner></MiddleBanner>
           <h1  class="text-center mb-5">Top Sales</h1>
-          <PromoProducts :count="22" type="best"></PromoProducts>
+          <PromoProducts :count="7" type="best"></PromoProducts>
           <h1  class="text-center mb-5">New Products</h1>
-          <PromoProducts :count="22" type="new"></PromoProducts>
+          <PromoProducts :count="7" type="new"></PromoProducts>
           <v-row justify="center">
             <v-col lg="8" md="12">
               <v-img src="/baner.png" cover width="100%" max-height="640" aspect-ratio="1"></v-img>

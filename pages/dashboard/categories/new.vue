@@ -15,13 +15,13 @@
                 <template v-slot:selection="category">
                   <v-list-item-content>
                     <v-list-item-title>
-                      {{category.item.name}}
+                      {{category.item.name_en}}
                     </v-list-item-title>
                   </v-list-item-content>
                 </template>
                 <template v-slot:item="category">
                   <v-list-item-content>
-                    <v-list-item-title>{{category.name}}</v-list-item-title>
+                    <v-list-item-title>{{category.name_en}}</v-list-item-title>
                   </v-list-item-content>
                 </template>
               </v-autocomplete>

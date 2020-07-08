@@ -21,7 +21,7 @@
             <v-list v-if="item.items" style="background-color: #01235E">
               <v-list-item-content style="align-items: normal">
                 <v-list-item-group v-if="item.items" v-for="(item, index) in item.items" :key="index">
-                  <v-list-item style="text-align: center;" exact :to="localePath(item.to)">
+                  <!-- <v-list-item style="text-align: center;" exact :to="localePath(item.to)">
                     <v-list-item-title>
                       {{ item.title }}
                     </v-list-item-title>
@@ -46,12 +46,34 @@
                     <v-list-item v-else exact :to="localePath(item.to)">
                       <v-list-item-title>{{ item.title }}</v-list-item-title>
                     </v-list-item>
-                  </v-list-item-content>
+                  </v-list-item-content> -->
                 </v-list-item-group>
-                <v-list-item v-else exact :to="localePath(item.to)">
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item>
-                <v-list-item-group>
+                <v-list style="display: flex; background: transparent; text-align: center; width: max-content;">
+                  <v-list-item-group v-for="(item1, index) in item.items" :key="index" style="width:100%">
+                        <v-list-item exact :to="localePath(item.to)">
+                          <v-list-item-title>{{ item1.title }}</v-list-item-title>
+                        </v-list-item>
+                        
+                        <v-divider style="background: white"></v-divider>
+                        
+                        <v-list style="display: flex; background: transparent;">
+                          <v-list-item-group v-for="(item2, index) in item.items2" :key="index">
+                                <v-list-item v-if="item1.id === item2.brand" exact :to="localePath(item2.to)">
+                                  <v-list-item-title>{{ item2.title }}</v-list-item-title>
+                                </v-list-item>
+
+                                <v-list v-if="item1.id === item2.brand" style="background: transparent; border-right: 2px solid #b20839;">
+                                  <v-list-item-group v-for="(item3, index) in item.items3" :key="index">
+                                        <v-list-item v-if="item2.id === item3.parent && item1.id === item2.brand" exact :to="localePath(item3.to)">
+                                          <v-list-item-title>{{ item3.title }}</v-list-item-title>
+                                        </v-list-item>
+                                  </v-list-item-group>
+                                </v-list>
+                          </v-list-item-group>
+                        </v-list>
+                  </v-list-item-group>
+                </v-list>
+                <v-list-item-group style="width: min-content; ">
                   <v-list-item disabled>
                     <v-img src="/men.jpg" max-width="250" min-height="400" cover></v-img>
                   </v-list-item>
@@ -233,7 +255,7 @@
             </v-btn>
           </template>
         </v-menu>
-        <v-btn v-for="(item, key) in languages" :key="key" to="/cart" fab color="#01235E" class="my-2 nav_button" small >
+        <v-btn v-for="(item, key) in languages" :key="key" :to="switchLocalePath(item.to)" fab color="#01235E" class="my-2 nav_button" small >
           <v-img :src="item.icon" max-width="50"></v-img>
         </v-btn>
       </v-speed-dial>
@@ -248,6 +270,7 @@
       props: ['header'],
       async fetch({store}) {
         await store.dispatch('brands/fetch');
+        await store.dispatch('categories/fetch');
         await store.dispatch('menus/fetch');
       },
       data () {
@@ -310,6 +333,12 @@
               items: [
 
               ],
+              items2: [
+
+              ],
+              items3: [
+
+              ],
             },
             { title: 'Sales',
               to: '/sales'
@@ -331,7 +360,7 @@
         brands() {
           return this.$store.getters['brands/brands'];
         },
-        categories(){
+        categories() {
           return this.$store.getters['categories/categories'];
         },
         wishListLength(){
@@ -373,22 +402,87 @@
           this.cartCount = cookieResCart.length
         }
         this.onResize();
-        // this.brands.forEach(elem => {
-        //   this.leftSide[0].items.push(
-        //     { title: elem.name,
-        //       to: '/brand/'+elem.id+'?page=1',
-        //     }
-        //   )
-        // });
-        this.categories.forEach(elem => {
+        console.log(this.brands.brands);
+        console.log(this.brands.categories);
+        this.brands.brands.forEach(elem => {
           this.leftSide[0].items.push(
-            { title: elem.name_en,
-              to: '/category/'+elem.id+'?page=1',
+            { 
+              id: elem.id,
+              title: elem.name,
+              to: '/brand/'+elem.id+'?page=1',
             }
           )
-        })
+          this.brands.categories.forEach(elem2 => {
+            if(elem2.brand === elem.id) {
+                if(elem2.parent === 0) {
+                  if(this.$i18n.locale === 'am') {
+                    this.leftSide[0].items2.push(
+                      { 
+                        id: elem2.id,
+                        brand: elem.id,
+                        title: elem2.name_am,
+                        to: '/category/'+elem2.id+'?page=1',
+                      }
+                    )
+                    this.brands.categories.forEach(elem3 => {
+                      if(elem3.parent === elem2.id) {
+                          this.leftSide[0].items3.push(
+                            { 
+                              parent: elem2.id,
+                              title: elem3.name_am,
+                              to: '/category/'+elem3.id+'?page=1',
+                            }
+                          )
+                      }
+                    })
+                  }
+                  if(this.$i18n.locale === 'en') {
+                    this.leftSide[0].items2.push(
+                      { 
+                        id: elem2.id,
+                        brand: elem.id,
+                        title: elem2.name_en,
+                        to: '/category/'+elem2.id+'?page=1',
+                      }
+                    )
+                    this.brands.categories.forEach(elem3 => {
+                      if(elem3.parent === elem2.id) {
+                          this.leftSide[0].items3.push(
+                            { 
+                              parent: elem2.id,
+                              title: elem3.name_en,
+                              to: '/category/'+elem3.id+'?page=1',
+                            }
+                          )
+                      }
+                    })
+                  }
+                  if(this.$i18n.locale === 'ru') {
+                    this.leftSide[0].items2.push(
+                      { 
+                        id: elem2.id,
+                        brand: elem.id,
+                        title: elem2.name_ru,
+                        to: '/category/'+elem2.id+'?page=1',
+                      }
+                    )
+                    this.brands.categories.forEach(elem3 => {
+                      if(elem3.parent === elem2.id) {
+                          this.leftSide[0].items3.push(
+                            { 
+                              parent: elem2.id,
+                              title: elem3.name_ru,
+                              to: '/category/'+elem3.id+'?page=1',
+                            }
+                          )
+                      }
+                    })
+                  }
+              }
+            }
+          })
+        });
       },
-
       methods: {
         onResize () {
           if(window.innerWidth >= 960){
@@ -433,6 +527,11 @@
 </script>
 
 <style>
+
+  .v-list-item__content > * {
+      line-height: 1.1;
+      flex: 1 0 10% !important;
+  }
   .v-input__slot {
     border-color: transparent !important;
   }
