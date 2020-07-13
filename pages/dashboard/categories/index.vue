@@ -9,14 +9,18 @@
         <thead>
         <tr>
           <th class="text-left">Image</th>
-          <th class="text-left">Name</th>
+          <th class="text-left">Name (en)</th>
+          <th class="text-left">Name (ru)</th>
+          <th class="text-left">Name (am)</th>
           <th class="text-left">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="item in categories" :key="item.name">
           <td><v-img :src="JSON.parse(item.image)[0]" max-width="100"></v-img></td>
-          <td>{{ item.name }}</td>
+          <td>{{ item.name_en }}</td>
+          <td>{{ item.name_ru }}</td>
+          <td>{{ item.name_am }}</td>
           <td><v-btn small :to="`categories/edit/${item.id}`" :elevation="0" dark fab color="primary" ><v-icon>mdi-pencil</v-icon></v-btn> <v-btn small :elevation="0" @click="deleteCategory($event, item.id )" dark fab color="error" ><v-icon>mdi-delete</v-icon></v-btn></td>
         </tr>
         </tbody>

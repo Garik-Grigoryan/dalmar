@@ -57,7 +57,7 @@
         this.menusConstruct = JSON.parse(this.menus.menus[0].construction);
       }
       for(let categories of this.menus.categories){
-        this.categories.push({ name: categories.name, id: categories.id, menus: [] })
+        this.categories.push({ name: categories.name_en, id: categories.id, menus: [] }) 
       }
     }
   }

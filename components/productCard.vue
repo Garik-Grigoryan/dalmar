@@ -45,7 +45,9 @@
           <v-icon>mdi-heart</v-icon>
         </v-btn>
         <nuxt-link to="/product/jinsGray">
-          <h3 class=" font-weight-light font-weight-bold white--text mb-2">{{title}}</h3>
+          <h3 v-if="$i18n.locale === 'am'" class=" font-weight-light font-weight-bold white--text mb-2">{{title_am}}</h3>
+          <h3 v-if="$i18n.locale === 'en'" class=" font-weight-light font-weight-bold white--text mb-2">{{title_en}}</h3>
+          <h3 v-if="$i18n.locale === 'ru'" class=" font-weight-light font-weight-bold white--text mb-2">{{title_ru}}</h3>
           <p class="price white--text"><span class="font-weight-bold">Price</span> {{price}} AMD</p>
         </nuxt-link>
       </v-card-text>
@@ -56,7 +58,7 @@
 
 <script>
     export default {
-      props: ['image', 'id', 'title', 'price'],
+      props: ['image', 'id', 'title_en', 'title_ru', 'title_am', 'price'],
       name: "productCard",
       methods: {
         addToWishlist(e, id) {

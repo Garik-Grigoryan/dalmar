@@ -6,10 +6,12 @@
           Add new Product
         </v-toolbar-title>
         <v-form ref="form" v-model="valid" >
-          <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required ></v-text-field>
+          <v-text-field v-model="name_en" :rules="nameRules" label="Name (eng)" required ></v-text-field>
+          <v-text-field v-model="name_ru" :rules="nameRules" label="Name (rus)" required ></v-text-field>
+          <v-text-field v-model="name_am" :rules="nameRules" label="Name (am)" required ></v-text-field>
           <v-row >
             <v-col cols="6" >
-              <v-autocomplete v-model="selectedBrand" :items="brands" label="Brand" item-text="name" item-value="id">
+              <v-autocomplete v-model="selectedBrand" :items="brands.brands" label="Brand" item-text="name" item-value="id">
                 <template v-slot:selection="brand">
                   <v-list-item-content>
                     <v-list-item-title>
@@ -115,7 +117,17 @@
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-textarea solo label="Description" v-model="description" ></v-textarea>
+              <v-textarea solo label="Description (eng)" v-model="description_en" ></v-textarea>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <v-textarea solo label="Description (rus)" v-model="description_ru" ></v-textarea>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <v-textarea solo label="Description (am)" v-model="description_am" ></v-textarea>
             </v-col>
           </v-row>
           <v-row>
@@ -260,7 +272,9 @@
       return {
         valid: true,
         imageUpladForm: true,
-        name: '',
+        name_en: '',
+        name_ru: '',
+        name_am: '',
         isNew: false,
         imageName: '',
         dialog: false,
@@ -271,7 +285,9 @@
         selectedBrand: '',
         colorName: '',
         price: '',
-        description: '',
+        description_en: '',
+        description_ru: '',
+        description_am: '',
         selectedColors: [],
         sex: 'men',
         hasDiscount: false,
@@ -337,9 +353,8 @@
         })
       },
       addProduct() {
-
-        this.$store.dispatch('products/addProduct', [this.name, this.category, this.price, this.selectedImages, this.selectedColors, this.selectedSizes, this.selectedBrand, this.sex, this.isNew, this.discountType, this. discount, this. description]).then(r => {
-          // this.$router.push('/dashboard/categories')
+        this.$store.dispatch('products/addProduct', [this.name_en, this.name_ru, this.name_am, this.category, this.price, this.selectedImages, this.selectedColors, this.selectedSizes, this.selectedBrand, this.sex, this.isNew, this.discountType, this.discount, this.description_en, this.description_ru, this.description_am]).then(r => {
+          this.$router.push('/dashboard/products')
         })
       }
     },
