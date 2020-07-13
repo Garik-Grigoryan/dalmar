@@ -6,7 +6,8 @@
           Add new brands
         </v-toolbar-title>
         <v-form ref="form" v-model="valid" >
-          <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required ></v-text-field>
+          <v-text-field v-model="name" :rules="nameRules" label="Name" required ></v-text-field>
+          <v-text-field v-model="nameRu" :rules="nameRules" label="Name Eng." required ></v-text-field>
           <v-col cols="5" class="pl-0">
             <v-text-field type="number" v-model="order" :counter="10" :rules="nameRules" label="Order" required ></v-text-field>
           </v-col>
@@ -104,6 +105,8 @@
           valid: true,
           imageUpladForm: true,
           name: '',
+          nameRu: '',
+          nameEng: '',
           imageName: '',
           order: '',
           dialog: false,
@@ -145,7 +148,7 @@
           })
         },
         addBrand() {
-          this.$store.dispatch('brands/addBrand', [this.name, this.order, this.selectedImages]).then(r => {
+          this.$store.dispatch('brands/addBrand', [this.name, this.nameRu, this.order, this.selectedImages]).then(r => {
             this.$router.push('/dashboard/brands')
           })
         }

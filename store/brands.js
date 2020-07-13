@@ -36,8 +36,8 @@ export const actions = {
   async delete({commit}, [id]){
     const brand = await this.$axios.$delete(`http://127.0.0.1:8000/api/brand/delete/${id}`);
   },
-  async addBrand(ctx, [name, order, image, color]){
-   await this.$axios.$post('http://127.0.0.1:8000/api/brand/add', {'name': name, 'order': order, 'image': image, 'color': color});
+  async addBrand(ctx, [name, nameRu, order, image, color]){
+   await this.$axios.$post('http://127.0.0.1:8000/api/brand/add', {'name': name, 'nameRu': nameRu, 'order': order, 'image': image, 'color': color});
   }
 }
 

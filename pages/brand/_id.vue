@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container>
+      {{}}
       <v-row justify="center">
         <productCard
           v-for="(product, i) in products.products"
