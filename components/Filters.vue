@@ -5,15 +5,16 @@
     fixed
     app
     clipped
+    class="product_filter"
   >
     <v-list-item class="px-2 mt-3">
       <v-img :src="brand[0].image" width="80%"  :contain="true"></v-img>
-      <v-btn
+      <!-- <v-btn
         icon
         @click.stop="mini = !mini"
       >
         <v-icon>mdi-chevron-left</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-list-item>
 
     <v-divider></v-divider>

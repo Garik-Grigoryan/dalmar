@@ -1,6 +1,9 @@
 <template>
   <div>
     <v-container>
+      <v-btn class="icon_filter" icon @click="filter" style="display:none">
+        <v-icon>mdi-filter-plus</v-icon>
+      </v-btn>
       <v-row justify="center">
         <productCard
           v-for="(product, i) in products.products"
@@ -70,11 +73,29 @@
           }else{
             this.$router.push({ query: { page: this.page } });
           }
+        },
+        filter() {
+          if(document.getElementsByClassName("product_filter")[0].className.indexOf('v-navigation-drawer--close') === -1) {
+            document.getElementsByClassName("product_filter")[0].classList.remove("v-navigation-drawer--open");
+            document.getElementsByClassName("product_filter")[0].classList.add("v-navigation-drawer--close");
+            document.getElementsByClassName("product_filter")[0].style.transform = "translateX(-100%)";
+          } else {
+            document.getElementsByClassName("product_filter")[0].classList.remove("v-navigation-drawer--close");
+            document.getElementsByClassName("product_filter")[0].classList.add("v-navigation-drawer--open");
+            document.getElementsByClassName("product_filter")[0].style.transform = "translateX(0%)";
+          }
         }
       },
     }
 </script>
 
 <style scoped>
-
+  @media (max-width: 767px) {
+    .icon_filter {
+      display: block !important;
+    }
+    .product_filter {
+      transform: translateX(-100%);
+    }
+  }
 </style>

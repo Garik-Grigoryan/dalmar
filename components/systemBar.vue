@@ -13,7 +13,7 @@
       <v-col cols="5">
         <v-row justify="end" class="hidden-sm-and-down" no-gutters >
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in leftSide" dark :key="i">
-            {{item}}
+            <!-- {{item}} -->
             <template v-slot:activator="{ on }">
               <v-btn exact :to="localePath(item.to)" router exact color="#fff" text class="my-2 nav_button" v-on="on" bottom >
                 {{item.title}}
@@ -60,13 +60,17 @@
                         <v-list style="display: flex; background: transparent;">
                           <v-list-item-group v-for="(item2, index) in item.items2" :key="index">
                                 <v-list-item v-if="item1.id === item2.brand" exact :to="localePath(item2.to)">
-                                  <v-list-item-title>{{ item2.title }}</v-list-item-title>
+                                  <v-list-item-title v-if="$i18n.locale === 'am'">{{ item2.title_am }}</v-list-item-title>
+                                  <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item2.title_ru }}</v-list-item-title>
+                                  <v-list-item-title v-if="$i18n.locale === 'en'">{{ item2.title_en }}</v-list-item-title>
                                 </v-list-item>
 
                                 <v-list v-if="item1.id === item2.brand" style="background: transparent; border-right: 2px solid #b20839;">
                                   <v-list-item-group v-for="(item3, index) in item.items3" :key="index">
                                         <v-list-item v-if="item2.id === item3.parent && item1.id === item2.brand" exact :to="localePath(item3.to)">
-                                          <v-list-item-title>{{ item3.title }}</v-list-item-title>
+                                          <v-list-item-title v-if="$i18n.locale === 'am'">{{ item3.title_am }}</v-list-item-title>
+                                          <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item3.title_ru }}</v-list-item-title>
+                                          <v-list-item-title v-if="$i18n.locale === 'en'">{{ item3.title_en }}</v-list-item-title>
                                         </v-list-item>
                                   </v-list-item-group>
                                 </v-list>
@@ -94,43 +98,59 @@
 
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in rightSide" dark :key="i">
             <template v-slot:activator="{ on }">
-              <v-btn exact :to="localePath(item.to)" router exact color="#fff" text class="my-2 nav_button" v-on="on" bottom >
-                {{item.title}}
+              <v-btn exact :to="localePath(item.to)" router color="#fff" text class="my-2 nav_button" v-on="on" bottom >
+                <div v-if="item.title_am !== undefined && $i18n.locale === 'am'">{{ item.title_am }}</div>
+                <div v-if="item.title_ru !== undefined && $i18n.locale === 'ru'">{{ item.title_ru }}</div>
+                <div v-if="item.title_en !== undefined && $i18n.locale === 'en'">{{ item.title_en }}</div>
+                <div v-if="item.title_am === undefined">{{ item.title }}</div>
               </v-btn>
             </template>
             <v-list v-if="item.items" style="background-color: #01235E">
               <v-list-item-content style="align-items: normal">
-                <v-list-item-group  style="max-width: 150px;"  v-if="item.items" v-for="(item, index) in item.items" :key="index">
+                <!-- <v-list-item-group  style="max-width: 150px;"  v-if="item.items" v-for="(item1, index) in item.items" :key="index">
                   <v-list-item style="text-align: center;" exact-active-class="activeLink" exact :to="localePath(item.to)">
                     <v-list-item-title>
-                      {{ item.title }}
+                      {{ item1.title }}
                     </v-list-item-title>
                   </v-list-item>
                   <v-divider style="background-color: #fff"></v-divider>
                   <v-list-item-content class="">
-                    <v-list-item-group style="max-width: 150px;" v-if="item.items" v-for="(item, index) in item.items" :key="index">
-                      <v-list-item style="text-align: center;" exact exact-active-class="activeLink" :to="localePath(item.to)">
+                    <v-list-item-group style="max-width: 150px;" v-if="item.items" v-for="(item1, index) in item.items" :key="index">
+                      <v-list-item style="text-align: center;" exact exact-active-class="activeLink" :to="localePath(item1.to)">
                         <v-list-item-title>
-                          {{ item.title }}
+                          {{ item1.title }}
                         </v-list-item-title>
                       </v-list-item>
                       <v-list-item-content class="mainDivide">
-                        <v-list-item-group style="max-width: 150px;" v-if="item.items" v-for="(item, index) in item.items" :key="index" exact exact-active-class="activeLink" :to="localePath(item.to)">
+                        <v-list-item-group style="max-width: 150px;" v-if="item.items" v-for="(item1, index) in item.items" :key="index" exact exact-active-class="activeLink" :to="localePath(item.to)">
                           <v-list-item-title style="text-align: center;">{{ item.title }}</v-list-item-title>
                         </v-list-item-group>
-                        <v-list-item v-else  exact exact-active-class="activeLink" :to="localePath(item.to)">
-                          <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        <v-list-item v-else  exact exact-active-class="activeLink" :to="localePath(item1.to)">
+                          <v-list-item-title>{{ item1.title }}</v-list-item-title>
                         </v-list-item>
                       </v-list-item-content>
                     </v-list-item-group>
-                    <v-list-item v-else exact exact-active-class="activeLink" :to="localePath(item.to)">
-                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    <v-list-item v-else exact exact-active-class="activeLink" :to="localePath(item1.to)">
+                      <v-list-item-title>{{ item1.title }}</v-list-item-title>
                     </v-list-item>
                   </v-list-item-content>
+                </v-list-item-group> -->
+
+                <v-list-item-group v-for="(item1, index) in item.items" :key="index">
+                  <v-list-item exact exact-active-class="activeLink" :to="localePath(item1.to)" style="text-align:center">
+                    <v-list-item-title v-if="$i18n.locale === 'am'">{{ item1.title_am }}</v-list-item-title>
+                    <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item1.title_ru }}</v-list-item-title>
+                    <v-list-item-title v-if="$i18n.locale === 'en'">{{ item1.title_en }}</v-list-item-title>
+                  </v-list-item>
+                  <v-divider v-if="item.items2.length > 0" style="background: white"></v-divider>
+                  <v-list-item-group v-for="(item2, index) in item.items2" :key="index">
+                    <v-list-item v-if="item1.id === item2.parent" exact :to="localePath(item2.to)">
+                      <v-list-item-title v-if="$i18n.locale === 'am'">{{ item2.title_am }}</v-list-item-title>
+                      <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item2.title_ru }}</v-list-item-title>
+                      <v-list-item-title v-if="$i18n.locale === 'en'">{{ item2.title_en }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list-item-group>
                 </v-list-item-group>
-                <v-list-item v-else exact exact-active-class="activeLink" :to="localePath(item.to)">
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item>
               </v-list-item-content>
             </v-list>
           </v-menu>
@@ -378,16 +398,39 @@
         for(let menu of this.menus.menus){
           let menusConstruct = JSON.parse(this.menus.menus[0].construction);
           for(let item of menusConstruct){
+            let index = this.menus.categories.findIndex(i=>i.id===item.id);
             let mainMenu = {
-              title: item.name,
+              title_en: this.menus.categories[index].name_en,
+              title_ru: this.menus.categories[index].name_ru,
+              title_am: this.menus.categories[index].name_am,
               to: '/category/' + item.id + '?page=1',
-              items: []
+              items: [],
+              items2: []
             };
             if(item.menus.length > 0){
               for(let menuItem of item.menus){
                 console.log(menuItem);
+                let indexItem = this.menus.categories.findIndex(i=>i.id===menuItem.id);
+                mainMenu.items.push({
+                  id: menuItem.id,
+                  title_en: this.menus.categories[indexItem].name_en,
+                  title_ru: this.menus.categories[indexItem].name_ru,
+                  title_am: this.menus.categories[indexItem].name_am,
+                  to: '/category/' + menuItem.id + '?page=1'
+                })
 
-                mainMenu.items.push({title: menuItem.name, to: '/category/' + menuItem.id + '?page=1'})
+                if(menuItem.menus.length > 0){
+                  for(let menuItemItem of menuItem.menus){
+                    let indexItemItem = this.menus.categories.findIndex(i=>i.id===menuItemItem.id);
+                    mainMenu.items2.push({
+                      parent: this.menus.categories[indexItemItem].parent,
+                      title_en: this.menus.categories[indexItemItem].name_en,
+                      title_ru: this.menus.categories[indexItemItem].name_ru,
+                      title_am: this.menus.categories[indexItemItem].name_am,
+                      to: '/category/' + menuItemItem.id + '?page=1'
+                    })
+                  }
+                }
               }
             }
             this.rightSide.unshift(mainMenu);
@@ -404,85 +447,42 @@
         }
         this.onResize();
         console.log(this.brands);
-        // this.brands.forEach(elem => {
-        //
-        //   this.leftSide[0].items.push(
-        //     {
-        //       id: elem.id,
-        //       title: elem.name,
-        //       to: '/brand/'+elem.id+'?page=1',
-        //     }
-        //   )
-        //   this.brands.categories.forEach(elem2 => {
-        //     if(elem2.brand === elem.id) {
-        //         if(elem2.parent === 0) {
-        //           if(this.$i18n.locale === 'am') {
-        //             this.leftSide[0].items2.push(
-        //               {
-        //                 id: elem2.id,
-        //                 brand: elem.id,
-        //                 title: elem2.name_am,
-        //                 to: '/category/'+elem2.id+'?page=1',
-        //               }
-        //             )
-        //             this.brands.categories.forEach(elem3 => {
-        //               if(elem3.parent === elem2.id) {
-        //                   this.leftSide[0].items3.push(
-        //                     {
-        //                       parent: elem2.id,
-        //                       title: elem3.name_am,
-        //                       to: '/category/'+elem3.id+'?page=1',
-        //                     }
-        //                   )
-        //               }
-        //             })
-        //           }
-        //           if(this.$i18n.locale === 'en') {
-        //             this.leftSide[0].items2.push(
-        //               {
-        //                 id: elem2.id,
-        //                 brand: elem.id,
-        //                 title: elem2.name_en,
-        //                 to: '/category/'+elem2.id+'?page=1',
-        //               }
-        //             )
-        //             this.brands.categories.forEach(elem3 => {
-        //               if(elem3.parent === elem2.id) {
-        //                   this.leftSide[0].items3.push(
-        //                     {
-        //                       parent: elem2.id,
-        //                       title: elem3.name_en,
-        //                       to: '/category/'+elem3.id+'?page=1',
-        //                     }
-        //                   )
-        //               }
-        //             })
-        //           }
-        //           if(this.$i18n.locale === 'ru') {
-        //             this.leftSide[0].items2.push(
-        //               {
-        //                 id: elem2.id,
-        //                 brand: elem.id,
-        //                 title: elem2.name_ru,
-        //                 to: '/category/'+elem2.id+'?page=1',
-        //               }
-        //             )
-        //             this.brands.categories.forEach(elem3 => {
-        //               if(elem3.parent === elem2.id) {
-        //                   this.leftSide[0].items3.push(
-        //                     {
-        //                       parent: elem2.id,
-        //                       title: elem3.name_ru,
-        //                       to: '/category/'+elem3.id+'?page=1',
-        //                     }
-        //                   )
-        //               }
-        //             })
-        //           }
-        //       }
-        //     }
-        //   })
-        // });
+        this.brands.forEach(elem => {
+          this.leftSide[0].items.push(
+            {
+              id: elem.brand.id,
+              title: elem.brand.name,
+              to: '/brand/'+elem.brand.id+'?page=1',
+            }
+          )
+          if(elem.categories !== undefined) {
+            elem.categories.forEach(elem2 => {
+              this.leftSide[0].items2.push(
+                {
+                  id: elem2.id,
+                  brand: elem2.brand,
+                  title_am: elem2.name_am,
+                  title_ru: elem2.name_ru,
+                  title_en: elem2.name_en,
+                  to: '/category/'+elem2.id+'?page=1',
+                }
+              )
+              if(elem2.subcategories !== undefined) {
+                elem2.subcategories.forEach(elem3 => {
+                  this.leftSide[0].items3.push(
+                    {
+                      parent: elem3.parent,
+                      title_am: elem3.name_am,
+                      title_ru: elem3.name_ru,
+                      title_en: elem3.name_en,
+                      to: '/category/'+elem3.id+'?page=1',
+                    }
+                  )
+                })
+              }
+            })
+          }
+        })
       },
       methods: {
         onResize () {
