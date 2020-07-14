@@ -13,6 +13,7 @@
       <v-col cols="5">
         <v-row justify="end" class="hidden-sm-and-down" no-gutters >
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in leftSide" dark :key="i">
+            {{item}}
             <template v-slot:activator="{ on }">
               <v-btn exact :to="localePath(item.to)" router exact color="#fff" text class="my-2 nav_button" v-on="on" bottom >
                 {{item.title}}
@@ -53,9 +54,9 @@
                         <v-list-item exact :to="localePath(item.to)">
                           <v-list-item-title>{{ item1.title }}</v-list-item-title>
                         </v-list-item>
-                        
+
                         <v-divider style="background: white"></v-divider>
-                        
+
                         <v-list style="display: flex; background: transparent;">
                           <v-list-item-group v-for="(item2, index) in item.items2" :key="index">
                                 <v-list-item v-if="item1.id === item2.brand" exact :to="localePath(item2.to)">
@@ -402,86 +403,86 @@
           this.cartCount = cookieResCart.length
         }
         this.onResize();
-        console.log(this.brands.brands);
-        console.log(this.brands.categories);
-        this.brands.brands.forEach(elem => {
-          this.leftSide[0].items.push(
-            { 
-              id: elem.id,
-              title: elem.name,
-              to: '/brand/'+elem.id+'?page=1',
-            }
-          )
-          this.brands.categories.forEach(elem2 => {
-            if(elem2.brand === elem.id) {
-                if(elem2.parent === 0) {
-                  if(this.$i18n.locale === 'am') {
-                    this.leftSide[0].items2.push(
-                      { 
-                        id: elem2.id,
-                        brand: elem.id,
-                        title: elem2.name_am,
-                        to: '/category/'+elem2.id+'?page=1',
-                      }
-                    )
-                    this.brands.categories.forEach(elem3 => {
-                      if(elem3.parent === elem2.id) {
-                          this.leftSide[0].items3.push(
-                            { 
-                              parent: elem2.id,
-                              title: elem3.name_am,
-                              to: '/category/'+elem3.id+'?page=1',
-                            }
-                          )
-                      }
-                    })
-                  }
-                  if(this.$i18n.locale === 'en') {
-                    this.leftSide[0].items2.push(
-                      { 
-                        id: elem2.id,
-                        brand: elem.id,
-                        title: elem2.name_en,
-                        to: '/category/'+elem2.id+'?page=1',
-                      }
-                    )
-                    this.brands.categories.forEach(elem3 => {
-                      if(elem3.parent === elem2.id) {
-                          this.leftSide[0].items3.push(
-                            { 
-                              parent: elem2.id,
-                              title: elem3.name_en,
-                              to: '/category/'+elem3.id+'?page=1',
-                            }
-                          )
-                      }
-                    })
-                  }
-                  if(this.$i18n.locale === 'ru') {
-                    this.leftSide[0].items2.push(
-                      { 
-                        id: elem2.id,
-                        brand: elem.id,
-                        title: elem2.name_ru,
-                        to: '/category/'+elem2.id+'?page=1',
-                      }
-                    )
-                    this.brands.categories.forEach(elem3 => {
-                      if(elem3.parent === elem2.id) {
-                          this.leftSide[0].items3.push(
-                            { 
-                              parent: elem2.id,
-                              title: elem3.name_ru,
-                              to: '/category/'+elem3.id+'?page=1',
-                            }
-                          )
-                      }
-                    })
-                  }
-              }
-            }
-          })
-        });
+        console.log(this.brands);
+        // this.brands.forEach(elem => {
+        //
+        //   this.leftSide[0].items.push(
+        //     {
+        //       id: elem.id,
+        //       title: elem.name,
+        //       to: '/brand/'+elem.id+'?page=1',
+        //     }
+        //   )
+        //   this.brands.categories.forEach(elem2 => {
+        //     if(elem2.brand === elem.id) {
+        //         if(elem2.parent === 0) {
+        //           if(this.$i18n.locale === 'am') {
+        //             this.leftSide[0].items2.push(
+        //               {
+        //                 id: elem2.id,
+        //                 brand: elem.id,
+        //                 title: elem2.name_am,
+        //                 to: '/category/'+elem2.id+'?page=1',
+        //               }
+        //             )
+        //             this.brands.categories.forEach(elem3 => {
+        //               if(elem3.parent === elem2.id) {
+        //                   this.leftSide[0].items3.push(
+        //                     {
+        //                       parent: elem2.id,
+        //                       title: elem3.name_am,
+        //                       to: '/category/'+elem3.id+'?page=1',
+        //                     }
+        //                   )
+        //               }
+        //             })
+        //           }
+        //           if(this.$i18n.locale === 'en') {
+        //             this.leftSide[0].items2.push(
+        //               {
+        //                 id: elem2.id,
+        //                 brand: elem.id,
+        //                 title: elem2.name_en,
+        //                 to: '/category/'+elem2.id+'?page=1',
+        //               }
+        //             )
+        //             this.brands.categories.forEach(elem3 => {
+        //               if(elem3.parent === elem2.id) {
+        //                   this.leftSide[0].items3.push(
+        //                     {
+        //                       parent: elem2.id,
+        //                       title: elem3.name_en,
+        //                       to: '/category/'+elem3.id+'?page=1',
+        //                     }
+        //                   )
+        //               }
+        //             })
+        //           }
+        //           if(this.$i18n.locale === 'ru') {
+        //             this.leftSide[0].items2.push(
+        //               {
+        //                 id: elem2.id,
+        //                 brand: elem.id,
+        //                 title: elem2.name_ru,
+        //                 to: '/category/'+elem2.id+'?page=1',
+        //               }
+        //             )
+        //             this.brands.categories.forEach(elem3 => {
+        //               if(elem3.parent === elem2.id) {
+        //                   this.leftSide[0].items3.push(
+        //                     {
+        //                       parent: elem2.id,
+        //                       title: elem3.name_ru,
+        //                       to: '/category/'+elem3.id+'?page=1',
+        //                     }
+        //                   )
+        //               }
+        //             })
+        //           }
+        //       }
+        //     }
+        //   })
+        // });
       },
       methods: {
         onResize () {

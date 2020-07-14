@@ -5,7 +5,7 @@
   >
     <v-row justify="center">
       <v-card
-        v-for="(brand, i) in brands"
+        v-for="(brand, i) in brands.brands"
         :key="i"
         :color="brand.color"
         class="ma-4"
@@ -31,9 +31,7 @@
     data: () => ({
       model: null,
       slides: [
-        {text: 'US Polo', src: '/uspolo.jpg', color: '#ffffff'},
-        {text: 'Second', src: '/giordano.jpg', color: '#000000'},
-        {text: 'US Polo', src: '/uspolo.jpg', color: '#ffffff'},
+
       ],
     }),
     computed: {

@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-container>
-      {{}}
       <v-row justify="center">
         <productCard
           v-for="(product, i) in products.products"
@@ -24,9 +23,6 @@
       </div>
     </v-container>
   </div>
-
-<!--  {{$route.params.name}}-->
-
 </template>
 
 <script>
