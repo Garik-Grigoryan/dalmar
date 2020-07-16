@@ -1,51 +1,56 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    :mini-variant.sync="mini"
-    fixed
-    app
-    clipped
-    class="product_filter"
-  >
-    <v-list-item class="px-2 mt-3">
-      <v-img :src="brand[0].image" width="80%"  :contain="true"></v-img>
-      <!-- <v-btn
-        icon
-        @click.stop="mini = !mini"
-      >
-        <v-icon>mdi-chevron-left</v-icon>
-      </v-btn> -->
-    </v-list-item>
-
-    <v-divider></v-divider>
-    <v-list class="mt-5">
-      <v-list-item class="mt-5">
-        <v-range-slider v-model="range" :max="max" :min="min" hide-details class="align-center" thumb-label="always" color="#ea5a21" track-color="#f39513" @change="filter($event)" >
-        </v-range-slider>
+  <div>
+    <v-btn class="icon_filter" icon @click.stop="drawer = !drawer" @click = "icon_filter" style="display:none">
+      <v-icon>mdi-filter-plus</v-icon>
+    </v-btn>
+    <v-navigation-drawer
+      v-model="drawer"
+      :mini-variant.sync="mini"
+      fixed
+      app
+      clipped
+      class="product_filter"
+    >
+      <v-list-item class="px-2 mt-3">
+        <v-img :src="brand[0].image" width="80%"  :contain="true"></v-img>
+        <!-- <v-btn
+          icon
+          @click.stop="mini = !mini"
+        >
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn> -->
       </v-list-item>
-      <v-list-item v-for="item in items" :key="item.title" >
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-          <div v-if="item.type === 'color'">
-            <v-item-group :multiple="true" >
-              <v-row class="colors">
-                <v-item  v-for="(color, n) in item.data"  :key="n" v-slot:default="{ active, toggle }">
-                  <v-card  :color="color.toLowerCase()" class="d-flex text-center align-center mx-3" dark height="30" :data-value="color.toLowerCase()" width="30" @click="toggle(), filter($event)" >
-                    <v-scroll-y-transition>
-                      <v-icon v-if="active" :data-value="color.toLowerCase()" color="white" size="27" v-text="'mdi-close-circle-outline'" class="mx-auto" ></v-icon>
-                    </v-scroll-y-transition>
-                  </v-card>
-                </v-item>
-              </v-row>
-            </v-item-group>
-          </div>
-          <v-combobox v-else @change="filter($event)" v-model="item.select" :items="item.data" label="" dense chips small-chips multiple >
 
-          </v-combobox>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
+      <v-divider></v-divider>
+      <v-list class="mt-5">
+        <v-list-item class="mt-5">
+          <v-range-slider v-model="range" :max="max" :min="min" hide-details class="align-center" thumb-label="always" color="#ea5a21" track-color="#f39513" @change="filter($event)" >
+          </v-range-slider>
+        </v-list-item>
+        <v-list-item v-for="item in items" :key="item.title" >
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <div v-if="item.type === 'color'">
+              <v-item-group :multiple="true" >
+                <v-row class="colors">
+                  <v-item  v-for="(color, n) in item.data"  :key="n" v-slot:default="{ active, toggle }">
+                    <v-card  :color="color.toLowerCase()" class="d-flex text-center align-center mx-3" dark height="30" :data-value="color.toLowerCase()" width="30" @click="toggle(), filter($event)" >
+                      <v-scroll-y-transition>
+                        <v-icon v-if="active" :data-value="color.toLowerCase()" color="white" size="27" v-text="'mdi-close-circle-outline'" class="mx-auto" ></v-icon>
+                      </v-scroll-y-transition>
+                    </v-card>
+                  </v-item>
+                </v-row>
+              </v-item-group>
+            </div>
+            <v-combobox v-else @change="filter($event)" v-model="item.select" :items="item.data" label="" dense chips small-chips multiple >
+
+            </v-combobox>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  </div>
 </template>
 <script>
   export default {
@@ -98,6 +103,13 @@
         this.$store.dispatch('products/Filter', [this.items, this.range, this.$route.params.id]).then(r => {
           // this.$router.push('/dashboard/categories')
         })
+      },
+      icon_filter() {
+        if(document.getElementsByClassName("product_filter")[0].className.indexOf('v-navigation-drawer--close') === -1) {
+          document.getElementsByClassName("icon_filter")[0].style.left = "auto";
+        } else {
+          document.getElementsByClassName("icon_filter")[0].style.left = "260px";
+        }
       }
     },
     computed: {
@@ -110,3 +122,24 @@
     }
   }
 </script>
+
+<style scoped>
+  @media (max-width: 767px) {
+    .product_filter.v-navigation-drawer {
+      transform: translateX(-100%);
+    }
+
+    .icon_filter {
+      display: block !important;
+      position: fixed;
+      top: 50%;
+      z-index: 10;
+      width: 56px;
+      height: 56px;
+      color: #ffffff !important;
+      border: 1px solid;
+      background-color: rgb(1, 35, 94);
+      border-color: rgb(1, 35, 94);
+    }
+  }
+</style>
