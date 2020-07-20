@@ -3,19 +3,19 @@
     class="mx-auto"
     max-width=""
   >
-    <v-row justify="center">
+    <v-row justify="center">  
       <v-card
-        v-for="(brand, i) in brands.brands"
+        v-for="(brand, i) in brands"
         :key="i"
-        :color="brand.color"
+        :color="brand.brand.color"
         class="ma-4"
         height="300"
         width="30%"
         min-width="300"
-        :to="`/brand/${brand.id}?page=1`"
+        :to="`/brand/${brand.brand.id}?page=1`"
       >
         <v-img
-          :src="brand.image"
+          :src="brand.brand.image"
           height="300"
           :contain="true"
         >
