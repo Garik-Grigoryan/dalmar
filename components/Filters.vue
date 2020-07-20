@@ -83,7 +83,12 @@
       }
       this.min = this.filters.minPrice;
       this.max = this.filters.maxPrice;
-      this.range = [this.filters.minPrice, this.filters.maxPrice]
+      this.range = [this.filters.minPrice, this.filters.maxPrice];
+
+      // if(window.matchMedia('(max-width: 767px)').matches){
+      //   this.drawer = false;
+      //   console.log(this.drawer);
+      // }
     },
     methods: {
       filter(e) {
@@ -125,10 +130,6 @@
 
 <style scoped>
   @media (max-width: 767px) {
-    .product_filter.v-navigation-drawer {
-      transform: translateX(-100%);
-    }
-
     .icon_filter {
       display: block !important;
       position: fixed;
