@@ -58,16 +58,41 @@
     },
     mounted() {
       this.wishListData.forEach(elem => {
-        this.desserts.push({
-          image: JSON.parse(elem.product.images)[0],
-          name: elem.product.name,
-          size: elem.size[0] !== undefined ? elem.size[0] : '',
-          color: elem.color[0] !== undefined ? elem.color[0] : '',
-          count: elem.count,
-          price: elem.product.price,
-          addToCart: elem.product.id,
-          remove: 'mdi-delete',
-        })
+        if(this.$i18n.locale == 'ru'){
+          this.desserts.push({
+            image: JSON.parse(elem.product.images)[0],
+            name: elem.product.nam_rue,
+            size: elem.size[0] !== undefined ? elem.size[0] : '',
+            color: elem.color[0] !== undefined ? elem.color[0] : '',
+            count: elem.count,
+            price: elem.product.price,
+            addToCart: elem.product.id,
+            remove: 'mdi-delete',
+          })
+        }else if(this.$i18n.locale == 'am'){
+          this.desserts.push({
+            image: JSON.parse(elem.product.images)[0],
+            name: elem.product.name_am,
+            size: elem.size[0] !== undefined ? elem.size[0] : '',
+            color: elem.color[0] !== undefined ? elem.color[0] : '',
+            count: elem.count,
+            price: elem.product.price,
+            addToCart: elem.product.id,
+            remove: 'mdi-delete',
+          })
+        }else if(this.$i18n.locale == 'en'){
+          this.desserts.push({
+            image: JSON.parse(elem.product.images)[0],
+            name: elem.product.name_en,
+            size: elem.size[0] !== undefined ? elem.size[0] : '',
+            color: elem.color[0] !== undefined ? elem.color[0] : '',
+            count: elem.count,
+            price: elem.product.price,
+            addToCart: elem.product.id,
+            remove: 'mdi-delete',
+          })
+        }
+
       });
     },
     methods: {

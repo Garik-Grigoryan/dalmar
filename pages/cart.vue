@@ -73,7 +73,7 @@
                   <v-list-item-action>
                     <v-checkbox :rules="requiredField" v-model="agree" color="primary"></v-checkbox>
                   </v-list-item-action>
-                  <v-list-item-content @click="dialog = true">
+                  <v-list-item-content style="display: block" @click="dialog = true">
                     <v-list-item-title>Conditions</v-list-item-title>
                     <v-list-item-subtitle>I have read and agree with the terms and conditions.</v-list-item-subtitle>
                   </v-list-item-content>
@@ -204,15 +204,38 @@
     },
     async mounted() {
       this.cartData.forEach((elem, key) => {
+      if(this.$i18n.locale == 'ru'){
         this.desserts.push({
           image: JSON.parse(elem.product.images)[0],
-          name: elem.product.name,
-          size: elem.size[0] !== undefined ? elem.size[0] : elem.color,
-          color: elem.color.length > 0 ? elem.color[0] : '#000000',
+          name: elem.product.nam_rue,
+          size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+          color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
           count: elem.count,
           price: elem.product.price,
           remove: key,
         })
+      }else if(this.$i18n.locale == 'am'){
+        this.desserts.push({
+          image: JSON.parse(elem.product.images)[0],
+          name: elem.product.name_am,
+          size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+          color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
+          count: elem.count,
+          price: elem.product.price,
+          remove: key,
+        })
+      }else if(this.$i18n.locale == 'en'){
+        this.desserts.push({
+          image: JSON.parse(elem.product.images)[0],
+          name: elem.product.name_en,
+          size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+          color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
+          count: elem.count,
+          price: elem.product.price,
+          remove: key,
+        })
+      }
+
       });
       await this.summCount();
 
@@ -221,16 +244,37 @@
       init() {
         this.desserts = [];
         this.cartData.forEach((elem, key) => {
-          console.log(key);
-          this.desserts.push({
-            image: JSON.parse(elem.product.images)[0],
-            name: elem.product.name,
-            size: elem.size[0] !== undefined ? elem.size[0] : '',
-            color: elem.color[0] !== undefined ? elem.color[0] : '',
-            count: elem.count,
-            price: elem.product.price,
-            remove: key,
-          })
+          if(this.$i18n.locale == 'ru'){
+            this.desserts.push({
+              image: JSON.parse(elem.product.images)[0],
+              name: elem.product.nam_rue,
+              size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+              color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
+              count: elem.count,
+              price: elem.product.price,
+              remove: key,
+            })
+          }else if(this.$i18n.locale == 'am'){
+            this.desserts.push({
+              image: JSON.parse(elem.product.images)[0],
+              name: elem.product.name_am,
+              size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+              color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
+              count: elem.count,
+              price: elem.product.price,
+              remove: key,
+            })
+          }else if(this.$i18n.locale == 'en'){
+            this.desserts.push({
+              image: JSON.parse(elem.product.images)[0],
+              name: elem.product.name_en,
+              size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+              color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
+              count: elem.count,
+              price: elem.product.price,
+              remove: key,
+            })
+          }
         });
       },
       changeState() {

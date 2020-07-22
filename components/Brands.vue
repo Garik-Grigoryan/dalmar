@@ -3,7 +3,7 @@
     class="mx-auto"
     max-width=""
   >
-    <v-row justify="center">  
+    <v-row justify="center">
       <v-card
         v-for="(brand, i) in brands"
         :key="i"

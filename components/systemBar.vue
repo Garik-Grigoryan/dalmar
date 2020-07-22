@@ -342,7 +342,7 @@
           valid: true,
           checkbox: false,
           menu: false,
-          MainLanguage: "english",
+          MainLanguage: "armenian",
           languages: [
             { text: 'armenian', to: 'am', icon: '/arm.png', callback: () => console.log('list') },
             { text: 'russian', to: 'ru', icon: '/rus.png', callback: () => console.log('favorite') },

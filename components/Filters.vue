@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn class="icon_filter" icon @click.stop="drawer = !drawer" @click = "icon_filter" style="display:none">
+    <v-btn class="icon_filter" v-if="!drawer" icon @click.stop="drawer = !drawer" @click = "icon_filter" style="">
       <v-icon>mdi-filter-plus</v-icon>
     </v-btn>
     <v-navigation-drawer
@@ -13,12 +13,12 @@
     >
       <v-list-item class="px-2 mt-3">
         <v-img :src="brand[0].image" width="80%"  :contain="true"></v-img>
-        <!-- <v-btn
+        <v-btn
           icon
-          @click.stop="mini = !mini"
+          @click.stop="drawer = !drawer"
         >
-          <v-icon>mdi-chevron-left</v-icon>
-        </v-btn> -->
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
       </v-list-item>
 
       <v-divider></v-divider>
@@ -129,18 +129,21 @@
 </script>
 
 <style scoped>
-  @media (max-width: 767px) {
+  .v-list-item__content{
+    display: initial;
+  }
+  /*@media (max-width: 1266px) {*/
     .icon_filter {
       display: block !important;
       position: fixed;
       top: 50%;
+      left: 15px;
       z-index: 10;
       width: 56px;
       height: 56px;
       color: #ffffff !important;
-      border: 1px solid;
+      border: 1px solid rgb(1, 35, 94);
       background-color: rgb(1, 35, 94);
-      border-color: rgb(1, 35, 94);
     }
-  }
+  /*}*/
 </style>
