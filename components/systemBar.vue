@@ -1,19 +1,167 @@
 <template>
   <div>
     <v-navigation-drawer v-resize="onResize" v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" :right="right" fixed app >
-      <v-list>
-        <v-list-item v-for="(item, i) in rightSide" :key="i" :to="item.to" router exact >
-          <v-list-item-content >
-            <v-list-item-title v-text="item.title" />
+      <v-list style="padding-bottom: 0">
+        <v-list-item v-for="(item, i) in leftSide" :key="i" router exact >
+          <v-list-item-content class="leftSide-menu">
+            <v-menu v-if="item.items" offset-y>
+              <template v-slot:activator="{ on }">
+                <a href="#"
+                  v-on="on"
+                  class="v-list-item v-list-item--link theme--light"
+                >
+                  {{ item.title }}
+                </a>
+              </template>
+              <v-list>
+                <v-list-tile
+                  v-for="(item1, index) in item.items"
+                  :key="index"
+                  style="width:100%"
+                >
+                  <v-list-item exact :to="localePath(item1.to)" style="background-color: rgb(1, 35, 94); color: white !important;">
+                    <v-list-tile-title>{{ item1.title }}</v-list-tile-title>
+                  </v-list-item>
+                  <v-list style="background: transparent;">
+                    <v-list-item-group v-for="(item2, index) in item.items2" :key="index">
+                      <!-- <v-menu offset-y>
+                        <template v-slot:activator="{ on }"> -->
+                          <v-list-item v-if="item1.id === item2.brand" exact :to="localePath(item2.to)" v-on="on">
+                            <v-list-item-title v-if="$i18n.locale === 'am'">{{ item2.title_am }}</v-list-item-title>
+                            <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item2.title_ru }}</v-list-item-title>
+                            <v-list-item-title v-if="$i18n.locale === 'en'">{{ item2.title_en }}</v-list-item-title>
+                          </v-list-item>
+
+                          <!-- <v-divider style="background: rgb(1, 35, 94)"></v-divider> -->
+
+                        <!-- </template> -->
+                        <!-- <v-list>
+                          <v-list-tile
+                            style="width:100%"
+                          > -->
+                            <v-list v-if="item1.id === item2.brand" style="background: transparent; margin: 0 16px; border-left: 2px solid rgb(178, 8, 57)">
+                              <v-list-item-group v-for="(item3, index) in item.items3" :key="index">
+                                <v-list-item v-if="item2.id === item3.parent && item1.id === item2.brand" exact :to="localePath(item3.to)">
+                                  <v-list-item-title v-if="$i18n.locale === 'am'">{{ item3.title_am }}</v-list-item-title>
+                                  <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item3.title_ru }}</v-list-item-title>
+                                  <v-list-item-title v-if="$i18n.locale === 'en'">{{ item3.title_en }}</v-list-item-title>
+                                </v-list-item>
+                              </v-list-item-group>
+                            </v-list>
+                          <!-- </v-list-tile> -->
+                        <!-- </v-list> -->
+                      <!-- </v-menu> -->
+
+                      <!-- <v-divider style="background: rgb(1, 35, 94)"></v-divider> -->
+                    </v-list-item-group>
+                  </v-list>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
+            <v-list-item v-else exact :to="localePath(item.to)" class="leftSide-menu-items">
+              <v-list-item-title v-text="item.title" />
+            </v-list-item>
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-list style="padding-top: 0">
+        <v-list-item v-for="(item, i) in rightSide" :key="i" router exact >
+          <v-list-item-content style="display: block; padding: 0">
+            <v-list-item v-if="item.title_am === undefined" exact :to="localePath(item.to)">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+            <v-menu v-if="item.title_am !== undefined" :open-on-hover="true" bottom offset-y >
+                <template v-slot:activator="{ on }">
+                  <a href="#"
+                      v-on="on"
+                      class="v-list-item v-list-item--link theme--light"
+                    >
+                      <div v-if="item.title_am !== undefined && $i18n.locale === 'am'">{{ item.title_am }}</div>
+                      <div v-if="item.title_ru !== undefined && $i18n.locale === 'ru'">{{ item.title_ru }}</div>
+                      <div v-if="item.title_en !== undefined && $i18n.locale === 'en'">{{ item.title_en }}</div>
+                      <div v-if="item.title_am === undefined">{{ item.title }}</div>
+                    </a>
+                </template>
+                <v-list v-if="item.items">
+                  <v-list-item-content style="align-items: normal; display: block">
+                    <v-list-item-group  v-if="item.items" v-for="(item1, index) in item.items" :key="index">
+                      <v-list-item style="text-align: center;" exact-active-class="activeLink" exact :to="localePath(item.to)">
+                        <v-list-item-title>
+                          {{ item1.title_en }}
+                        </v-list-item-title>
+                      </v-list-item>
+                      <v-list-item-content class="">
+                        <v-list-item-group v-if="item.items" v-for="(item1, index) in item.items" :key="index">
+                          <v-list-item style="text-align: center;" exact exact-active-class="activeLink" :to="localePath(item1.to)">
+                            <v-list-item-title>
+                              {{ item1.title_en }}
+                            </v-list-item-title>
+                          </v-list-item>
+                          <v-list-item-content class="mainDivide">
+                            <v-list-item-group v-if="item.items" v-for="(item1, index) in item.items" :key="index" exact exact-active-class="activeLink" :to="localePath(item.to)">
+                              <v-list-item-title style="text-align: center;">{{ item.title_en }}</v-list-item-title>
+                            </v-list-item-group>
+                            <v-list-item v-else  exact exact-active-class="activeLink" :to="localePath(item1.to)">
+                              <v-list-item-title>{{ item1.title_en }}</v-list-item-title>
+                            </v-list-item>
+                          </v-list-item-content>
+                        </v-list-item-group>
+                        <v-list-item v-else exact exact-active-class="activeLink" :to="localePath(item1.to)">
+                          <v-list-item-title>{{ item1.title_en }}</v-list-item-title>
+                        </v-list-item>
+                      </v-list-item-content>
+                    </v-list-item-group>
+
+                    <v-list-item-group v-for="(item1, index) in item.items" :key="index">
+                      <v-list-item exact exact-active-class="activeLink" :to="localePath(item1.to)" style="text-align:center">
+                        <v-list-item-title v-if="$i18n.locale === 'am'">{{ item1.title_am }}</v-list-item-title>
+                        <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item1.title_ru }}</v-list-item-title>
+                        <v-list-item-title v-if="$i18n.locale === 'en'">{{ item1.title_en }}</v-list-item-title>
+                      </v-list-item>
+                      <v-divider v-if="item.items2.length > 0" style="background: white"></v-divider>
+                      <v-list-item-group v-for="(item2, index) in item.items2" :key="index">
+                        <v-list-item v-if="item1.id === item2.parent" exact :to="localePath(item2.to)">
+                          <v-list-item-title v-if="$i18n.locale === 'am'">{{ item2.title_am }}</v-list-item-title>
+                          <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item2.title_ru }}</v-list-item-title>
+                          <v-list-item-title v-if="$i18n.locale === 'en'">{{ item2.title_en }}</v-list-item-title>
+                        </v-list-item>
+                      </v-list-item-group>
+                    </v-list-item-group>
+                  </v-list-item-content>
+                </v-list>
+            </v-menu>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+      <v-list>
+        <v-list-item-content class="mobile-icons" style="padding: 16px; padding-top: 0">
+          <v-btn :to="localePath('/wishlist')" color="#fff" text class="my-2 nav_button" width="40px" >
+            <v-icon>mdi-heart-outline</v-icon>
+          </v-btn>
+        
+          <v-btn :to="localePath('/cart')" color="#fff" text class="my-2 nav_button" width="40px" >
+            <v-icon >mdi-cart-outline</v-icon>
+          </v-btn>
+        
+          <v-menu  v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-y bottom >
+            <template v-slot:activator="{ on }">
+              <v-btn color="#fff" text class="my-2 nav_button" v-on="on" >
+                <v-icon >mdi-account-outline</v-icon>
+              </v-btn>
+            </template>
+          </v-menu>
+        </v-list-item-content>
+        <v-list-item-content class="mobile-icons" style="padding: 16px; padding-top: 0">
+          <v-btn v-for="(item, key) in languages" :key="key" :to="switchLocalePath(item.to)" fab color="#01235E" class="my-2 nav_button" small >
+            <v-img :src="item.icon" max-width="40"></v-img>
+          </v-btn>
+        </v-list-item-content>
+      </v-list>
     </v-navigation-drawer>
     <v-system-bar height="64" color="#01235E" fixed app dark id="create" >
-      <v-col cols="5">
+      <v-col lg="5">
         <v-row justify="end" class="hidden-sm-and-down" no-gutters >
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in leftSide" dark :key="i">
-            <!-- {{item}} -->
             <template v-slot:activator="{ on }">
               <v-btn exact :to="localePath(item.to)" router exact color="#fff" text class="my-2 nav_button" v-on="on" bottom >
                 {{item.title}}
@@ -22,7 +170,7 @@
             <v-list v-if="item.items" style="background-color: #01235E">
               <v-list-item-content style="align-items: normal">
                 <v-list-item-group v-if="item.items" v-for="(item, index) in item.items" :key="index">
-                  <!-- <v-list-item style="text-align: center;" exact :to="localePath(item.to)">
+                  <v-list-item style="text-align: center;" exact :to="localePath(item.to)">
                     <v-list-item-title>
                       {{ item.title }}
                     </v-list-item-title>
@@ -47,11 +195,11 @@
                     <v-list-item v-else exact :to="localePath(item.to)">
                       <v-list-item-title>{{ item.title }}</v-list-item-title>
                     </v-list-item>
-                  </v-list-item-content> -->
+                  </v-list-item-content>
                 </v-list-item-group>
                 <v-list style="display: flex; background: transparent; text-align: center; width: max-content;">
                   <v-list-item-group v-for="(item1, index) in item.items" :key="index" style="width:100%">
-                        <v-list-item exact :to="localePath(item.to)">
+                        <v-list-item exact :to="localePath(item1.to)">
                           <v-list-item-title>{{ item1.title }}</v-list-item-title>
                         </v-list-item>
 
@@ -93,7 +241,7 @@
           <v-toolbar-title class="font-weight-bold" style="color: #b20839; font-size: 35px" v-text="$t('title')" />
         </nuxt-link>
       </v-col>
-      <v-col cols="5">
+      <v-col lg="5">
         <v-row justify="start" class="hidden-sm-and-down" no-gutters >
 
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in rightSide" dark :key="i">
@@ -107,10 +255,10 @@
             </template>
             <v-list v-if="item.items" style="background-color: #01235E">
               <v-list-item-content style="align-items: normal">
-                <!-- <v-list-item-group  style="max-width: 150px;"  v-if="item.items" v-for="(item1, index) in item.items" :key="index">
+                <v-list-item-group  style="max-width: 150px;"  v-if="item.items" v-for="(item1, index) in item.items" :key="index">
                   <v-list-item style="text-align: center;" exact-active-class="activeLink" exact :to="localePath(item.to)">
                     <v-list-item-title>
-                      {{ item1.title }}
+                      {{ item1.title_en }}
                     </v-list-item-title>
                   </v-list-item>
                   <v-divider style="background-color: #fff"></v-divider>
@@ -118,23 +266,23 @@
                     <v-list-item-group style="max-width: 150px;" v-if="item.items" v-for="(item1, index) in item.items" :key="index">
                       <v-list-item style="text-align: center;" exact exact-active-class="activeLink" :to="localePath(item1.to)">
                         <v-list-item-title>
-                          {{ item1.title }}
+                          {{ item1.title_en }}
                         </v-list-item-title>
                       </v-list-item>
                       <v-list-item-content class="mainDivide">
                         <v-list-item-group style="max-width: 150px;" v-if="item.items" v-for="(item1, index) in item.items" :key="index" exact exact-active-class="activeLink" :to="localePath(item.to)">
-                          <v-list-item-title style="text-align: center;">{{ item.title }}</v-list-item-title>
+                          <v-list-item-title style="text-align: center;">{{ item.title_en }}</v-list-item-title>
                         </v-list-item-group>
                         <v-list-item v-else  exact exact-active-class="activeLink" :to="localePath(item1.to)">
-                          <v-list-item-title>{{ item1.title }}</v-list-item-title>
+                          <v-list-item-title>{{ item1.title_en }}</v-list-item-title>
                         </v-list-item>
                       </v-list-item-content>
                     </v-list-item-group>
                     <v-list-item v-else exact exact-active-class="activeLink" :to="localePath(item1.to)">
-                      <v-list-item-title>{{ item1.title }}</v-list-item-title>
+                      <v-list-item-title>{{ item1.title_en }}</v-list-item-title>
                     </v-list-item>
                   </v-list-item-content>
-                </v-list-item-group> -->
+                </v-list-item-group>
 
                 <v-list-item-group v-for="(item1, index) in item.items" :key="index">
                   <v-list-item exact exact-active-class="activeLink" :to="localePath(item1.to)" style="text-align:center">
@@ -560,5 +708,29 @@
     }
   }
 
+  .mobile-icons a, .mobile-icons button {
+    width: 40px;
+    color: #fff;
+    caret-color: #fff;
+    background-color: rgb(1, 35, 94);
+    border-color: rgb(1, 35, 94);
+    border-radius: 50%;
+    height: 40px !important;
+    min-width: 40px !important;
+    padding: 0 !important;
+    margin: 0 15px;
+  }
+
+  .v-list-item__content, .leftSide-menu-items {
+    padding: 12px 16px;
+  }
+
+  .leftSide-menu {
+    padding: 0 !important;
+  }
+
+  .leftSide-menu a {
+    padding: 0 16px;
+  }
 
 </style>
