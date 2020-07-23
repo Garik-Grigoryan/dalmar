@@ -2,7 +2,7 @@
     <v-app dark>
 
       <SystemBar></SystemBar>
-      <TopMenu></TopMenu>
+      <!-- <TopMenu></TopMenu> -->
       <v-content>
         <nuxt />
       </v-content>
