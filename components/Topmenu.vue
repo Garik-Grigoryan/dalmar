@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer v-resize="onResize" v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" :left="left" fixed app style="z-index: 100">
+    <v-navigation-drawer class="topmenu-nav" v-resize="onResize" v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" :left="left" fixed app style="z-index: 100">
       <v-list>
         <v-list-item v-for="(item1, i) in items" :key="i" router exact >
           <v-list-item-content style="padding: 0">
@@ -124,6 +124,30 @@
                     )
                   })
                 }
+              // } else {
+              //   this.items.push(
+              //     {
+              //       id: elem2.id,
+              //       brand: elem2.brand,
+              //       title_am: elem2.name_am,
+              //       title_ru: elem2.name_ru,
+              //       title_en: elem2.name_en,
+              //       to: '/category/'+elem2.id+'?page=1',
+              //     }
+              //   )
+              //   if(elem2.subcategories !== undefined) {
+              //     elem2.subcategories.forEach(elem3 => {
+              //       this.items2.push(
+              //         {
+              //           parent: elem3.parent,
+              //           title_am: elem3.name_am,
+              //           title_ru: elem3.name_ru,
+              //           title_en: elem3.name_en,
+              //           to: '/category/'+elem3.id+'?page=1',
+              //         }
+              //       )
+              //     })
+              //   }
               }
             })
           }

@@ -127,7 +127,7 @@
     left: -25px;
     top: 25px;
   }
-  .v-navigation-drawer .v-btn__content {
+  .v-navigation-drawer.topmenu-nav .v-btn__content {
     justify-content: end !important;
   }
 </style>

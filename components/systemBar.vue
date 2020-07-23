@@ -84,42 +84,13 @@
                 </template>
                 <v-list v-if="item.items">
                   <v-list-item-content style="align-items: normal; display: block">
-                    <v-list-item-group  v-if="item.items" v-for="(item1, index) in item.items" :key="index">
-                      <v-list-item style="text-align: center;" exact-active-class="activeLink" exact :to="localePath(item.to)">
-                        <v-list-item-title>
-                          {{ item1.title_en }}
-                        </v-list-item-title>
-                      </v-list-item>
-                      <v-list-item-content class="">
-                        <v-list-item-group v-if="item.items" v-for="(item1, index) in item.items" :key="index">
-                          <v-list-item style="text-align: center;" exact exact-active-class="activeLink" :to="localePath(item1.to)">
-                            <v-list-item-title>
-                              {{ item1.title_en }}
-                            </v-list-item-title>
-                          </v-list-item>
-                          <v-list-item-content class="mainDivide">
-                            <v-list-item-group v-if="item.items" v-for="(item1, index) in item.items" :key="index" exact exact-active-class="activeLink" :to="localePath(item.to)">
-                              <v-list-item-title style="text-align: center;">{{ item.title_en }}</v-list-item-title>
-                            </v-list-item-group>
-                            <v-list-item v-else  exact exact-active-class="activeLink" :to="localePath(item1.to)">
-                              <v-list-item-title>{{ item1.title_en }}</v-list-item-title>
-                            </v-list-item>
-                          </v-list-item-content>
-                        </v-list-item-group>
-                        <v-list-item v-else exact exact-active-class="activeLink" :to="localePath(item1.to)">
-                          <v-list-item-title>{{ item1.title_en }}</v-list-item-title>
-                        </v-list-item>
-                      </v-list-item-content>
-                    </v-list-item-group>
-
                     <v-list-item-group v-for="(item1, index) in item.items" :key="index">
-                      <v-list-item exact exact-active-class="activeLink" :to="localePath(item1.to)" style="text-align:center">
+                      <v-list-item exact exact-active-class="activeLink" :to="localePath(item1.to)">
                         <v-list-item-title v-if="$i18n.locale === 'am'">{{ item1.title_am }}</v-list-item-title>
                         <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item1.title_ru }}</v-list-item-title>
                         <v-list-item-title v-if="$i18n.locale === 'en'">{{ item1.title_en }}</v-list-item-title>
                       </v-list-item>
-                      <v-divider v-if="item.items2.length > 0" style="background: white"></v-divider>
-                      <v-list-item-group v-for="(item2, index) in item.items2" :key="index">
+                      <v-list-item-group v-for="(item2, index) in item.items2" :key="index" style="margin: 0 16px; border-left: 2px solid rgb(178, 8, 57)">
                         <v-list-item v-if="item1.id === item2.parent" exact :to="localePath(item2.to)">
                           <v-list-item-title v-if="$i18n.locale === 'am'">{{ item2.title_am }}</v-list-item-title>
                           <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item2.title_ru }}</v-list-item-title>
@@ -255,7 +226,7 @@
             </template>
             <v-list v-if="item.items" style="background-color: #01235E">
               <v-list-item-content style="align-items: normal">
-                <v-list-item-group  style="max-width: 150px;"  v-if="item.items" v-for="(item1, index) in item.items" :key="index">
+                <!-- <v-list-item-group  style="max-width: 150px;"  v-if="item.items" v-for="(item1, index) in item.items" :key="index">
                   <v-list-item style="text-align: center;" exact-active-class="activeLink" exact :to="localePath(item.to)">
                     <v-list-item-title>
                       {{ item1.title_en }}
@@ -282,7 +253,7 @@
                       <v-list-item-title>{{ item1.title_en }}</v-list-item-title>
                     </v-list-item>
                   </v-list-item-content>
-                </v-list-item-group>
+                </v-list-item-group> -->
 
                 <v-list-item-group v-for="(item1, index) in item.items" :key="index">
                   <v-list-item exact exact-active-class="activeLink" :to="localePath(item1.to)" style="text-align:center">
