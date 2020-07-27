@@ -18,6 +18,7 @@
       // await store.dispatch('wishListAndCart/fetch');
       await store.dispatch('menus/fetch');
     },
+
     async mounted() {
       await this.$store.dispatch('wishListAndCart/fetch');
     },

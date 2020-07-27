@@ -56,6 +56,7 @@
         ],
       }
     },
+
     async mounted() {
       await store.dispatch('wishListAndCart/fetch');
       if(this.user){

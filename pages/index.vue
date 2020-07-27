@@ -36,6 +36,7 @@ export default {
     // await store.dispatch('wishListAndCart/fetch');
     await store.dispatch('menus/fetch');
   },
+
   components: {
     HeadSlider,
     Brands,

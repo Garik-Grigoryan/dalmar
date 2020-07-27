@@ -133,6 +133,7 @@
   export default {
     async fetch({store}){
       await store.dispatch('brands/fetch');
+
       // await store.dispatch('wishListAndCart/fetch');
       // if(this.user){
       //   await store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
