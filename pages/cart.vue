@@ -133,12 +133,12 @@
   export default {
     async fetch({store}){
       await store.dispatch('brands/fetch');
-      await store.dispatch('wishListAndCart/fetch');
-      if(this.user){
-        await store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
-      }else{
-        await store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
-      }
+      // await store.dispatch('wishListAndCart/fetch');
+      // if(this.user){
+      //   await store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+      // }else{
+      //   await store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+      // }
       await store.dispatch('menus/fetch');
     },
     name: "cart",
@@ -203,6 +203,12 @@
       }
     },
     async mounted() {
+      await store.dispatch('wishListAndCart/fetch');
+      if(this.user){
+        await store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+      }else{
+        await store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+      }
       this.cartData.forEach((elem, key) => {
       if(this.$i18n.locale == 'ru'){
         this.desserts.push({

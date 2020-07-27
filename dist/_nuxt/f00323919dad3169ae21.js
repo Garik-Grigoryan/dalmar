@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{265:function(o,t,c){"use strict";c.r(t),t.default={hello:"Hello World",title:"Davmar",pages:{home:"Home",contacts:"Contacts"},myAccount:"My Account",logout:"Logout"}}}]);

@@ -33,7 +33,7 @@ export default {
     await store.dispatch('products/filterAsType', ['new']);
     await store.dispatch('products/filterAsType', ['best']);
     await store.dispatch('products/filterAsType', ['sales']);
-    await store.dispatch('wishListAndCart/fetch');
+    // await store.dispatch('wishListAndCart/fetch');
     await store.dispatch('menus/fetch');
   },
   components: {
@@ -48,6 +48,9 @@ export default {
     return {
       justifyCenter: 'center',
     }
-  }
+  },
+  async mounted() {
+    await this.$store.dispatch('wishListAndCart/fetch');
+  },
 }
 </script>
