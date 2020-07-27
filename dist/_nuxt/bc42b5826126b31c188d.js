@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{264:function(o,t,c){"use strict";c.r(t),t.default={hello:"Բարեվ աշխարհ",title:"ԴավՄար",pages:{home:"Գլխավոր",contacts:"Կոնտակտներ"},myAccount:"Իմ Էջը",logout:"ելք"}}}]);
