@@ -4,6 +4,7 @@
     max-width=""
   >
     <v-row justify="center">
+
       <v-card
         v-for="(brand, i) in brands"
         :key="i"
@@ -12,7 +13,7 @@
         height="300"
         width="30%"
         min-width="300"
-        :to="`/brand/${brand.brand.id}?page=1`"
+        :to="localePath(`/brand/${brand.brand.id}?page=1`)"
       >
         <v-img
           :src="brand.brand.image"

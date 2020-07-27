@@ -6,7 +6,7 @@
     width="350"
     height="350"
   >
-    <nuxt-link :to="`/product/${id}`">
+    <nuxt-link :to="localePath(`/product/${id}`)">
       <v-img
         :aspect-ratio="16/9"
         :src="image"

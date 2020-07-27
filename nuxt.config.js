@@ -83,19 +83,19 @@ export default {
       lazy:true,
       locales: [
         {
-          name: 'Armenian',
+          name: 'armenian',
           code: 'am',
           iso: 'am-ER',
           file: 'am-ER.js'
         },
         {
-          name: 'Russian',
+          name: 'russian',
           code: 'ru',
           iso: 'ru-MOS',
           file: 'ru-MOS.js'
         },
         {
-          name: 'English',
+          name: 'english',
           code: 'en',
           iso: 'en-US',
           file: 'en-US.js'

@@ -109,11 +109,11 @@
           <v-btn :to="localePath('/wishlist')" color="#fff" text class="my-2 nav_button" width="40px" >
             <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
-        
+
           <v-btn :to="localePath('/cart')" color="#fff" text class="my-2 nav_button" width="40px" >
             <v-icon >mdi-cart-outline</v-icon>
           </v-btn>
-        
+
           <v-menu  v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-y bottom >
             <template v-slot:activator="{ on }">
               <v-btn color="#fff" text class="my-2 nav_button" v-on="on" >
@@ -133,8 +133,8 @@
       <v-col lg="5">
         <v-row justify="end" class="hidden-sm-and-down" no-gutters >
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in leftSide" dark :key="i">
-            <template v-slot:activator="{ on }">
-              <v-btn exact :to="localePath(item.to)" router exact color="#fff" text class="my-2 nav_button" v-on="on" bottom >
+            <template v-slot:activator="{on}">
+              <v-btn exact :to="localePath(item.to)" router color="#fff" text class="my-2 nav_button" v-on="on" bottom >
                 {{item.title}}
               </v-btn>
             </template>
@@ -337,7 +337,7 @@
                       </v-alert>
                       <v-text-field v-model="registerForm.name" :rules="nameRules" label="Name" required ></v-text-field>
                       <v-text-field v-model="registerForm.email" :rules="emailRules" label="E-mail" required ></v-text-field>
-                      <v-text-field v-model="registerForm.password" :rules="passwordRules" label="Password" required ></v-text-field>
+                      <v-text-field v-model="registerForm.password" :rules="passwordRules" type="password" label="Password" required ></v-text-field>
                       <v-text-field v-model="registerForm.password_confirmation" :rules="passwordConfirmation" label="Password" required ></v-text-field>
                       <v-checkbox v-model="checkbox" :rules="[v => !!v || 'You must agree to continue!']" label="Do you agree?" required ></v-checkbox>
                       <v-card-actions>
@@ -415,6 +415,7 @@
       },
       data () {
         return {
+          on: false,
           wishlistCount: 0,
           cartCount: 0,
           registrationError: false,
