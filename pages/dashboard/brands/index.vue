@@ -14,10 +14,10 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="item in brands" :key="item.name">
-            <td><v-img :src="item.image" max-width="100"></v-img></td>
-            <td>{{ item.name }}</td>
-            <td><v-btn small :to="`brands/edit/${item.id}`" :elevation="0" dark fab color="primary" ><v-icon>mdi-pencil</v-icon></v-btn> <v-btn small :elevation="0" @click="deleteBrand($event, item.id )" dark fab color="error" ><v-icon>mdi-delete</v-icon></v-btn></td>
+          <tr v-for="item in brands" :key="item.brand.name">
+            <td><v-img :src="item.brand.image" max-width="100"></v-img></td>
+            <td>{{ item.brand.name }}</td>
+            <td><v-btn small :to="`brands/edit/${item.brand.id}`" :elevation="0" dark fab color="primary" ><v-icon>mdi-pencil</v-icon></v-btn> <v-btn small :elevation="0" @click="deleteBrand($event, item.brand.id )" dark fab color="error" ><v-icon>mdi-delete</v-icon></v-btn></td>
           </tr>
           </tbody>
         </template>
