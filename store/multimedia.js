@@ -10,7 +10,9 @@ export const mutations = {
 
 export const actions = {
   async fetch({commit}) {
-    const images = await this.$axios.$get('http://apidavmar.neoteric-software.com/api/multimedia/get');
+    const images = await this.$axios.$get('http://apidavmar.neoteric-software.com/api/multimedia/get').catch((response) => {
+      console.log(response)
+    });
     commit('setImages', images);
   }
 }
