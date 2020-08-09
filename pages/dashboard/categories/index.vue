@@ -22,7 +22,7 @@
           <td>{{ item.name_en }}</td>
           <td>{{ item.name_ru }}</td>
           <td>{{ item.name_am }}</td>
-          <td><v-btn small :to="`categories/edit/${item.id}`" :elevation="0" dark fab color="primary" ><v-icon>mdi-pencil</v-icon></v-btn> <v-btn small :elevation="0" @click="deleteCategory($event, item.id )" dark fab color="error" ><v-icon>mdi-delete</v-icon></v-btn></td>
+          <td><v-btn small :to="`edit/${item.id}`" :elevation="0" dark fab color="primary" ><v-icon>mdi-pencil</v-icon></v-btn> <v-btn small :elevation="0" @click="deleteCategory($event, item.id )" dark fab color="error" ><v-icon>mdi-delete</v-icon></v-btn></td>
         </tr>
         </tbody>
       </template>
