@@ -58,7 +58,7 @@
       }
     },
     mounted() {
-      console.log(category);
+      console.log(categories);
     }
   }
 </script>
