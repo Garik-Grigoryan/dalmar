@@ -16,7 +16,6 @@
         </tr>
         </thead>
         <tbody>
-        {{categories}}
         <tr v-for="item in categories" :key="item.id">
           <td v-if="JSON.parse(item.image)"><v-img :src="JSON.parse(item.image)[0]" max-width="100"></v-img></td>
           <td v-else><v-img src="" max-width="100"></v-img></td>

@@ -15,30 +15,30 @@
                 <template v-slot:selection="category">
                   <v-list-item-content>
                     <v-list-item-title>
-                      {{category.item.name}}
+                      {{category.item.name_en}}
                     </v-list-item-title>
                   </v-list-item-content>
                 </template>
                 <template v-slot:item="category">
                   <v-list-item-content>
-                    <v-list-item-title>{{category.item.name}}</v-list-item-title>
+                    <v-list-item-title>{{category.item.name_en}}</v-list-item-title>
                   </v-list-item-content>
                 </template>
               </v-autocomplete>
             </v-col>
             <v-col cols="6" >
-              <v-autocomplete v-model="selectedBrand" :items="brands.brands" label="Brand" item-text="name" item-value="id">
+              <v-autocomplete v-model="selectedBrand" :items="brands.brands" label="Brand" item-text="name" item-value="brand.id">
                 <template v-slot:selection="brand">
                   <v-list-item-content>
                     <v-list-item-title>
-                      {{brand.item.name}}
+                      {{brand.item.brand.name}}
                     </v-list-item-title>
                   </v-list-item-content>
                 </template>
                 <template v-slot:item="brand">
                   <v-list-item-content>
                     <v-list-item-title>
-                      {{brand.item.name}}
+                      {{brand.item.brand.name}}
                     </v-list-item-title>
                   </v-list-item-content>
                 </template>
