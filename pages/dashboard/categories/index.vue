@@ -16,6 +16,7 @@
         </tr>
         </thead>
         <tbody>
+        {{categories}}
         <tr v-for="item in categories" :key="item.name">
           <td><v-img :src="JSON.parse(item.image)[0]" max-width="100"></v-img></td>
           <td>{{ item.name_en }}</td>
