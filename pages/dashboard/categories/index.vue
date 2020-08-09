@@ -56,6 +56,9 @@
       addBrand() {
 
       }
+    },
+    mounted() {
+      console.log(category);
     }
   }
 </script>
