@@ -18,7 +18,7 @@ export const mutations = {
 
 export const actions = {
   async fetch({commit}) {
-    const brands = await this.$axios.$get('http://apidavmar.neoteric-software.com/api/brand/get');
+      const brands = await this.$axios.$get('http://apidavmar.neoteric-software.com/api/brand/get');
     commit('setBrands', brands);
   },
   async getBrand({commit}, [id]){
