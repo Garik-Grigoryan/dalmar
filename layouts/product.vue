@@ -12,6 +12,9 @@
       >
         <span>&copy; {{ new Date().getFullYear() }}</span>
       </v-footer>
+      <client-only>
+        <Cookie />
+      </client-only>
     </v-app>
   </template>
 
@@ -20,12 +23,14 @@
     import Filters from "../components/Filters";
     import SystemBar from '../components/systemBar'
     import TopMenu from '../components/Topmenu'
+    import Cookie from "../components/Cookie";
     export default {
       components: {
         MainDividers,
         Filters,
         SystemBar,
-        TopMenu
+        TopMenu,
+        Cookie
       },
       data () {
         return {

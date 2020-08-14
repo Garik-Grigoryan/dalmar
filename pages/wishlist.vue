@@ -58,11 +58,11 @@
     },
 
     async mounted() {
-      await store.dispatch('wishListAndCart/fetch');
+      await this.$store.dispatch('wishListAndCart/fetch');
       if(this.user){
-        await store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+        await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
       }else{
-        await store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+        await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
       }
       this.wishListData.forEach(elem => {
         if(this.$i18n.locale == 'ru'){
