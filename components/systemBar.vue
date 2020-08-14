@@ -130,7 +130,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-system-bar height="64" color="#01235E" fixed app dark id="create" >
-      <v-col lg="5">
+      <v-col lg="5" md="5">
         <v-row justify="end" class="hidden-sm-and-down" no-gutters >
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in leftSide" dark :key="i">
             <template v-slot:activator="{on}">
@@ -207,12 +207,12 @@
           </v-menu>
         </v-row>
       </v-col>
-      <v-col lg="2" md="12" class="text-center">
+      <v-col lg="2" md="2" class="text-center">
         <nuxt-link :to="localePath('/')" style="text-decoration: none;">
           <v-toolbar-title class="font-weight-bold" style="color: #b20839; font-size: 35px" v-text="$t('title')" />
         </nuxt-link>
       </v-col>
-      <v-col lg="5">
+      <v-col lg="5" md="5">
         <v-row justify="start" class="hidden-sm-and-down" no-gutters >
 
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in rightSide" dark :key="i">
@@ -287,7 +287,7 @@
           </v-btn>
         </v-badge>
 
-        <v-menu  v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-y bottom >
+        <v-menu v-model="loginMenu" :close-on-content-click="false" :nudge-width="200" offset-y bottom >
           <template v-slot:activator="{ on }">
             <v-btn color="#fff" text class="my-2 nav_button" v-on="on" >
               <v-icon >mdi-account-outline</v-icon>
@@ -300,7 +300,7 @@
               <v-list-item @click="logout" v-text="$t('logout')">
               </v-list-item>
             </v-list>
-            <v-tabs v-else background-color="#01235E" class="elevation-2" dark :centered="true" :prev-icon="'mdi-arrow-left-bold-box-outline'" :next-icon="'mdi-arrow-right-bold-box-outline'" :icons-and-text="true" >
+             <v-tabs v-else  background-color="#01235E" class="elevation-2" dark :centered="true" :prev-icon="'mdi-arrow-left-bold-box-outline'" :next-icon="'mdi-arrow-right-bold-box-outline'" :icons-and-text="true" >
               <v-tabs-slider></v-tabs-slider>
               <v-tab :href="`#tab-1`" >
                 Login
@@ -462,6 +462,7 @@
           valid: true,
           checkbox: false,
           menu: false,
+          loginMenu: false,
           MainLanguage: "armenian",
           languages: [
             { text: 'armenian', to: 'am', icon: '/arm.png', callback: () => console.log('list') },
@@ -515,6 +516,13 @@
         }
       },
       mounted () {
+        if (this.$i18n.locale === 'am'){
+           this.MainLanguage = "armenian"
+        }else if(this.$i18n.locale === 'ru'){
+           this.MainLanguage = "russian"
+        }else if(this.$i18n.locale === 'en'){
+           this.MainLanguage = "english"
+        }
         for(let menu of this.menus.menus){
           let menusConstruct = JSON.parse(this.menus.menus[0].construction);
           for(let item of menusConstruct){
@@ -529,7 +537,6 @@
             };
             if(item.menus.length > 0){
               for(let menuItem of item.menus){
-                console.log(menuItem);
                 let indexItem = this.menus.categories.findIndex(i=>i.id===menuItem.id);
                 mainMenu.items.push({
                   id: menuItem.id,

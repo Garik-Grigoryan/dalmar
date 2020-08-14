@@ -65,9 +65,9 @@
           this.items[1].data.push(elem)
         }
       }
-      this.min = this.filters.minPrice;
-      this.max = this.filters.maxPrice;
-      this.range = [this.filters.minPrice, this.filters.maxPrice]
+      this.min = this.filters.minPrice == null ? 0 : this.filters.minPrice;
+      this.max = this.filters.maxPrice == null ? 0 : this.filters.maxPrice;
+      this.range = [this.min, this.max];
     },
     methods: {
       filter(e) {

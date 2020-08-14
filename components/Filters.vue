@@ -70,6 +70,7 @@
       }
     },
     mounted() {
+      console.log(this.filters);
       for(let elem in this.filters.colors){
         if(elem != ''){
           this.items[2].data.push(elem)
@@ -81,14 +82,14 @@
           this.items[1].data.push(elem)
         }
       }
-      this.min = this.filters.minPrice;
-      this.max = this.filters.maxPrice;
-      this.range = [this.filters.minPrice, this.filters.maxPrice];
+      this.min = this.filters.minPrice == null ? 0 : this.filters.minPrice;
+      this.max = this.filters.maxPrice == null ? 0 : this.filters.maxPrice;
+      this.range = [this.min, this.max];
 
-      // if(window.matchMedia('(max-width: 767px)').matches){
-      //   this.drawer = false;
-      //   console.log(this.drawer);
-      // }
+      if(window.matchMedia('(max-width: 767px)').matches){
+        this.drawer = false;
+        console.log(this.drawer);
+      }
     },
     methods: {
       filter(e) {

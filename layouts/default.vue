@@ -9,16 +9,23 @@
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
+    <client-only>
+      <Cookie />
+    </client-only>
   </v-app>
 </template>
 
 <script>
   import MainDividers from "../components/MainDividers";
   import SystemBar from '../components/systemBar'
-export default {
+  import Cookie from "../components/Cookie.vue"
+
+  export default {
   components: {
     MainDividers,
-    SystemBar
+    SystemBar,
+    Cookie
+
   },
   data () {
     return {
