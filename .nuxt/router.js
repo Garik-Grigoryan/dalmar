@@ -4,12 +4,14 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _2c49f809 = () => interopDefault(import('..\\pages\\aboutUs.vue' /* webpackChunkName: "pages_aboutUs" */))
-const _1db4a22b = () => interopDefault(import('..\\pages\\account.vue' /* webpackChunkName: "pages_account" */))
+const _79540812 = () => interopDefault(import('..\\pages\\account\\index.vue' /* webpackChunkName: "pages_account_index" */))
 const _12b85392 = () => interopDefault(import('..\\pages\\cart.vue' /* webpackChunkName: "pages_cart" */))
 const _a0fc45dc = () => interopDefault(import('..\\pages\\category\\index.vue' /* webpackChunkName: "pages_category_index" */))
 const _168636b0 = () => interopDefault(import('..\\pages\\dashboard\\index.vue' /* webpackChunkName: "pages_dashboard_index" */))
 const _06365705 = () => interopDefault(import('..\\pages\\deliveryCondition.vue' /* webpackChunkName: "pages_deliveryCondition" */))
+const _35469b0a = () => interopDefault(import('..\\pages\\sales.vue' /* webpackChunkName: "pages_sales" */))
 const _48d336b7 = () => interopDefault(import('..\\pages\\wishlist.vue' /* webpackChunkName: "pages_wishlist" */))
+const _a8bb19e0 = () => interopDefault(import('..\\pages\\account\\orders.vue' /* webpackChunkName: "pages_account_orders" */))
 const _6c89143f = () => interopDefault(import('..\\pages\\auth\\login.vue' /* webpackChunkName: "pages_auth_login" */))
 const _ea361038 = () => interopDefault(import('..\\pages\\dashboard\\brands\\index.vue' /* webpackChunkName: "pages_dashboard_brands_index" */))
 const _64eff294 = () => interopDefault(import('..\\pages\\dashboard\\categories\\index.vue' /* webpackChunkName: "pages_dashboard_categories_index" */))
@@ -49,7 +51,7 @@ export const routerOptions = {
     name: "aboutUs___am"
   }, {
     path: "/account",
-    component: _1db4a22b,
+    component: _79540812,
     name: "account___am"
   }, {
     path: "/cart",
@@ -68,9 +70,17 @@ export const routerOptions = {
     component: _06365705,
     name: "deliveryCondition___am"
   }, {
+    path: "/sales",
+    component: _35469b0a,
+    name: "sales___am"
+  }, {
     path: "/wishlist",
     component: _48d336b7,
     name: "wishlist___am"
+  }, {
+    path: "/account/orders",
+    component: _a8bb19e0,
+    name: "account-orders___am"
   }, {
     path: "/auth/login",
     component: _6c89143f,
@@ -105,7 +115,7 @@ export const routerOptions = {
     name: "aboutUs___en"
   }, {
     path: "/en/account",
-    component: _1db4a22b,
+    component: _79540812,
     name: "account___en"
   }, {
     path: "/en/cart",
@@ -124,6 +134,10 @@ export const routerOptions = {
     component: _06365705,
     name: "deliveryCondition___en"
   }, {
+    path: "/en/sales",
+    component: _35469b0a,
+    name: "sales___en"
+  }, {
     path: "/en/wishlist",
     component: _48d336b7,
     name: "wishlist___en"
@@ -137,7 +151,7 @@ export const routerOptions = {
     name: "aboutUs___ru"
   }, {
     path: "/ru/account",
-    component: _1db4a22b,
+    component: _79540812,
     name: "account___ru"
   }, {
     path: "/ru/cart",
@@ -156,6 +170,10 @@ export const routerOptions = {
     component: _06365705,
     name: "deliveryCondition___ru"
   }, {
+    path: "/ru/sales",
+    component: _35469b0a,
+    name: "sales___ru"
+  }, {
     path: "/ru/wishlist",
     component: _48d336b7,
     name: "wishlist___ru"
@@ -171,6 +189,10 @@ export const routerOptions = {
     path: "/dashboard/products/new",
     component: _ea6d03cc,
     name: "dashboard-products-new___am"
+  }, {
+    path: "/en/account/orders",
+    component: _a8bb19e0,
+    name: "account-orders___en"
   }, {
     path: "/en/auth/login",
     component: _6c89143f,
@@ -195,6 +217,10 @@ export const routerOptions = {
     path: "/en/dashboard/products",
     component: _30b723cc,
     name: "dashboard-products___en"
+  }, {
+    path: "/ru/account/orders",
+    component: _a8bb19e0,
+    name: "account-orders___ru"
   }, {
     path: "/ru/auth/login",
     component: _6c89143f,

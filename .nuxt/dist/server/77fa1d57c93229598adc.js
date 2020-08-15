@@ -1,1 +1,0 @@
-exports.ids=[1],exports.modules={123:function(o,t,e){"use strict";e.r(t),t.default={hello:"Hello World",title:"Davmar",pages:{home:"Home",contacts:"Contacts"},myAccount:"My Account",logout:"Logout"}}};

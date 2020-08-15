@@ -295,8 +295,8 @@
           </template>
           <v-card>
             <v-list v-if="authenticated" style="background-color: #01235E" dark>
-              <v-list-item :to="localePath('/account')" v-text="$t('myAccount')">
-              </v-list-item>
+              <v-list-item :to="localePath('/account')" v-text="$t('myAccount')"></v-list-item>
+              <v-list-item :to="localePath('/account/orders')" v-text="$t('orders')"></v-list-item>
               <v-list-item @click="logout" v-text="$t('logout')">
               </v-list-item>
             </v-list>
@@ -313,9 +313,9 @@
                         {{errors.email[0]}}
                       </v-alert>
                       <v-text-field v-model="loginForm.email" :rules="emailRules" label="E-mail" required ></v-text-field>
-                      <v-text-field v-model="loginForm.password" :rules="passwordRules" label="Password" required ></v-text-field>
+                      <v-text-field v-model="loginForm.password" :rules="passwordRules" label="Password" type="password" required ></v-text-field>
 
-                      <v-checkbox v-model="checkbox" :rules="[v => !!v || 'You must agree to continue!']" label="Do you agree?" required ></v-checkbox>
+<!--                      <v-checkbox v-model="checkbox" :rules="[v => !!v || 'You must agree to continue!']" label="Do you agree?" required ></v-checkbox>-->
                       <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn color="primary" text @click="loginAction">Login</v-btn>
@@ -338,7 +338,7 @@
                       <v-text-field v-model="registerForm.name" :rules="nameRules" label="Name" required ></v-text-field>
                       <v-text-field v-model="registerForm.email" :rules="emailRules" label="E-mail" required ></v-text-field>
                       <v-text-field v-model="registerForm.password" :rules="passwordRules" type="password" label="Password" required ></v-text-field>
-                      <v-text-field v-model="registerForm.password_confirmation" :rules="passwordConfirmation" label="Password" required ></v-text-field>
+                      <v-text-field v-model="registerForm.password_confirmation" :rules="passwordConfirmation" label="Password"  required ></v-text-field>
                       <v-checkbox v-model="checkbox" :rules="[v => !!v || 'You must agree to continue!']" label="Do you agree?" required ></v-checkbox>
                       <v-card-actions>
                         <v-spacer></v-spacer>

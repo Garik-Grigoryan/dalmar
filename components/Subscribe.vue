@@ -5,8 +5,8 @@
         <v-col md="8" sm="12">
           <v-row justify="center" >
             <v-col md="6"  sm="10" xs="12">
-              <h2 class="grey--text text-center mb-5">ԲԱԺԱՆՈՐԴԱԳՐՎԵԼ</h2>
-              <p class="grey--text "> Բաժանորդագրվեք Մեր նամակներին և առաջինը տեղեկացեք նորույթների, զեղչերի և ակցիաների վերաբերյալ:</p>
+              <h2 class="grey--text text-center mb-5">{{$t('subscribe')}}</h2>
+              <p class="grey--text "> {{$t('subscribeText')}}</p>
                 <form>
                   <v-row align="center" justify="center">
                     <v-col md="10" sm="12">
