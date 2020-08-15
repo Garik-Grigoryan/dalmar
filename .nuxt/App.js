@@ -8,14 +8,14 @@ import {
   sanitizeComponent
 } from './utils'
 
-import NuxtError from '..\\layouts\\error.vue'
+import NuxtError from '../layouts/error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
-import _771ac951 from '..\\layouts\\brand.vue'
-import _5ab0f2f4 from '..\\layouts\\category.vue'
-import _5fa3735e from '..\\layouts\\dashboard.vue'
-import _6f6c098b from '..\\layouts\\default.vue'
-import _00e60039 from '..\\layouts\\product.vue'
+import _771ac951 from '../layouts/brand.vue'
+import _5ab0f2f4 from '../layouts/category.vue'
+import _5fa3735e from '../layouts/dashboard.vue'
+import _6f6c098b from '../layouts/default.vue'
+import _00e60039 from '../layouts/product.vue'
 
 const layouts = { "_brand": sanitizeComponent(_771ac951),"_category": sanitizeComponent(_5ab0f2f4),"_dashboard": sanitizeComponent(_5fa3735e),"_default": sanitizeComponent(_6f6c098b),"_product": sanitizeComponent(_00e60039) }
 

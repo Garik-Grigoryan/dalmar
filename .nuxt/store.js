@@ -8,23 +8,23 @@ const VUEX_PROPERTIES = ['state', 'getters', 'actions', 'mutations']
 let store = {};
 
 (function updateModules () {
-  store = normalizeRoot(require('..\\store\\index.js'), 'store/index.js')
+  store = normalizeRoot(require('../store/index.js'), 'store/index.js')
 
   // If store is an exported method = classic mode (deprecated)
 
   // Enforce store modules
   store.modules = store.modules || {}
 
-  resolveStoreModules(require('..\\store\\brands.js'), 'brands.js')
-  resolveStoreModules(require('..\\store\\categories.js'), 'categories.js')
-  resolveStoreModules(require('..\\store\\color.js'), 'color.js')
-  resolveStoreModules(require('..\\store\\menus.js'), 'menus.js')
-  resolveStoreModules(require('..\\store\\multimedia.js'), 'multimedia.js')
-  resolveStoreModules(require('..\\store\\nestedStore.js'), 'nestedStore.js')
-  resolveStoreModules(require('..\\store\\products.js'), 'products.js')
-  resolveStoreModules(require('..\\store\\sizes.js'), 'sizes.js')
-  resolveStoreModules(require('..\\store\\validation.js'), 'validation.js')
-  resolveStoreModules(require('..\\store\\wishListAndCart.js'), 'wishListAndCart.js')
+  resolveStoreModules(require('../store/brands.js'), 'brands.js')
+  resolveStoreModules(require('../store/categories.js'), 'categories.js')
+  resolveStoreModules(require('../store/color.js'), 'color.js')
+  resolveStoreModules(require('../store/menus.js'), 'menus.js')
+  resolveStoreModules(require('../store/multimedia.js'), 'multimedia.js')
+  resolveStoreModules(require('../store/nestedStore.js'), 'nestedStore.js')
+  resolveStoreModules(require('../store/products.js'), 'products.js')
+  resolveStoreModules(require('../store/sizes.js'), 'sizes.js')
+  resolveStoreModules(require('../store/validation.js'), 'validation.js')
+  resolveStoreModules(require('../store/wishListAndCart.js'), 'wishListAndCart.js')
 
   // If the environment supports hot reloading...
 })()

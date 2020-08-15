@@ -3,7 +3,7 @@ import Auth from './auth'
 import './middleware'
 
 // Active schemes
-import scheme_3e2123be from './schemes/local.js'
+import scheme_003d9a64 from './schemes/local.js'
 
 export default function (ctx, inject) {
   // Options
@@ -14,7 +14,7 @@ export default function (ctx, inject) {
 
   // Register strategies
   // local
-  $auth.registerStrategy('local', new scheme_3e2123be($auth, {"endpoints":{"login":{"url":"/auth/login","method":"post","propertyName":"token"},"logout":{"url":"logout","method":"get"},"user":{"url":"account","method":"get","propertyName":"data"}},"_name":"local"}))
+  $auth.registerStrategy('local', new scheme_003d9a64($auth, {"endpoints":{"login":{"url":"/auth/login","method":"post","propertyName":"token"},"logout":{"url":"logout","method":"get"},"user":{"url":"account","method":"get","propertyName":"data"}},"_name":"local"}))
 
   // Inject it to nuxt context as $auth
   inject('auth', $auth)

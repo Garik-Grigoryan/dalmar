@@ -4,7 +4,7 @@ import ClientOnly from 'vue-client-only'
 import NoSsr from 'vue-no-ssr'
 import { createRouter } from './router.js'
 import NuxtChild from './components/nuxt-child.js'
-import NuxtError from '..\\layouts\\error.vue'
+import NuxtError from '../layouts/error.vue'
 import Nuxt from './components/nuxt.js'
 import App from './App.js'
 import { setContext, getLocation, getRouteData, normalizeError } from './utils'
@@ -12,18 +12,18 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_2ba03a37 from 'nuxt_plugin_plugin_2ba03a37' // Source: .\\vuetify\\plugin.js (mode: 'all')
-import nuxt_plugin_cookieuniversalnuxt_42eeee28 from 'nuxt_plugin_cookieuniversalnuxt_42eeee28' // Source: .\\cookie-universal-nuxt.js (mode: 'all')
-import nuxt_plugin_pluginrouting_352339b9 from 'nuxt_plugin_pluginrouting_352339b9' // Source: .\\nuxt-i18n\\plugin.routing.js (mode: 'all')
-import nuxt_plugin_pluginmain_6839b456 from 'nuxt_plugin_pluginmain_6839b456' // Source: .\\nuxt-i18n\\plugin.main.js (mode: 'all')
-import nuxt_plugin_axios_893b6300 from 'nuxt_plugin_axios_893b6300' // Source: .\\axios.js (mode: 'all')
-import nuxt_plugin_veevalidate_2530890b from 'nuxt_plugin_veevalidate_2530890b' // Source: ..\\node_modules\\vee-validate (mode: 'all')
-import nuxt_plugin_validation_117b0ce0 from 'nuxt_plugin_validation_117b0ce0' // Source: ..\\plugins\\mixins\\validation (mode: 'all')
-import nuxt_plugin_user_06367a22 from 'nuxt_plugin_user_06367a22' // Source: ..\\plugins\\mixins\\user (mode: 'all')
-import nuxt_plugin_axios_5e891320 from 'nuxt_plugin_axios_5e891320' // Source: ..\\plugins\\axios (mode: 'all')
-import nuxt_plugin_GoogleAnalytics_19a7b420 from 'nuxt_plugin_GoogleAnalytics_19a7b420' // Source: ..\\plugins\\GoogleAnalytics.js (mode: 'client')
-import nuxt_plugin_vuedraggable_5e6a3519 from 'nuxt_plugin_vuedraggable_5e6a3519' // Source: ..\\plugins\\vuedraggable.js (mode: 'client')
-import nuxt_plugin_plugin_703d5e2f from 'nuxt_plugin_plugin_703d5e2f' // Source: .\\auth\\plugin.js (mode: 'all')
+import nuxt_plugin_plugin_3de260e0 from 'nuxt_plugin_plugin_3de260e0' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_cookieuniversalnuxt_dff94e48 from 'nuxt_plugin_cookieuniversalnuxt_dff94e48' // Source: ./cookie-universal-nuxt.js (mode: 'all')
+import nuxt_plugin_pluginrouting_fb28b9dc from 'nuxt_plugin_pluginrouting_fb28b9dc' // Source: ./nuxt-i18n/plugin.routing.js (mode: 'all')
+import nuxt_plugin_pluginmain_2c871cc6 from 'nuxt_plugin_pluginmain_2c871cc6' // Source: ./nuxt-i18n/plugin.main.js (mode: 'all')
+import nuxt_plugin_axios_102abd98 from 'nuxt_plugin_axios_102abd98' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_veevalidate_2530890b from 'nuxt_plugin_veevalidate_2530890b' // Source: ../node_modules/vee-validate (mode: 'all')
+import nuxt_plugin_validation_117b0ce0 from 'nuxt_plugin_validation_117b0ce0' // Source: ../plugins/mixins/validation (mode: 'all')
+import nuxt_plugin_user_06367a22 from 'nuxt_plugin_user_06367a22' // Source: ../plugins/mixins/user (mode: 'all')
+import nuxt_plugin_axios_5e891320 from 'nuxt_plugin_axios_5e891320' // Source: ../plugins/axios (mode: 'all')
+import nuxt_plugin_GoogleAnalytics_19a7b420 from 'nuxt_plugin_GoogleAnalytics_19a7b420' // Source: ../plugins/GoogleAnalytics.js (mode: 'client')
+import nuxt_plugin_vuedraggable_5e6a3519 from 'nuxt_plugin_vuedraggable_5e6a3519' // Source: ../plugins/vuedraggable.js (mode: 'client')
+import nuxt_plugin_plugin_26b8f770 from 'nuxt_plugin_plugin_26b8f770' // Source: ./auth/plugin.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -70,7 +70,7 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"titleTemplate":"%s - undefined","title":"","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
+    head: {"titleTemplate":"%s - Davmar","title":"Davmar","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Sale online from anywhere"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
 
     store,
     router,
@@ -185,24 +185,24 @@ async function createApp (ssrContext) {
 
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_2ba03a37 === 'function') {
-    await nuxt_plugin_plugin_2ba03a37(app.context, inject)
+  if (typeof nuxt_plugin_plugin_3de260e0 === 'function') {
+    await nuxt_plugin_plugin_3de260e0(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_cookieuniversalnuxt_42eeee28 === 'function') {
-    await nuxt_plugin_cookieuniversalnuxt_42eeee28(app.context, inject)
+  if (typeof nuxt_plugin_cookieuniversalnuxt_dff94e48 === 'function') {
+    await nuxt_plugin_cookieuniversalnuxt_dff94e48(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_pluginrouting_352339b9 === 'function') {
-    await nuxt_plugin_pluginrouting_352339b9(app.context, inject)
+  if (typeof nuxt_plugin_pluginrouting_fb28b9dc === 'function') {
+    await nuxt_plugin_pluginrouting_fb28b9dc(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_pluginmain_6839b456 === 'function') {
-    await nuxt_plugin_pluginmain_6839b456(app.context, inject)
+  if (typeof nuxt_plugin_pluginmain_2c871cc6 === 'function') {
+    await nuxt_plugin_pluginmain_2c871cc6(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_893b6300 === 'function') {
-    await nuxt_plugin_axios_893b6300(app.context, inject)
+  if (typeof nuxt_plugin_axios_102abd98 === 'function') {
+    await nuxt_plugin_axios_102abd98(app.context, inject)
   }
 
   if (typeof nuxt_plugin_veevalidate_2530890b === 'function') {
@@ -229,8 +229,8 @@ async function createApp (ssrContext) {
     await nuxt_plugin_vuedraggable_5e6a3519(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_plugin_703d5e2f === 'function') {
-    await nuxt_plugin_plugin_703d5e2f(app.context, inject)
+  if (typeof nuxt_plugin_plugin_26b8f770 === 'function') {
+    await nuxt_plugin_plugin_26b8f770(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first
