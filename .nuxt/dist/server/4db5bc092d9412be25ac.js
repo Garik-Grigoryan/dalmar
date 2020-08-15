@@ -1,1 +1,0 @@
-exports.ids=[0],exports.modules={122:function(t,o,e){"use strict";e.r(o),o.default={hello:"Բարեվ աշխարհ",title:"ԴավՄար",pages:{home:"Գլխավոր",contacts:"Կոնտակտներ"},myAccount:"Իմ Էջը",logout:"ելք"}}};

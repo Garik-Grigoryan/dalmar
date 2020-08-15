@@ -1,1 +1,0 @@
-exports.ids=[2],exports.modules={124:function(t,o,e){"use strict";e.r(o),o.default={hello:"Привет мир",title:"Давмар",pages:{home:"Главная",contacts:"Контакты"},myAccount:"Мой аккаунт",logout:"Выход"}}};
