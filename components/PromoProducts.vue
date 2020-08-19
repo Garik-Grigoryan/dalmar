@@ -59,9 +59,9 @@
                   <v-icon>mdi-heart</v-icon>
                 </v-btn>
                 <nuxt-link :to="`/product/${product.id}`">
-                <h3 v-if="$i18n.locale === 'am'" class=" font-weight-light font-weight-bold white--text mb-2">{{ product.name_am }}</h3>
-                <h3 v-if="$i18n.locale === 'en'" class=" font-weight-light font-weight-bold white--text mb-2">{{ product.name_en }}</h3>
-                <h3 v-if="$i18n.locale === 'ru'" class=" font-weight-light font-weight-bold white--text mb-2">{{ product.name_ru }}</h3>
+                <h3 v-if="$i18n.locale === 'am'" class=" font-weight-light font-weight-bold white--text mb-2" v-text="product.name_am"></h3>
+                <h3 v-if="$i18n.locale === 'en'" class=" font-weight-light font-weight-bold white--text mb-2" v-text="product.name_en"></h3>
+                <h3 v-if="$i18n.locale === 'ru'" class=" font-weight-light font-weight-bold white--text mb-2" v-text="product.name_ru"></h3>
                 <p class="price white--text"><span class="font-weight-bold">Price</span> 15.000 AMD</p>
                 </nuxt-link>
               </v-card-text>
