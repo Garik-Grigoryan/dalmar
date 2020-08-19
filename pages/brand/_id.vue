@@ -36,6 +36,11 @@
         await store.dispatch('brands/getBrandFilters', [route.params.id]);
         await store.dispatch('brands/fetch');
         await store.dispatch('wishListAndCart/fetch');
+        if(this.user){
+          await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+        }else{
+          await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+        }
         await store.dispatch('menus/fetch');
       },
       layout: 'brand',

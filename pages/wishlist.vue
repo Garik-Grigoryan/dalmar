@@ -42,14 +42,14 @@
     data () {
       return {
         headers: [
-          { text: 'Image', value: 'image',  sortable: false,  align: 'start', },
-          { text: 'Name',value: 'name',  sortable: false,  align: 'center', },
-          { text: 'Size', value: 'size',  sortable: false,  align: 'center', },
-          { text: 'Color', value: 'color',  sortable: false,  align: 'center', },
-          { text: 'Count', value: 'count',  sortable: false,  align: 'center', },
-          { text: 'Price', value: 'price',  sortable: false,  align: 'center', },
-          { text: 'Add to cart', value: 'addToCart',  sortable: false,  align: 'center', },
-          { text: 'Remove', value: 'remove',  sortable: false,  align: 'center', },
+          { text: this.$t('image'), value: 'image',  sortable: false,  align: 'start', },
+          { text: this.$t('name'),value: 'name',  sortable: false,  align: 'center', },
+          { text: this.$t('size'), value: 'size',  sortable: false,  align: 'center', },
+          { text: this.$t('color'), value: 'color',  sortable: false,  align: 'center', },
+          { text: this.$t('count'), value: 'count',  sortable: false,  align: 'center', },
+          { text: this.$t('price'), value: 'price',  sortable: false,  align: 'center', },
+          { text: this.$t('toCart'), value: 'addToCart',  sortable: false,  align: 'center', },
+          { text: this.$t('remove'), value: 'remove',  sortable: false,  align: 'center', },
         ],
         desserts: [
 

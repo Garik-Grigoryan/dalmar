@@ -3,7 +3,7 @@
     <productDetail></productDetail>
     <h2 class="text-center">Related Products</h2>
     <PromoProducts :count="7" type="best"></PromoProducts>
-    <deliveryBaner></deliveryBaner>
+<!--    <deliveryBaner></deliveryBaner>-->
     <Subscribe></Subscribe>
   </div>
 </template>
@@ -18,6 +18,11 @@ export default {
   async fetch({route, store}) {
     await store.dispatch('brands/fetch');
     await store.dispatch('wishListAndCart/fetch');
+    if(this.user){
+      await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+    }else{
+      await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+    }
     await store.dispatch('menus/fetch');
     await store.dispatch('products/filterAsType', ['best']);
     await store.dispatch('products/getProduct', [route.params.name]);

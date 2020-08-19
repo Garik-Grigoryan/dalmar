@@ -30,6 +30,11 @@ export default {
   ** Global CSS
   */
   css: [
+    'quill/dist/quill.core.css',
+    // for snow theme
+    'quill/dist/quill.snow.css',
+    // for bubble theme
+    'quill/dist/quill.bubble.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -43,7 +48,8 @@ export default {
       src: './plugins/GoogleAnalytics.js',
       mode: 'client'
     },
-    { src: '~plugins/vuedraggable.js', ssr: false }
+    { src: '~plugins/vuedraggable.js', ssr: false },
+    { src: '~plugins/editor', ssr: false }
   ],
   auth: {
     strategies: {
@@ -51,6 +57,9 @@ export default {
         endpoints: {
           login: {
             url: '/auth/login', method: 'post', propertyName: 'token'
+          },
+          checkPassword: {
+            url: '/auth/checkPassword', method: 'post', propertyName: 'password'
           },
           user: {
             url: 'account', method: 'get', propertyName: 'data'
