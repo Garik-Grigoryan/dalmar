@@ -6,7 +6,7 @@
         <MiddleBanner></MiddleBanner>
           <h1  class="text-center mb-5" v-text="$t('bestSales')"></h1>
           <PromoProducts :count="7" type="best"></PromoProducts>
-          <h1  class="text-center mb-5">{{$t('newProducts')}}</h1>
+          <h1  class="text-center mb-5" v-text="$t('newProducts')"></h1>
           <PromoProducts :count="7" type="new"></PromoProducts>
           <v-row justify="center">
             <v-col lg="12" md="12" style="padding: 12px 45px;">
