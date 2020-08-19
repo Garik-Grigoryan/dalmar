@@ -23,7 +23,7 @@
           <v-form v-model="formValid">
             <v-toolbar color="#b20839" dark>
               <v-toolbar-title>
-                cart
+                {{$t('cart')}}
               </v-toolbar-title>
             </v-toolbar>
             <v-card-text>
@@ -34,36 +34,35 @@
                     <v-checkbox v-model="settings" color="primary"></v-checkbox>
                   </v-list-item-action>
                   <v-list-item-content>
-                    <v-list-item-title>With delivery</v-list-item-title>
+                    <v-list-item-title>{{$t('withDelivery')}}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
-                  <v-text-field v-model="nameLastName" :rules="requiredField" label="Name, Last name" required ></v-text-field>
+                  <v-text-field v-model="nameLastName" :rules="requiredField" :label="$t('nameLastName')" required ></v-text-field>
                 </v-list-item>
                 <v-list-item>
                   <v-text-field v-model="email" :rules="emailRules" label="E-mail" required ></v-text-field>
                 </v-list-item>
                 <v-list-item>
-                  <v-text-field v-model="phone" :rules="phoneRules" label="Phone Number" required ></v-text-field>
+                  <v-text-field v-model="phone" :rules="phoneRules" :label="$t('phone')" required ></v-text-field>
                 </v-list-item>
 
-                <v-list-item v-if="settings">
-                  <v-select :items="items" label="State" v-model="state" @change="changeState" :rules="[v => !!v || 'State is required']" required ></v-select>
-                </v-list-item>
+<!--                <v-list-item v-if="settings">-->
+<!--                  <v-select :items="items" label="State" v-model="state" @change="changeState" :rules="[v => !!v || 'State is required']" required ></v-select>-->
+<!--                </v-list-item>-->
 
                 <v-list-item v-if="settings">
                   <v-text-field
-                    counter
                     v-model="address"
                     :rules="addressRules"
-                    label="Address"
+                    :label="$t('address')"
                     required
                   ></v-text-field>
                 </v-list-item>
                 <v-list-item v-if="settings">
                   <v-select
                     :items="payments"
-                    label="Payment Method"
+                    :label="$t('paymentMethod')"
                     v-model="payment"
                     :rules="[v => !!v || 'Payment Method is required']"
                     required
@@ -74,8 +73,8 @@
                     <v-checkbox :rules="requiredField" v-model="agree" color="primary"></v-checkbox>
                   </v-list-item-action>
                   <v-list-item-content style="display: block" @click="dialog = true">
-                    <v-list-item-title>Conditions</v-list-item-title>
-                    <v-list-item-subtitle>I have read and agree with the terms and conditions.</v-list-item-subtitle>
+                    <v-list-item-title>{{$t('conditions')}}</v-list-item-title>
+                    <v-list-item-subtitle>{{$t('readConditions')}}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
@@ -84,7 +83,7 @@
               <v-list-item-group>
                 <v-list-item style="font-size: 18px;">
                   <v-list-item-icon>
-                    Total Count:
+                    {{$t('totalCount')}}
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title> {{count}}</v-list-item-title>
@@ -94,7 +93,7 @@
               <v-list-item-group>
                 <v-list-item style="font-size: 18px;">
                   <v-list-item-icon>
-                    Total Price:
+                    {{$t('totalPrice')}}
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title style="color: #e60000; font-weight: 600"> {{totalPrice}} AMD</v-list-item-title>
@@ -105,7 +104,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn :disabled="!formValid" color="#e60000" dark >
-                Buy
+                {{$t('buy')}}
               </v-btn>
             </v-card-actions>
           </v-form>
@@ -115,13 +114,13 @@
 
     <v-dialog v-model="dialog" max-width="996" >
       <v-card>
-        <v-card-title  style="display: flex; justify-content: space-between;" class="headline">Conditions</v-card-title>
+        <v-card-title  style="display: flex; justify-content: space-between;" class="headline">{{$t('conditions')}}</v-card-title>
         <v-container fluid>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque exercitationem fugit illum ipsa, nesciunt non repellendus repudiandae sapiente suscipit, ullam vitae, voluptas. A aliquam architecto aut blanditiis cumque delectus deserunt dolor, est facere iure laborum libero, maiores nihil nisi nostrum odio optio pariatur, perferendis porro possimus quod repudiandae voluptas. Assumenda blanditiis debitis delectus deserunt, facilis fugiat illum laboriosam laborum libero magnam neque nulla quibusdam ratione reiciendis repudiandae sequi tenetur. Incidunt neque sint veniam! Animi asperiores assumenda at atque blanditiis corporis cumque doloribus eligendi eum facilis illo ipsa laboriosam libero natus nostrum praesentium, quisquam recusandae repellendus similique sunt tenetur vel vitae voluptas! Et fugiat impedit inventore, laboriosam nobis veritatis. Excepturi fuga, unde. Commodi dolorem eius enim esse fuga iusto nam non odit omnis quam quas quia rerum sequi sunt totam, voluptatem, voluptatum? A aliquam aperiam, dignissimos doloremque, harum impedit incidunt, iusto labore nobis nostrum provident quaerat quas sunt tenetur unde vitae voluptates! Adipisci alias architecto consequuntur culpa dolore eius, esse illo impedit iusto laboriosam modi mollitia natus nemo odio odit pariatur porro qui quia quibusdam repellat saepe sit suscipit, tempore tenetur ullam vel veniam vero! Ab ad aperiam, assumenda debitis deserunt dolor inventore ipsum itaque laudantium minus odit recusandae ut velit.</p>
+          <p class="px-3" v-html="conditions"></p>
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="dialog = false" >close</v-btn>
+          <v-btn color="green darken-1" text @click="dialog = false" >{{$t('close')}}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -141,10 +140,13 @@
       //   await store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
       // }
       await store.dispatch('menus/fetch');
+      await store.dispatch('pages/getById', [1]);
+
     },
     name: "cart",
     data () {
       return {
+        conditions: '',
         settings: true,
         dialog: false,
         state: '',
@@ -175,13 +177,13 @@
           v => !!v || 'Address is required',
         ],
         headers: [
-          { text: 'Image', value: 'image',  sortable: false,  align: 'start', },
-          { text: 'Name',value: 'name',  sortable: false,  align: 'center', },
-          { text: 'Size', value: 'size',  sortable: false,  align: 'center', },
-          { text: 'Color', value: 'color',  sortable: false,  align: 'center', },
-          { text: 'Count', value: 'count',  sortable: false,  align: 'center', },
-          { text: 'Price', value: 'price',  sortable: false,  align: 'center', },
-          { text: 'Remove', value: 'remove',  sortable: false,  align: 'center', },
+          { text: this.$t('image'), value: 'image',  sortable: false,  align: 'start', },
+          { text: this.$t('name'),value: 'name',  sortable: false,  align: 'center', },
+          { text: this.$t('size'), value: 'size',  sortable: false,  align: 'center', },
+          { text: this.$t('color'), value: 'color',  sortable: false,  align: 'center', },
+          { text: this.$t('count'), value: 'count',  sortable: false,  align: 'center', },
+          { text: this.$t('price'), value: 'price',  sortable: false,  align: 'center', },
+          { text: this.$t('remove'), value: 'remove',  sortable: false,  align: 'center', },
         ],
         desserts: [
 
@@ -201,9 +203,27 @@
       },
       cartData() {
         return this.$store.getters['wishListAndCart/cartData'];
+      },
+      conditionsPage() {
+        return this.$store.getters['pages/page'];
       }
     },
     async mounted() {
+      if(this.$i18n.locale === 'am'){
+        this.conditions = this.conditionsPage.html_am
+      }
+      else if(this.$i18n.locale === 'en'){
+        this.conditions = this.conditionsPage.html
+      }
+      else if(this.$i18n.locale === 'ru'){
+        this.conditions = this.conditionsPage.html_ru
+      }
+      if(this.user){
+        this.nameLastName = this.user.name;
+        this.email = this.user.email;
+        this.phone = this.user.phone || '';
+        this.address = this.user.address || '';
+      }
       await this.$store.dispatch('wishListAndCart/fetch');
       if(this.user){
         await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);

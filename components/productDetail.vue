@@ -24,7 +24,7 @@
         <h2 v-if="$i18n.locale === 'am'" class="text-center">{{product.name_am}}</h2>
         <h2 v-if="$i18n.locale === 'en'" class="text-center">{{product.name_en}}</h2>
         <h2 v-if="$i18n.locale === 'ru'" class="text-center">{{product.name_ru}}</h2>
-                
+
         <v-col md="12" lg="12">
           <p v-if="$i18n.locale === 'am'">
             {{product.description_am}}
@@ -107,7 +107,6 @@
           </div>
           <div class="mt-5 pl-0">
             <div class="text-left">
-              <v-btn  color="#01235e" rounded dark>Buy</v-btn>
               <v-btn
                 color="#01235e"
                 class="white--text"
