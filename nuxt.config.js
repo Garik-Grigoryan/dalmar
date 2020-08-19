@@ -58,6 +58,9 @@ export default {
           login: {
             url: '/auth/login', method: 'post', propertyName: 'token'
           },
+          checkPassword: {
+            url: '/auth/checkPassword', method: 'post', propertyName: 'password'
+          },
           user: {
             url: 'account', method: 'get', propertyName: 'data'
           },
