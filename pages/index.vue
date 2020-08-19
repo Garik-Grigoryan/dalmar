@@ -51,12 +51,12 @@ export default {
     }
   },
   async mounted() {
-    await this.$store.dispatch('wishListAndCart/fetch');
-    if(this.user){
-      await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
-    }else{
-      await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
-    }
+    // await this.$store.dispatch('wishListAndCart/fetch');
+    // if(this.user){
+    //   await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+    // }else{
+    //   await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+    // }
   },
 }
 </script>
