@@ -23,14 +23,15 @@
           // await store.dispatch('wishListAndCart/fetch');
           await store.dispatch('menus/fetch');
           await store.dispatch('pages/getById', [2]);
-          if(this.user){
-            await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
-          }else{
-            await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
-          }
+
         },
       async mounted() {
         await this.$store.dispatch('wishListAndCart/fetch');
+        if(this.user){
+          await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+        }else{
+          await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+        }
         if(this.$i18n.locale === 'am'){
           this.text = this.page.html_am
         }
