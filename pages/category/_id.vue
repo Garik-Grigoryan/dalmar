@@ -37,7 +37,6 @@
     async fetch({route, store}) {
       await store.dispatch('products/getProductByCategoryId', [route.params.id, route.query.page]);
       await store.dispatch('brands/fetch');
-      await store.dispatch('wishListAndCart/fetch');
       await store.dispatch('menus/fetch');
       await store.dispatch('products/getCategoryFilters', [route.params.id]);
 
@@ -62,6 +61,14 @@
         maxAge: 10 * 365 * 24 * 60 * 60
       });
       next();
+    },
+    async mounted() {
+      await store.dispatch('wishListAndCart/fetch');
+      if(this.user){
+        await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+      }else{
+        await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+      }
     },
     methods:{
       next() {
