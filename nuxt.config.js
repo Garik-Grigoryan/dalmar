@@ -91,6 +91,8 @@ export default {
     '@nuxtjs/date-fns',
     ['nuxt-i18n', {
       lazy:true,
+      browserLanguageDetection: false,
+      fallbackLocale: 'en',
       locales: [
         {
           name: 'armenian',
