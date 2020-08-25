@@ -112,7 +112,7 @@ export default {
         },
       ],
       langDir: 'lang/',
-      defaultLocale: 'am',
+      defaultLocale: 'en',
     }],
     'cookie-universal-nuxt',
   ],
