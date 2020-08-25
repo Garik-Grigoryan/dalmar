@@ -306,22 +306,7 @@
 
           </v-card>
         </v-menu>
-          <v-overflow-btn
-            v-model="MainLanguage"
-            :items="languages"
-            label="Overflow Btn"
-            target="#dropdown-language"
-            style="width: 85px; height: 50px; margin-top: 0; padding: 0;"
-          >
-              <template v-slot:selection="{item, index}">
-                  <v-img  :src="item.icon" max-width="50"></v-img>
-              </template>
-              <template v-slot:item="{item, index}">
-                <nuxt-link :to="switchLocalePath(item.to)" style="text-decoration: none;">
-                  <v-img  :src="item.icon" max-width="50"></v-img>
-                </nuxt-link>
-              </template>
-          </v-overflow-btn>
+          
 
       </v-row>
       <v-speed-dial class="show-in-lg"  v-model="fab" :top="top" :bottom="bottom" :right="right" :left="left" :direction="direction" :open-on-hover="hover" :transition="transition" >
@@ -416,7 +401,7 @@
           checkbox: false,
           menu: false,
           loginMenu: false,
-          MainLanguage: "english",
+          MainLanguage: "armenian",
           languages: [
             { text: 'armenian', to: 'am', icon: '/arm.png' },
             { text: 'russian', to: 'ru', icon: '/rus.png' },
