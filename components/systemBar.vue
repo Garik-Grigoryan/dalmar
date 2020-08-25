@@ -416,7 +416,7 @@
           checkbox: false,
           menu: false,
           loginMenu: false,
-          MainLanguage: "armenian",
+          MainLanguage: "english",
           languages: [
             { text: 'armenian', to: 'am', icon: '/arm.png', callback: () => console.log('list') },
             { text: 'russian', to: 'ru', icon: '/rus.png', callback: () => console.log('favorite') },
