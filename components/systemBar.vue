@@ -313,10 +313,10 @@
             target="#dropdown-language"
             style="width: 85px; height: 50px; margin-top: 0; padding: 0;"
           >
-              <template v-slot:selection="{item}">
+              <template v-slot:selection="{item, index}">
                   <v-img  :src="item.icon" max-width="50"></v-img>
               </template>
-              <template v-slot:item="{item}">
+              <template v-slot:item="{item, index}">
                 <nuxt-link :to="switchLocalePath(item.to)" style="text-decoration: none;">
                   <v-img  :src="item.icon" max-width="50"></v-img>
                 </nuxt-link>
@@ -418,9 +418,9 @@
           loginMenu: false,
           MainLanguage: "armenian",
           languages: [
-            { text: 'armenian', to: 'am', icon: '/arm.png' },
-            { text: 'russian', to: 'ru', icon: '/rus.png' },
-            { text: 'english', to: 'en', icon: '/eng.png' },
+            { text: 'armenian', to: 'am', icon: '/arm.png', callback: () => console.log('list') },
+            { text: 'russian', to: 'ru', icon: '/rus.png', callback: () => console.log('favorite') },
+            { text: 'english', to: 'en', icon: '/eng.png', callback: () => console.log('delete') },
           ],
           leftSide: [
             { title: this.$t('brands'),
@@ -469,7 +469,6 @@
         }
       },
       mounted () {
-        console.log(this.$i18n.locale);
         if(window.innerWidth >= 960){
           this.drawerForHeader = false;
         }
