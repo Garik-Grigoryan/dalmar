@@ -91,12 +91,6 @@ export default {
     '@nuxtjs/date-fns',
     ['nuxt-i18n', {
       lazy:true,
-      browserLanguageDetection: false,
-      fallbackLocale: 'en',
-      defaultLocale: 'en',
-      vueI18n: {
-        fallbackLocale: 'en',
-      },
       locales: [
         {
           name: 'armenian',
@@ -118,6 +112,7 @@ export default {
         },
       ],
       langDir: 'lang/',
+      defaultLocale: 'am',
     }],
     'cookie-universal-nuxt',
   ],
