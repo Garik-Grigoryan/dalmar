@@ -469,6 +469,7 @@
         }
       },
       mounted () {
+        console.log(this.$i18n.locale);
         if(window.innerWidth >= 960){
           this.drawerForHeader = false;
         }
