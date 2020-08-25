@@ -34,7 +34,7 @@ export default {
   wishList: 'Հավանածներ',
   toWishList: 'Հավանել',
   toCart: 'Զամբյուղ',
-  image: 'Նար',
+  image: 'Նկար',
   size: 'Չափս',
   color: 'Գույն',
   count: 'Քանակ',

@@ -29,6 +29,11 @@ export const mutations = {
 }
 
 export const actions = {
+  async emptyCart({commit}){
+    commit('setCart', []);
+    commit('setCartData', []);
+    commit('setCartLength', 0);
+  },
   async fetch({commit}){
     let cookieResWishList = this.$cookies.get('davmar_wishlist');
     if(cookieResWishList === undefined){

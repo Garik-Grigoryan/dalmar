@@ -38,7 +38,7 @@
           <div class="mt-5">
             <p class="ma-0">Colors</p>
             <v-item-group
-              :multiple="true"
+              :multiple="false"
             >
               <v-row>
                 <v-item  v-for="(color, n) in productColors" :key="n" v-slot:default="{ active, toggle }">
@@ -69,7 +69,7 @@
           <div class="mt-5">
             <p class="ma-0">Sizes</p>
             <v-item-group
-              :multiple="true"
+              :multiple="false"
             >
               <v-row>
                 <v-item  v-for="(size, n) in productSizes" :key="n" v-slot:default="{ active, toggle }">

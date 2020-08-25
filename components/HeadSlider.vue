@@ -10,6 +10,7 @@
       v-for="(slide, i) in slides"
       :key="i"
       :src="slide.src"
+      :to="slide.url"
     >
 
         <v-row
@@ -30,16 +31,22 @@
     data () {
       return {
         slides: [
-          {text: 'First', src: '/slider_1.jpg', color: '#ffffff'},
-          {text: 'Second', src: '/slider_2.jpg', color: '#ffffff'},
-          {text: 'Third', src: '/slider_3.jpg', color: '#ffffff'},
-          {text: 'Fourth', src: '/slider_4.jpg', color: '#ffffff'},
         ],
         sliderMaxWidth:  750,
       }
     },
     mounted () {
-      this.onResize()
+      this.onResize();
+      if(this.slides.length == 0){
+        this.component.componentElements.forEach((el) => {
+          this.slides.push({text: el.name, src: el.image, url: el.url});
+        })
+      }
+    },
+    computed: {
+      component() {
+        return this.$store.getters['components/slider'];
+      },
     },
     methods: {
       onResize () {
