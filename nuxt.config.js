@@ -90,7 +90,7 @@ export default {
     '@nuxtjs/auth',
     '@nuxtjs/date-fns',
     ['nuxt-i18n', {
-      lazy: false,
+      lazy:true,
       strategy: 'prefix_except_default',
       detectBrowserLanguage: false,
       langDir: 'lang/',
