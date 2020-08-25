@@ -29,7 +29,7 @@
   var PhoneNumber = require( 'awesome-phonenumber' );
     export default {
         name: "account",
-        middleware: 'user',
+        middleware: 'userLogined',
       async asyncData({store}){
         await store.dispatch('brands/fetch');
         await store.dispatch('menus/fetch');
@@ -95,7 +95,6 @@
           }else{
             await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
           }
-        await this.$store.dispatch('wishListAndCart/fetch');
       },
     }
 </script>

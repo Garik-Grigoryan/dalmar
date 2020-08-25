@@ -88,6 +88,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/date-fns',
     ['nuxt-i18n', {
       lazy:true,
       locales: [

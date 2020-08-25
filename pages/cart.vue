@@ -103,7 +103,7 @@
             </v-list>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn :disabled="!formValid" color="#e60000" dark >
+              <v-btn :disabled="!formValid" @click="buy"  color="#e60000" dark >
                 {{$t('buy')}}
               </v-btn>
             </v-card-actions>
@@ -151,8 +151,8 @@
         dialog: false,
         state: '',
         formValid: false,
-        totalPrice: 143000,
-        totalPriceWithoutDelivery: 143000,
+        totalPrice: 0,
+        totalPriceWithoutDelivery: 0,
         items: ['Yerevan', 'Kirovakan', 'Lennakan'],
         address: '',
         payment: '',
@@ -204,6 +204,9 @@
       cartData() {
         return this.$store.getters['wishListAndCart/cartData'];
       },
+      cartId() {
+        return this.$store.getters['wishListAndCart/cart'];
+      },
       conditionsPage() {
         return this.$store.getters['pages/page'];
       }
@@ -235,7 +238,7 @@
         this.desserts.push({
           image: JSON.parse(elem.product.images)[0],
           name: elem.product.nam_rue,
-          size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+          size: elem.size && elem.size[0] !== undefined ? elem.size : '',
           color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
           count: elem.count,
           price: elem.product.price,
@@ -245,7 +248,7 @@
         this.desserts.push({
           image: JSON.parse(elem.product.images)[0],
           name: elem.product.name_am,
-          size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+          size: elem.size && elem.size[0] !== undefined ? elem.size : '',
           color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
           count: elem.count,
           price: elem.product.price,
@@ -255,7 +258,7 @@
         this.desserts.push({
           image: JSON.parse(elem.product.images)[0],
           name: elem.product.name_en,
-          size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+          size: elem.size && elem.size[0] !== undefined ? elem.size : '',
           color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
           count: elem.count,
           price: elem.product.price,
@@ -268,6 +271,20 @@
 
     },
     methods: {
+      buy() {
+        if(this.user){
+          this.$store.dispatch('user/buy', [this.user.id, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then(() => {
+            this.$store.dispatch('wishListAndCart/emptyCart')
+            this.desserts = [];
+          });
+        }else{
+          this.$store.dispatch('user/buy', [null, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then(() => {
+            this.$store.dispatch('wishListAndCart/emptyCart')
+            this.desserts = [];
+          });
+        }
+
+      },
       init() {
         this.desserts = [];
         this.cartData.forEach((elem, key) => {
@@ -275,7 +292,7 @@
             this.desserts.push({
               image: JSON.parse(elem.product.images)[0],
               name: elem.product.nam_rue,
-              size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+              size: elem.size && elem.size[0] !== undefined ? elem.size :'',
               color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
               count: elem.count,
               price: elem.product.price,
@@ -285,7 +302,7 @@
             this.desserts.push({
               image: JSON.parse(elem.product.images)[0],
               name: elem.product.name_am,
-              size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+              size: elem.size && elem.size[0] !== undefined ? elem.size :'',
               color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
               count: elem.count,
               price: elem.product.price,
@@ -295,7 +312,7 @@
             this.desserts.push({
               image: JSON.parse(elem.product.images)[0],
               name: elem.product.name_en,
-              size: elem.size && elem.size[0] !== undefined ? elem.size[0] : elem.color,
+              size: elem.size && elem.size[0] !== undefined ? elem.size : '',
               color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
               count: elem.count,
               price: elem.product.price,

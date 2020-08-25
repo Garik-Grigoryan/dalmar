@@ -63,7 +63,7 @@
       next();
     },
     async mounted() {
-      await store.dispatch('wishListAndCart/fetch');
+      await this.$store.dispatch('wishListAndCart/fetch');
       if(this.user){
         await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
       }else{

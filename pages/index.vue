@@ -33,6 +33,8 @@ export default {
     await store.dispatch('products/filterAsType', ['new']);
     await store.dispatch('products/filterAsType', ['best']);
     await store.dispatch('products/filterAsType', ['sales']);
+    await store.dispatch('components/getComponent', [1]);
+    await store.dispatch('components/getComponent', [2]);
     // await store.dispatch('wishListAndCart/fetch');
     await store.dispatch('menus/fetch');
   },

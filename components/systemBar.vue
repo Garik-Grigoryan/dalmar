@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer v-resize="onResize" v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" :right="right" fixed app >
+    <v-navigation-drawer v-resize="onResize" v-model="drawerForHeader" :mini-variant="miniVariant" :clipped="clipped" :right="right" fixed app >
       <v-list style="padding-bottom: 0">
         <v-list-item v-for="(item, i) in leftSide" :key="i" router exact >
           <v-list-item-content class="leftSide-menu">
@@ -353,9 +353,8 @@
           <v-img :src="item.icon" max-width="50"></v-img>
         </v-btn>
       </v-speed-dial>
-      <v-app-bar-nav-icon class="hidden-md-and-up" style="position: absolute; right: 0" @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon class="hidden-md-and-up" style="position: absolute; right: 0" @click.stop="drawerForHeader = !drawerForHeader" />
     </v-system-bar>
-
   </div>
 </template>
 
@@ -412,7 +411,7 @@
           clipped: true,
           right: true,
           miniVariant: false,
-          drawer: false,
+          drawerForHeader: false,
           valid: true,
           checkbox: false,
           menu: false,
@@ -470,6 +469,9 @@
         }
       },
       mounted () {
+        if(window.innerWidth >= 960){
+          this.drawerForHeader = false;
+        }
         if (this.$i18n.locale === 'am'){
            this.MainLanguage = "armenian"
         }else if(this.$i18n.locale === 'ru'){
@@ -568,7 +570,7 @@
       methods: {
         onResize () {
           if(window.innerWidth >= 960){
-            this.drawer = false;
+            this.drawerForHeader = false;
             this.headerHeight = 190;
           }else if(window.innerWidth >= 796){
             this.headerHeight = 150;

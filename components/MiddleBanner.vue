@@ -7,40 +7,68 @@
               <v-col lg="8" md="12">
                 <v-row>
                   <v-col cols="6">
+                    <nuxt-link v-if="url[0]" :to="localePath(url[0])">
+                      <v-img
+                        :src="image[0]"
+                        height="100%"
+                      >
+                      </v-img>
+                    </nuxt-link>
                     <v-img
-                      src="/men.jpg"
-                      max-height="280"
+                      v-else
+                      :src="image[0]"
                       height="100%"
                     >
                     </v-img>
                   </v-col>
                   <v-col cols="6">
+                    <nuxt-link v-if="url[1]" :to="localePath(url[1])">
+                      <v-img
+                        :src="image[1]"
+                        height="100%"
+                      >
+                      </v-img>
+                    </nuxt-link>
                     <v-img
-                      src="/women.jpg"
-                      position="top"
-                      max-height="280"
+                      v-else
+                      :src="image[1]"
+                      height="100%"
                     >
                     </v-img>
                   </v-col>
                 </v-row>
                 <v-row>
                   <v-col cols="12">
+                    <nuxt-link v-if="url[2]" :to="localePath(url[2])">
+                      <v-img
+                        :src="image[2]"
+                        height="100%"
+                      >
+                      </v-img>
+                    </nuxt-link>
                     <v-img
-                      src="/shouse_red.jpg"
-                      :contain="contain"
-                      class="thirdImage"
+                      v-else
+                      :src="image[2]"
+                      height="100%"
                     >
                     </v-img>
                   </v-col>
                 </v-row>
               </v-col>
               <v-col lg="4" md="12" class="longImage">
-                    <v-img
-                      src="/accessories.jpg"
-                      height="100%"
-
-                    >
-                    </v-img>
+                <nuxt-link v-if="url[3]" :to="localePath(url[3])">
+                  <v-img
+                    :src="image[3]"
+                    height="100%"
+                  >
+                  </v-img>
+                </nuxt-link>
+                <v-img
+                  v-else
+                  :src="image[3]"
+                  height="100%"
+                >
+                </v-img>
               </v-col>
             </v-row>
           </v-col>
@@ -56,10 +84,17 @@
       data () {
         return {
           contain:  true,
+          image: [],
+          url: [],
         }
       },
         mounted () {
-          this.onResize()
+          this.onResize();
+          console.log(this.component);
+            this.component.componentElements.forEach((el, i) => {
+              this.image.push(el.image);
+              this.url.push(el.url);
+            })
         },
         methods: {
           onResize () {
@@ -71,6 +106,11 @@
             this.windowSize = { x: window.innerWidth, y: window.innerHeight }
           },
         },
+      computed: {
+        component() {
+          return this.$store.getters['components/banner'];
+        },
+      },
     }
 </script>
 
