@@ -14,13 +14,13 @@
                 </a>
               </template>
               <v-list>
-                <v-list-tile
+                <v-list-item
                   v-for="(item1, index) in item.items"
                   :key="index"
                   style="width:100%"
                 >
                   <v-list-item exact :to="localePath(item1.to)" style="background-color: rgb(1, 35, 94); color: white !important;">
-                    <v-list-tile-title>{{ item1.title }}</v-list-tile-title>
+                    <v-list-item-title>{{ item1.title }}</v-list-item-title>
                   </v-list-item>
                   <v-list style="background: transparent;">
                     <v-list-item-group v-for="(item2, index) in item.items2" :key="index">
@@ -40,7 +40,7 @@
                             </v-list>
                     </v-list-item-group>
                   </v-list>
-                </v-list-tile>
+                </v-list-item>
               </v-list>
             </v-menu>
             <v-list-item v-else exact :to="localePath(item.to)" class="leftSide-menu-items">
