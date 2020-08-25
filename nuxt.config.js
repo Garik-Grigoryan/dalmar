@@ -91,6 +91,10 @@ export default {
     '@nuxtjs/date-fns',
     ['nuxt-i18n', {
       lazy:true,
+      strategy: 'prefix_except_default',
+      detectBrowserLanguage: false,
+      langDir: 'lang/',
+      defaultLocale: 'am',
       locales: [
         {
           name: 'armenian',
@@ -111,8 +115,7 @@ export default {
           file: 'en-US.js'
         },
       ],
-      langDir: 'lang/',
-      defaultLocale: 'am',
+
     }],
     'cookie-universal-nuxt',
   ],
