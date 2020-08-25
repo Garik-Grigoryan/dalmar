@@ -93,6 +93,10 @@ export default {
       lazy:true,
       browserLanguageDetection: false,
       fallbackLocale: 'en',
+      defaultLocale: 'en',
+      vueI18n: {
+        fallbackLocale: 'en',
+      },
       locales: [
         {
           name: 'armenian',
@@ -114,7 +118,6 @@ export default {
         },
       ],
       langDir: 'lang/',
-      defaultLocale: 'en',
     }],
     'cookie-universal-nuxt',
   ],
