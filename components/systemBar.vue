@@ -418,9 +418,9 @@
           loginMenu: false,
           MainLanguage: "english",
           languages: [
-            { text: 'armenian', to: 'am', icon: '/arm.png', callback: () => console.log('list') },
-            { text: 'russian', to: 'ru', icon: '/rus.png', callback: () => console.log('favorite') },
-            { text: 'english', to: 'en', icon: '/eng.png', callback: () => console.log('delete') },
+            { text: 'armenian', to: 'am', icon: '/arm.png' },
+            { text: 'russian', to: 'ru', icon: '/rus.png' },
+            { text: 'english', to: 'en', icon: '/eng.png' },
           ],
           leftSide: [
             { title: this.$t('brands'),
