@@ -156,11 +156,6 @@ export default {
     */
     transpile: ["vee-validate/dist/rules"],
     extend (config, ctx) {
-    },
-    html: {
-      minify: {
-        minifyJS: false
-      }
     }
   }
 }

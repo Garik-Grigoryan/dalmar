@@ -120,7 +120,10 @@
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in leftSide" dark :key="i">
             <template v-slot:activator="{on}">
               <v-btn exact :to="localePath(item.to)" router color="#fff" text class="my-2 nav_button" v-on="on" bottom >
-                {{item.title}}
+                <div v-if="item.to === ''">{{ $t('brands') }}</div>
+                <div v-else-if="item.to === '/sales'">{{ $t('sales') }}</div>
+                <div v-else-if="item.to === '/condition'">{{ $t('conditions') }}</div>
+                <div v-else>{{ item.title }}</div>
               </v-btn>
             </template>
             <v-list v-if="item.items" style="background-color: #01235E">
@@ -206,6 +209,7 @@
                 <div v-if="item.title_am !== undefined && $i18n.locale === 'am'">{{ item.title_am }}</div>
                 <div v-if="item.title_ru !== undefined && $i18n.locale === 'ru'">{{ item.title_ru }}</div>
                 <div v-if="item.title_en !== undefined && $i18n.locale === 'en'">{{ item.title_en }}</div>
+                <div v-if="item.to === '/aboutUs'">{{  $t('aboutUs') }}</div>
                 <div v-if="item.title_am === undefined">{{ item.title }}</div>
               </v-btn>
             </template>
@@ -424,7 +428,7 @@
           ],
           leftSide: [
             { title: this.$t('brands'),
-              to: '/',
+              to: '',
               items: [
 
               ],
