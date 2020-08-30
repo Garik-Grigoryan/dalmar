@@ -18,11 +18,11 @@ export const actions = {
     commit('setPages', pages)
   },
   async getById({commit}, [id]) {
-    const page = await this.$axios.$get('http://apidavmar.neoteric-software.com/api/pages/get/'+id);
+    const page = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/pages/get/'+id);
     commit('setPage', page)
   },
   async update(ctx, [id, name, html, html_am, html_ru]){
-    await this.$axios.$put('http://apidavmar.neoteric-software.com/api/pages/update/'+id, {name, html, html_am, html_ru});
+    await this.$axios.$put('https://apidavmar.neoteric-software.com/api/pages/update/'+id, {name, html, html_am, html_ru});
   }
 }
 
