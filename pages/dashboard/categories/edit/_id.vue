@@ -182,7 +182,7 @@
             let data = new FormData();
             data.append('name', this.imageName);
             data.append('image', this.files);
-            this.$axios.$post('http://apidavmar.neoteric-software.com/api/multimedia/upload', data).then(
+            this.$axios.$post('https://apidavmar.neoteric-software.com/api/multimedia/upload', data).then(
               response => {
                 this.files = []
                 this.$store.dispatch('multimedia/fetch')

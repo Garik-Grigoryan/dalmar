@@ -14,7 +14,7 @@ export const mutations = {
 
 export const actions = {
   async fetch({commit}) {
-    const pages = await this.$axios.$get('http://apidavmar.neoteric-software.com/api/pages/get');
+    const pages = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/pages/get');
     commit('setPages', pages)
   },
   async getById({commit}, [id]) {
