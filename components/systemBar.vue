@@ -210,7 +210,6 @@
                 <div v-if="item.title_ru !== undefined && $i18n.locale === 'ru'">{{ item.title_ru }}</div>
                 <div v-if="item.title_en !== undefined && $i18n.locale === 'en'">{{ item.title_en }}</div>
                 <div v-if="item.to === '/aboutUs'">{{  $t('aboutUs') }}</div>
-                <div v-if="item.title_am === undefined">{{ item.title }}</div>
               </v-btn>
             </template>
             <v-list v-if="item.items" style="background-color: #01235E">
