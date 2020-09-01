@@ -33,9 +33,10 @@
             await this.$store.dispatch('user/getPayment', [this.$route.query.paymentID, this.$route.query.orderID]).then((res) => {
               if(res.success == true){
                 this.$router.push('/?payment=success')
+              }else if(this.$route.query.payment = 'fail'){
+                this.$router.push('/?payment=fail');
               }
             });
-
           }else if(this.$route.query.payment = 'fail'){
                 this.$router.push('/?payment=fail');
           }
