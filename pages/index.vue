@@ -16,6 +16,27 @@
           <Subscribe></Subscribe>
 
         </v-container>
+          <v-snackbar
+            v-model="snackbar"
+            :color="color"
+            :right="true"
+            :timeout="3000"
+            :top="true"
+            rounded="pill"
+          >
+            {{ notification }}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                dark
+                text
+                v-bind="attrs"
+                @click="snackbar = false"
+              >
+                <v-icon>mdi-close-circle-outline</v-icon>
+              </v-btn>
+            </template>
+          </v-snackbar>
       </div>
 </template>
 
@@ -50,15 +71,31 @@ export default {
   data () {
     return {
       justifyCenter: 'center',
+      notification: '',
+      color: 'success',
+      snackbar: false
     }
   },
   async mounted() {
-    // await this.$store.dispatch('wishListAndCart/fetch');
-    // if(this.user){
-    //   await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
-    // }else{
-    //   await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
-    // }
+    console.log(this.$route.query.payment);
+    if(this.$route.query.payment){
+      if(this.$route.query.payment == 'success'){
+        this.color = 'success';
+        this.notification = 'success';
+        this.snackbar = true;
+      }else if(this.$route.query.payment = 'fail'){
+        this.color = 'error';
+        this.notification = 'error';
+        this.snackbar = true;
+      }
+    }
+
+      await this.$store.dispatch('wishListAndCart/fetch');
+      if(this.user){
+        await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+      }else{
+        await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+      }
   },
 }
 </script>
