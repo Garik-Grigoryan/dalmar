@@ -31,11 +31,13 @@
           if(this.$route.query.resposneCode == '00'){
 
             await this.$store.dispatch('user/getPayment', [this.$route.query.paymentID, this.$route.query.orderID]).then((res) => {
-              console.log(res)
+              if(res.success == true){
+                this.$router.push('/?payment=success')
+              }
             });
 
           }else if(this.$route.query.payment = 'fail'){
-
+                this.$router.push('/?payment=fail');
           }
         }
 

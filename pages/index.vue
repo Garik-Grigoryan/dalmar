@@ -81,11 +81,11 @@ export default {
     if(this.$route.query.payment){
       if(this.$route.query.payment == 'success'){
         this.color = 'success';
-        this.notification = 'success';
+        this.notification = 'Payment Successful';
         this.snackbar = true;
       }else if(this.$route.query.payment = 'fail'){
         this.color = 'error';
-        this.notification = 'error';
+        this.notification = 'Payment Failed';
         this.snackbar = true;
       }
     }
