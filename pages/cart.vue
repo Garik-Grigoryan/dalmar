@@ -272,18 +272,41 @@
     },
     methods: {
       buy() {
-        if(this.user){
-          this.$store.dispatch('user/buy', [this.user.id, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then(() => {
-            this.$store.dispatch('wishListAndCart/emptyCart')
-            this.desserts = [];
-          });
+        console.log(this.payment)
+        if(this.payment == 'Cash'){
+          if(this.user){
+            this.$store.dispatch('user/buy', [this.user.id, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then(() => {
+              this.$store.dispatch('wishListAndCart/emptyCart')
+              this.desserts = [];
+            });
+          }else{
+            this.$store.dispatch('user/buy', [null, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then(() => {
+              this.$store.dispatch('wishListAndCart/emptyCart')
+              this.desserts = [];
+            });
+          }
         }else{
-          this.$store.dispatch('user/buy', [null, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then(() => {
-            this.$store.dispatch('wishListAndCart/emptyCart')
-            this.desserts = [];
-          });
-        }
+          if(this.user){
+            this.$store.dispatch('user/buy', [this.user.id, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then((res) => {
+              this.$store.dispatch('wishListAndCart/emptyCart');
+              this.desserts = [];
+              this.$store.dispatch('user/initOrder', [res.orderID+' order from davmar.am', res.orderID, this.totalPrice]).then((redirectUrl) => {
+                window.location.href = redirectUrl.url;
+              });
+              console.log(res);
+            });
+          }else{
+            this.$store.dispatch('user/buy', [null, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then((res) => {
+              this.$store.dispatch('wishListAndCart/emptyCart');
+              this.desserts = [];
+              this.$store.dispatch('user/initOrder', [res.orderID+' order from davmar.am', res.orderID, this.totalPrice]).then((redirectUrl) => {
+                window.location.href = redirectUrl.url;
 
+              });
+              console.log(res);
+            });
+          }
+        }
       },
       init() {
         this.desserts = [];
