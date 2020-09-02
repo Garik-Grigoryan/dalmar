@@ -35,6 +35,10 @@ export const actions = {
     let result = await this.$axios.$post('https://apidavmar.neoteric-software.com/api/payment/GetPaymentDetails', {paymentID, orderID});
     return result;
   },
+  async refundPayment(ctx, [order_id]){
+    let result = await this.$axios.$post('https://apidavmar.neoteric-software.com/api/payment/RefundPayment', {order_id});
+    return result;
+  },
   async getOrders({commit}, [userId]){
     if(userId == 'All'){
       let orders = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/order/get/');
