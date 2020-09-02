@@ -32,7 +32,7 @@ export const actions = {
     return result;
   },
   async getPayment(ctx, [paymentID, orderID]){
-    let result = await this.$axios.$post('https://apidavmar.neoteric-software.com/api/payment/InitPayment', {paymentID, orderID});
+    let result = await this.$axios.$post('https://apidavmar.neoteric-software.com/api/payment/GetPaymentDetails', {paymentID, orderID});
     return result;
   },
   async getOrders({commit}, [userId]){
