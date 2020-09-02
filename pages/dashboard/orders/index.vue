@@ -60,6 +60,7 @@
           v-bind="attrs"
           @click="snackbar = false"
         >
+
           <v-icon>mdi-close-circle-outline</v-icon>
         </v-btn>
       </template>
