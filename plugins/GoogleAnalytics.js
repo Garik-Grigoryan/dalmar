@@ -5,7 +5,7 @@ const getGDPR = localStorage.getItem('GDPR:accepted')
 
 if (typeof getGDPR !== 'undefined' && getGDPR === 'true') {
   Vue.use(vueAnalytics, {
-    id: 'UA-91239129-1',
+    id: 'UA-177199673-1',
     disabled: false,
     debug: {
       enabled: true,
@@ -15,7 +15,7 @@ if (typeof getGDPR !== 'undefined' && getGDPR === 'true') {
   })
 } else if (typeof getGDPR !== 'undefined' && getGDPR === 'false') {
   Vue.use(vueAnalytics, {
-    id: 'UA-91239129-1',
+    id: 'UA-177199673-1',
     disabled: true,
     debug: {
       enabled: true,
