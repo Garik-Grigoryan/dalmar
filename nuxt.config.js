@@ -45,6 +45,10 @@ export default {
     './plugins/mixins/user',
     './plugins/axios',
     {
+      src: './plugins/confirm.js',
+      mode: 'client'
+    },
+    {
       src: './plugins/GoogleAnalytics.js',
       mode: 'client'
     },
