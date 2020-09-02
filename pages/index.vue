@@ -49,7 +49,7 @@ import Subscribe from '~/components/Subscribe.vue'
 import MiddleBanner from "../components/MiddleBanner";
 
 export default {
-  async asyncData({store}){
+  async fetch({store}){
     await store.dispatch('brands/fetch');
     await store.dispatch('products/filterAsType', ['new']);
     await store.dispatch('products/filterAsType', ['best']);
