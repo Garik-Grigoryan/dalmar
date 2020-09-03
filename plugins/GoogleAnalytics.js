@@ -45,5 +45,14 @@ export default (ctx) => {
       enabled: false,
       sendHitTask: false,
     },
+    autoTracking: {
+      pageviewTemplate: route => {
+        return {
+          page: route.path,
+          title: document.title,
+          location: window.location.href,
+        };
+      },
+    },
   });
 };
