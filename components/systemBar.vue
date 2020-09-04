@@ -334,12 +334,12 @@
             <v-icon style="margin: 0;" v-else>mdi-account-circle</v-icon>
           </v-btn>
         </template>
-        <v-badge color="error" content="6" >
+        <v-badge color="error" :content="wishListLength" >
           <v-btn to="/wishlist" fab color="#01235E" class="my-2 nav_button" small >
             <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
         </v-badge>
-        <v-badge color="error" content="6" >
+        <v-badge color="error" :content="cartLength" >
           <v-btn to="/cart" fab color="#01235E" class="my-2 nav_button" small >
             <v-icon >mdi-cart-outline</v-icon>
           </v-btn>
@@ -421,9 +421,9 @@
           loginMenu: false,
           MainLanguage: "armenian",
           languages: [
-            { text: 'armenian', to: 'am', icon: '/arm.png', callback: () => console.log('list') },
-            { text: 'russian', to: 'ru', icon: '/rus.png', callback: () => console.log('favorite') },
-            { text: 'english', to: 'en', icon: '/eng.png', callback: () => console.log('delete') },
+            { text: 'armenian', to: 'am', icon: '/arm.png', callback: () => console.log('') },
+            { text: 'russian', to: 'ru', icon: '/rus.png', callback: () => console.log('') },
+            { text: 'english', to: 'en', icon: '/eng.png', callback: () => console.log('') },
           ],
           leftSide: [
             { title: this.$t('brands'),
@@ -532,7 +532,7 @@
           this.cartCount = cookieResCart.length
         }
         this.onResize();
-        console.log(this.brands);
+
         this.brands.forEach(elem => {
           this.leftSide[0].items.push(
             {

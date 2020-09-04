@@ -307,7 +307,6 @@
       }
     },
     mounted() {
-      console.log(this.categories)
     },
     methods: {
       removeImage(event, i) {

@@ -11,6 +11,14 @@
 
 <script>
   export default {
+    head() {
+      return {
+        title: 'Conditions',
+        meta: [
+          { hid: 'Davmar - conditions', name: 'Davmar conditions', content: 'Davmar conditions' }
+        ],
+      };
+    },
     name: "deliveryCondition",
     layout: 'product',
     data(){

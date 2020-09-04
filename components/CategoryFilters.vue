@@ -61,7 +61,6 @@
       }
       for(let elem in this.filters.sizes){
         if(elem != ''){
-          console.log(elem);
           this.items[1].data.push(elem)
         }
       }

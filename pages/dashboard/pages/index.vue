@@ -43,7 +43,6 @@
     methods: {
     },
     mounted() {
-      console.log(this.pages);
     }
   }
 </script>

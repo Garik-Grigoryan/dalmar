@@ -73,6 +73,7 @@
       name: "index",
       layout: 'dashboard',
       middleware: 'admin',
+
       async asyncData({store}) {
         await store.dispatch('user/getOrders', ["All"]);
       },

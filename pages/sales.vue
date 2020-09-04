@@ -22,6 +22,14 @@
   export default {
     name: "sales",
     layout: 'product',
+    head() {
+      return {
+        title: 'Sales',
+        meta: [
+          { hid: 'Davmar - sales', name: 'Davmar sales', content: 'Davmar sales' }
+        ],
+      };
+    },
     components: {
       productCard
     },

@@ -11,8 +11,6 @@
                 </v-alert>
                 <v-text-field v-model="loginForm.email" :rules="emailRules" label="E-mail" required ></v-text-field>
                 <v-text-field v-model="loginForm.password" :rules="passwordRules" label="Password" type="password" required ></v-text-field>
-
-                <v-checkbox v-model="checkbox" :rules="[v => !!v || 'You must agree to continue!']" label="Do you agree?" required ></v-checkbox>
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="primary" text @click="loginAction">Login</v-btn>
@@ -27,7 +25,7 @@
 
 <script>
     export default {
-      layout: 'dashboard',
+      layout: 'empty',
       data () {
         return {
           name: "login",

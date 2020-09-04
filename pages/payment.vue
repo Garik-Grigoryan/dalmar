@@ -26,8 +26,6 @@
       },
       async mounted() {
         if(this.$route.query.resposneCode){
-          console.log(this.$route.query);
-          console.log(this.$route.query.resposneCode == '00');
           if(this.$route.query.resposneCode == '00'){
 
             await this.$store.dispatch('user/getPayment', [this.$route.query.paymentID, this.$route.query.orderID]).then((res) => {

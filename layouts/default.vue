@@ -120,7 +120,7 @@
      opacity: 0;
   }
   .v-badge__wrapper{
-    left: -25px;
-    top: 25px;
+    left: -25px !important;
+    top: 25px !important;
   }
 </style>

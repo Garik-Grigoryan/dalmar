@@ -94,7 +94,6 @@
       },
       async mounted() {
         await this.$store.dispatch('wishListAndCart/fetch');
-        console.log(this.getUserOrders);
         for(let el in this.getUserOrders){
           for(let elem in this.getUserOrders[el].productItem.data){
             this.getUserOrders[el].mainProducts = []

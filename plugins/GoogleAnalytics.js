@@ -42,9 +42,9 @@ export default (ctx) => {
     router: ctx.app.router,
     //Remove debug before deployment
     debug: {
-      enabled: true,
-      trace: true,
-      sendHitTask: true
+      enabled: false,
+      trace: false,
+      sendHitTask: false
     },
     autoTracking: {
       pageviewOnLoad: false,

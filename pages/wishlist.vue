@@ -28,6 +28,14 @@
 <script>
   var PhoneNumber = require( 'awesome-phonenumber' );
   export default {
+    head() {
+      return {
+        title: 'Wish list',
+        meta: [
+          { hid: 'Davmar - wish list', name: 'Davmar wish list', content: 'Davmar wish list' }
+        ],
+      };
+    },
     async fetch({store}){
       await store.dispatch('brands/fetch');
       // await store.dispatch('wishListAndCart/fetch');
@@ -104,7 +112,6 @@
     },
     methods: {
       async addTocart(item){
-        console.log(item);
         let user_id = 0;
         if(this.user){
           user_id = this.user.id
