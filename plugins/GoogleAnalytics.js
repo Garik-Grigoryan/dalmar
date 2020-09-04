@@ -43,8 +43,8 @@ export default (ctx) => {
     //Remove debug before deployment
     debug: {
       enabled: false,
-      trace: false,
-      sendHitTask: false
+      trace: true,
+      sendHitTask: true
     },
     autoTracking: {
       pageviewOnLoad: false,
