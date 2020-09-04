@@ -356,7 +356,6 @@
       }
     },
     mounted() {
-      console.log(this.product);
       this.name_en = this.product.name_en;
       this.name_ru = this.product.name_ru;
       this.name_am = this.product.name_am;

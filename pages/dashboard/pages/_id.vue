@@ -91,7 +91,6 @@
         }
       },
       mounted() {
-        console.log(this.page)
           this.name = this.page.name;
           this.html = this.page.html;
           this.html_am = this.page.html_am;

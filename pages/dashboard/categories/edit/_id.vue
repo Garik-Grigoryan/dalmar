@@ -175,7 +175,6 @@
             this.selectedImages.push(imageUrl);
           },
           changeFunc() {
-            console.log(this.files);
           },
           uploadImage() {
             this.uploadDialog = false;
@@ -188,7 +187,6 @@
                 this.$store.dispatch('multimedia/fetch')
               }
             ).catch(e => {
-              console.log(e);
             })
           },
           updateCategory() {

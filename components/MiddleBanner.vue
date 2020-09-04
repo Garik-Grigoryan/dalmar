@@ -90,7 +90,6 @@
       },
         mounted () {
           this.onResize();
-          console.log(this.component);
             this.component.componentElements.forEach((el, i) => {
               this.image.push(el.image);
               this.url.push(el.url);

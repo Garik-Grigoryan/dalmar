@@ -1,5 +1,6 @@
 export const state = () => ({
-  orders: []
+  orders: [],
+  subscribers: [],
 });
 
 export const mutations = {
@@ -11,6 +12,9 @@ export const mutations = {
   },
   setOrders(state, orders){
     state.orders = orders;
+  },
+  setSubscribers(state, subscribers){
+    state.subscribers = subscribers;
   }
 }
 
@@ -39,6 +43,14 @@ export const actions = {
     let result = await this.$axios.$post('https://apidavmar.neoteric-software.com/api/payment/RefundPayment', {order_id});
     return result;
   },
+  async subscribe(ctx, [email]){
+    let result = await this.$axios.$post('https://apidavmar.neoteric-software.com/api/subscribe/subscribe', {email});
+    return result;
+  },
+  async getSubscribers({commit}){
+    let result = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/subscribe/get');
+    commit('setSubscribers', result);
+  },
   async getOrders({commit}, [userId]){
     if(userId == 'All'){
       let orders = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/order/get/');
@@ -55,5 +67,6 @@ export const actions = {
 export const getters = {
   sizes: s => s.sizes,
   size:  s => s.size,
+  subscribers:  s => s.subscribers,
   orders:  s => s.orders
 }

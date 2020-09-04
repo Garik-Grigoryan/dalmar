@@ -134,6 +134,14 @@
 <script>
 
   export default {
+    head() {
+      return {
+        title: product.name_am,
+        meta: [
+          { hid: 'Davmar - ' + product.name_am, name: 'Davmar ' + product.name_am, content: 'Davmar ' + product.description_am }
+        ],
+      };
+    },
     data () {
       return {
         productColors: [],
@@ -171,8 +179,6 @@
         if(e.target !== undefined){
           if(e.target.tagName === 'DIV' || e.target.tagName === 'I'){
             if(e.target.tagName === 'I'){
-              console.log(e.target.getAttribute('data-value'));
-              console.log(this.selectedColor.indexOf(e.target.getAttribute('data-value')));
               this.$delete(this.selectedColor, this.selectedColor.indexOf(e.target.getAttribute('data-value')));
             }else{
               this.selectedColor.push(e.target.getAttribute('data-value'));

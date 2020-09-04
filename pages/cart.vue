@@ -130,6 +130,14 @@
 <script>
   var PhoneNumber = require( 'awesome-phonenumber' );
   export default {
+    head() {
+      return {
+        title: 'Cart',
+        meta: [
+          { hid: 'Davmar - cart', name: 'Davmar cart', content: 'Davmar cart' }
+        ],
+      };
+    },
     async fetch({store}){
       await store.dispatch('brands/fetch');
 
@@ -144,6 +152,11 @@
 
     },
     name: "cart",
+    head() {
+      return {
+        title: 'Cart'
+      };
+    },
     data () {
       return {
         conditions: '',
@@ -272,7 +285,6 @@
     },
     methods: {
       buy() {
-        console.log(this.payment)
         if(this.payment == 'Cash'){
           if(this.user){
             this.$store.dispatch('user/buy', [this.user.id, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then(() => {
@@ -293,7 +305,6 @@
               this.$store.dispatch('user/initOrder', [res.orderID+' order from davmar.am', res.orderID, this.totalPrice]).then((redirectUrl) => {
                 window.location.href = redirectUrl.url;
               });
-              console.log(res);
             });
           }else{
             this.$store.dispatch('user/buy', [null, this.cartId, this.totalPrice, this.address, this.payment, this.nameLastName, this.email, this.count, this.phone]).then((res) => {
@@ -303,7 +314,6 @@
                 window.location.href = redirectUrl.url;
 
               });
-              console.log(res);
             });
           }
         }
@@ -367,7 +377,6 @@
         }
       },
       async cahngeCount(item) {
-        console.log(item);
         const index = this.desserts.indexOf(item);
         let user_id = 0;
         if(this.user){

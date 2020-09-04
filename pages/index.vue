@@ -49,6 +49,14 @@ import Subscribe from '~/components/Subscribe.vue'
 import MiddleBanner from "../components/MiddleBanner";
 
 export default {
+  head() {
+    return {
+      title: 'Home',
+      meta: [
+        { hid: 'Davmar - home', name: 'Davmar home', content: 'Buy online from anywhere.' }
+      ],
+    };
+  },
   async fetch({store}){
     await store.dispatch('brands/fetch');
     await store.dispatch('products/filterAsType', ['new']);

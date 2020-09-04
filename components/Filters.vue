@@ -54,6 +54,15 @@
 </template>
 <script>
   export default {
+    // brand[0]
+    head() {
+      return {
+        title: this.brand[0].name,
+        meta: [
+          { hid: 'Davmar - ' + this.brand[0].name, name: 'Davmar ' + this.brand[0].name, content: 'Davmar ' + this.brand[0].name }
+        ],
+      };
+    },
     data () {
       return {
         min: 15000,
@@ -70,7 +79,6 @@
       }
     },
     mounted() {
-      console.log(this.filters);
       for(let elem in this.filters.colors){
         if(elem != ''){
           this.items[2].data.push(elem)
@@ -78,7 +86,6 @@
       }
       for(let elem in this.filters.sizes){
         if(elem != ''){
-          console.log(elem);
           this.items[1].data.push(elem)
         }
       }
@@ -88,7 +95,6 @@
 
       if(window.matchMedia('(max-width: 767px)').matches){
         this.drawer = false;
-        console.log(this.drawer);
       }
     },
     methods: {
