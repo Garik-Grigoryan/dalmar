@@ -136,9 +136,9 @@
   export default {
     head() {
       return {
-        title: product.name_am,
+        title: this.product.name_am,
         meta: [
-          { hid: 'Davmar - ' + product.name_am, name: 'Davmar ' + product.name_am, content: 'Davmar ' + product.description_am }
+          { hid: 'Davmar - ' + this.product.name_am, name: 'Davmar ' + this.product.name_am, content: 'Davmar ' + this.product.description_am }
         ],
       };
     },
