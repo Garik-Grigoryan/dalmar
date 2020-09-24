@@ -22,11 +22,11 @@ export const mutations = {
 
 export const actions = {
   async fetch({commit}){
-    let components = await this.$axios.$get('http://apidavmar.neoteric-software.com/api/components/get');
+    let components = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/components/get');
     commit('setComponents', components);
   },
   async getComponent({commit}, [id]){
-    let component = await this.$axios.$get('http://apidavmar.neoteric-software.com/api/components/get/' + id);
+    let component = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/components/get/' + id);
     if(id == 1){
       commit('setSlider', component);
     }else if(id == 2){
@@ -35,7 +35,7 @@ export const actions = {
     commit('setComponent', component);
   },
   async updateComponent({commit}, [id, data]){
-  await this.$axios.$put('http://apidavmar.neoteric-software.com/api/components/update/'+id, { data });
+  await this.$axios.$put('https://apidavmar.neoteric-software.com/api/components/update/'+id, { data });
   return true;
 },
 

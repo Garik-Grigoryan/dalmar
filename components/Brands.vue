@@ -35,6 +35,9 @@
 
       ],
     }),
+    mounted() {
+      console.log(this.brands);
+    },
     computed: {
       brands() {
         return this.$store.getters['brands/brands'];

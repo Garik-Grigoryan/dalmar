@@ -247,7 +247,7 @@
           </v-btn>
         </v-badge>
 
-        <v-menu v-model="loginMenu" :close-on-content-click="false" :nudge-width="200" offset-y bottom >
+        <v-menu v-model="loginMenu" :close-on-content-click="false" :nudge-width="200" offset-y bottom>
           <template v-slot:activator="{ on }">
             <v-btn color="#fff" text class="my-2 nav_button" v-on="on" >
               <v-icon >mdi-account-outline</v-icon>
@@ -587,7 +587,7 @@
         },
         async registerAction() {
 
-          await this.$axios.post('http://apidavmar.neoteric-software.com/api/auth/register', this.registerForm).then(response => {
+          await this.$axios.post('https://apidavmar.neoteric-software.com/api/auth/register', this.registerForm).then(response => {
             this.menu = false;
             this.$auth.login({data: this.registerForm});
           }).catch(e => {

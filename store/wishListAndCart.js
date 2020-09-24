@@ -40,7 +40,7 @@ export const actions = {
       commit('setWishList', []);
       commit('setWishListLength', 0);
     }else{
-      let wishlistId = await this.$axios.get('http://apidavmar.neoteric-software.com/api/wishlist/get/' + cookieResWishList);
+      let wishlistId = await this.$axios.get('https://apidavmar.neoteric-software.com/api/wishlist/get/' + cookieResWishList);
       commit('setWishList', cookieResWishList);
       commit('setWishListLength', wishlistId.data.wishlistLenght);
     }
@@ -50,7 +50,7 @@ export const actions = {
       commit('setCart', []);
       commit('setCartLength', 0);
     }else{
-      let cartId = await this.$axios.get('http://apidavmar.neoteric-software.com/api/cart/get/' + cookieRes);
+      let cartId = await this.$axios.get('https://apidavmar.neoteric-software.com/api/cart/get/' + cookieRes);
       commit('setCart', cookieRes);
       commit('setCartLength', cartId.data.CartLength);
     }
@@ -59,12 +59,12 @@ export const actions = {
 
     let cookieResWishList = this.$cookies.get('davmar_wishlist');
     if(user_id !== 0){
-      let wishlistData = await this.$axios.post('http://apidavmar.neoteric-software.com/api/wishlist/getItem/', {'user_id': user_id});
+      let wishlistData = await this.$axios.post('https://apidavmar.neoteric-software.com/api/wishlist/getItem/', {'user_id': user_id});
       commit('setWishListData', wishlistData.data.data);
       commit('setWishList', wishlistData.data.id);
       commit('setWishListLength', wishlistData.data.data.length);
     }else if(cookieResWishList !== undefined){
-      let wishlistData = await this.$axios.post('http://apidavmar.neoteric-software.com/api/wishlist/getItem/', {'wishlist_id': cookieResWishList});
+      let wishlistData = await this.$axios.post('https://apidavmar.neoteric-software.com/api/wishlist/getItem/', {'wishlist_id': cookieResWishList});
       commit('setWishListData', wishlistData.data.data);
       commit('setWishList', wishlistData.data.id);
       commit('setWishListLength', wishlistData.data.data.length);
@@ -76,7 +76,7 @@ export const actions = {
 
     let cookieRes = this.$cookies.get('davmar_cart');
     if(user_id !== 0){
-      let cartData = await this.$axios.post('http://apidavmar.neoteric-software.com/api/cart/getItem/', {'user_id': user_id});
+      let cartData = await this.$axios.post('https://apidavmar.neoteric-software.com/api/cart/getItem/', {'user_id': user_id});
       if(cartData.data.data){
         commit('setCartData', cartData.data.data);
       }else{
@@ -89,7 +89,7 @@ export const actions = {
         commit('setCartLength', 0);
       }
     }else if(cookieRes !== undefined){
-      let cartData = await this.$axios.post('http://apidavmar.neoteric-software.com/api/cart/getItem/', {'cart_id': cookieRes});
+      let cartData = await this.$axios.post('https://apidavmar.neoteric-software.com/api/cart/getItem/', {'cart_id': cookieRes});
       if(cartData.data.data){
         commit('setCartData', cartData.data.data);
       }else{
@@ -112,7 +112,7 @@ export const actions = {
     let cookiresLenght = 0;
     let wishlistId = '';
     if(cookieRes === undefined){
-      wishlistId = await this.$axios.post('http://apidavmar.neoteric-software.com/api/wishlist/set', {'productId': id, 'productColors': productColors, 'productSizes': productSizes, 'count': count, 'user_id': user_id});
+      wishlistId = await this.$axios.post('https://apidavmar.neoteric-software.com/api/wishlist/set', {'productId': id, 'productColors': productColors, 'productSizes': productSizes, 'count': count, 'user_id': user_id});
       this.$cookies.set('davmar_wishlist', wishlistId.data.wishlist_id, {
         path: '/',
         maxAge: 10 * 365 * 24 * 60 * 60
@@ -120,7 +120,7 @@ export const actions = {
       cookieRes = [id];
       cookiresLenght = 1;
     }else{
-      wishlistId = await this.$axios.post('http://apidavmar.neoteric-software.com/api/wishlist/set', {'productId': id, 'productColors': productColors, 'productSizes': productSizes, 'count': count, 'wishlistId': cookieRes, 'user_id': user_id});
+      wishlistId = await this.$axios.post('https://apidavmar.neoteric-software.com/api/wishlist/set', {'productId': id, 'productColors': productColors, 'productSizes': productSizes, 'count': count, 'wishlistId': cookieRes, 'user_id': user_id});
       cookiresLenght = wishlistId.data.wishlistLenght;
     }
     commit('setWishList', wishlistId.data.wishlist_id);
@@ -131,7 +131,7 @@ export const actions = {
     let cartId = '';
     let cookiesLength = 0;
     if(cookieRes === undefined){
-      cartId = await this.$axios.post('http://apidavmar.neoteric-software.com/api/cart/set', {'productId': id, 'productColors': productColors, 'productSizes': productSizes, 'count': count, 'user_id': user_id});
+      cartId = await this.$axios.post('https://apidavmar.neoteric-software.com/api/cart/set', {'productId': id, 'productColors': productColors, 'productSizes': productSizes, 'count': count, 'user_id': user_id});
       this.$cookies.set('davmar_cart', cartId.data.cart_id, {
         path: '/',
         maxAge: 10 * 365 * 24 * 60 * 60
@@ -139,7 +139,7 @@ export const actions = {
       cookieRes = [id];
       cookiesLength = 1;
     }else{
-      cartId = await this.$axios.post('http://apidavmar.neoteric-software.com/api/cart/set', {'productId': id, 'productColors': productColors, 'productSizes': productSizes, 'count': count, 'cartId': cookieRes, 'user_id': user_id});
+      cartId = await this.$axios.post('https://apidavmar.neoteric-software.com/api/cart/set', {'productId': id, 'productColors': productColors, 'productSizes': productSizes, 'count': count, 'cartId': cookieRes, 'user_id': user_id});
       cookiesLength = cartId.data.CartLength;
     }
     commit('setCart', cartId.data.cart_id);
@@ -149,9 +149,9 @@ export const actions = {
     let cookieRes = this.$cookies.get('davmar_wishlist');
     let wishListData = [];
     if(cookieRes === undefined){
-      wishListData = await this.$axios.post(`http://apidavmar.neoteric-software.com/api/wishlist/delete/`, {'productIndex': id, 'user_id': user_id});
+      wishListData = await this.$axios.post(`https://apidavmar.neoteric-software.com/api/wishlist/delete/`, {'productIndex': id, 'user_id': user_id});
     }else{
-      wishListData = await this.$axios.post(`http://apidavmar.neoteric-software.com/api/wishlist/delete/`, {'productIndex': id, 'cart_id': cookieRes, 'user_id': user_id});
+      wishListData = await this.$axios.post(`https://apidavmar.neoteric-software.com/api/wishlist/delete/`, {'productIndex': id, 'cart_id': cookieRes, 'user_id': user_id});
     }
 
     if(wishListData.data.data){
@@ -171,9 +171,9 @@ export const actions = {
     let cookieRes = this.$cookies.get('davmar_wishlist');
     let wishListData = [];
     if(cookieRes === undefined){
-      wishListData = await this.$axios.post(`http://apidavmar.neoteric-software.com/api/wishlist/updateItem/`, {'productIndex': id, 'user_id': user_id, 'count': count});
+      wishListData = await this.$axios.post(`https://apidavmar.neoteric-software.com/api/wishlist/updateItem/`, {'productIndex': id, 'user_id': user_id, 'count': count});
     }else{
-      wishListData = await this.$axios.post(`http://apidavmar.neoteric-software.com/api/wishlist/updateItem/`, {'productIndex': id, 'cart_id': cookieRes, 'user_id': user_id, 'count': count});
+      wishListData = await this.$axios.post(`https://apidavmar.neoteric-software.com/api/wishlist/updateItem/`, {'productIndex': id, 'cart_id': cookieRes, 'user_id': user_id, 'count': count});
     }
 
     if(wishListData.data.data){
@@ -193,9 +193,9 @@ export const actions = {
     let cookieRes = this.$cookies.get('davmar_cart');
     let cartData = [];
     if(cookieRes === undefined){
-      cartData = await this.$axios.post(`http://apidavmar.neoteric-software.com/api/cart/delete/`, {'productIndex': id, 'user_id': user_id});
+      cartData = await this.$axios.post(`https://apidavmar.neoteric-software.com/api/cart/delete/`, {'productIndex': id, 'user_id': user_id});
     }else{
-      cartData = await this.$axios.post(`http://apidavmar.neoteric-software.com/api/cart/delete/`, {'productIndex': id, 'cart_id': cookieRes, 'user_id': user_id});
+      cartData = await this.$axios.post(`https://apidavmar.neoteric-software.com/api/cart/delete/`, {'productIndex': id, 'cart_id': cookieRes, 'user_id': user_id});
     }
 
     if(cartData.data.data){
@@ -214,9 +214,9 @@ export const actions = {
     let cookieRes = this.$cookies.get('davmar_cart');
     let cartData = [];
     if(cookieRes === undefined){
-      cartData = await this.$axios.post(`http://apidavmar.neoteric-software.com/api/cart/updateCartItem/`, {'productIndex': id, 'user_id': user_id, 'count': count});
+      cartData = await this.$axios.post(`https://apidavmar.neoteric-software.com/api/cart/updateCartItem/`, {'productIndex': id, 'user_id': user_id, 'count': count});
     }else{
-      cartData = await this.$axios.post(`http://apidavmar.neoteric-software.com/api/cart/updateCartItem/`, {'productIndex': id, 'cart_id': cookieRes, 'user_id': user_id, 'count': count});
+      cartData = await this.$axios.post(`https://apidavmar.neoteric-software.com/api/cart/updateCartItem/`, {'productIndex': id, 'cart_id': cookieRes, 'user_id': user_id, 'count': count});
     }
 
     if(cartData.data.data){

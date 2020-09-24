@@ -36,7 +36,7 @@
             {{product.description_ru}}
           </p>
           <div class="mt-5">
-            <p class="ma-0">Colors</p>
+            <p class="ma-0">{{ $t('colors') }}</p>
             <v-item-group
               :multiple="false"
             >
@@ -67,7 +67,7 @@
             </v-item-group>
           </div>
           <div class="mt-5">
-            <p class="ma-0">Sizes</p>
+            <p class="ma-0">{{ $t('size') }}</p>
             <v-item-group
               :multiple="false"
             >
@@ -89,7 +89,7 @@
           </div>
 
           <div class="mt-5 pl-0">
-            <p class="ma-0">Count</p>
+            <p class="ma-0">{{ $t('count') }}</p>
             <v-col cols="2" class="pl-0">
               <v-text-field
                 type="number"
@@ -101,7 +101,7 @@
           <div class="pl-0">
             <p class="ma-0">
               <span>
-                Price: {{product.price}} AMD
+                {{ $t('price') }}: {{product.price}} AMD
               </span>
             </p>
           </div>
@@ -113,7 +113,7 @@
                 rounded
                 @click="addToCart($event, product.id)"
               >
-                <v-icon left>mdi-cart</v-icon> Cart
+                <v-icon left>mdi-cart</v-icon> {{ $t('cart') }}
               </v-btn>
               <v-btn
                 color="#01235e"
@@ -121,7 +121,7 @@
                 rounded
                 @click="addToWishlist($event, product.id)"
               >
-                <v-icon left>mdi-heart</v-icon> Wish list
+                <v-icon left>mdi-heart</v-icon> {{ $t('wishList') }}
               </v-btn>
             </div>
           </div>

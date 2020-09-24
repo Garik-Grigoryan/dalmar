@@ -136,8 +136,8 @@ const setupProgress = (axios) => {
 export default (ctx, inject) => {
   // baseURL
   const baseURL = process.browser
-      ? 'http://apidavmar.neoteric-software.com/api'
-      : (process.env._AXIOS_BASE_URL_ || 'http://apidavmar.neoteric-software.com/api')
+      ? 'https://apidavmar.neoteric-software.com/api'
+      : (process.env._AXIOS_BASE_URL_ || 'https://apidavmar.neoteric-software.com/api')
 
   // Create fresh objects for all default header scopes
   // Axios creates only one which is shared across SSR requests!

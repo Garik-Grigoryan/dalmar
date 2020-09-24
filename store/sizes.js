@@ -14,11 +14,11 @@ export const mutations = {
 
 export const actions = {
   async fetch({commit}) {
-    const sizes = await this.$axios.$get('http://apidavmar.neoteric-software.com/api/size/get');
+    const sizes = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/size/get');
     commit('setSizes', sizes);
   },
   async addBrand(ctx, [name, color]){
-    await this.$axios.$post('http://apidavmar.neoteric-software.com/api/size/add', {'name': name, 'color': color});
+    await this.$axios.$post('https://apidavmar.neoteric-software.com/api/size/add', {'name': name, 'color': color});
   }
 }
 

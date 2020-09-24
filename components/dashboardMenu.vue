@@ -43,6 +43,7 @@
           {text: 'Pages', icon: 'mdi-arrange-send-backward', url: '/dashboard/pages'},
           {text: 'Orders', icon: 'mdi-cart', url: '/dashboard/orders'},
           {text: 'Components', icon: 'mdi-shape-plus', url: '/dashboard/components'},
+          {text: 'Regions', icon: 'mdi-google-maps', url: '/dashboard/regions'},
           {text: 'Settings', icon: 'mdi-cog', url: '/dashboard/settings'},
         ],
         select: [],

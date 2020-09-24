@@ -124,7 +124,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://apidavmar.neoteric-software.com/api'
+    baseURL: 'https://apidavmar.neoteric-software.com/api'
   },
   /*
   ** vuetify module configuration
