@@ -16,13 +16,17 @@ import nuxt_plugin_plugin_3de260e0 from 'nuxt_plugin_plugin_3de260e0' // Source:
 import nuxt_plugin_cookieuniversalnuxt_dff94e48 from 'nuxt_plugin_cookieuniversalnuxt_dff94e48' // Source: ./cookie-universal-nuxt.js (mode: 'all')
 import nuxt_plugin_pluginrouting_fb28b9dc from 'nuxt_plugin_pluginrouting_fb28b9dc' // Source: ./nuxt-i18n/plugin.routing.js (mode: 'all')
 import nuxt_plugin_pluginmain_2c871cc6 from 'nuxt_plugin_pluginmain_2c871cc6' // Source: ./nuxt-i18n/plugin.main.js (mode: 'all')
+import nuxt_plugin_datefns_562b9c18 from 'nuxt_plugin_datefns_562b9c18' // Source: ./date-fns.js (mode: 'all')
 import nuxt_plugin_axios_102abd98 from 'nuxt_plugin_axios_102abd98' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_veevalidate_2530890b from 'nuxt_plugin_veevalidate_2530890b' // Source: ../node_modules/vee-validate (mode: 'all')
 import nuxt_plugin_validation_117b0ce0 from 'nuxt_plugin_validation_117b0ce0' // Source: ../plugins/mixins/validation (mode: 'all')
 import nuxt_plugin_user_06367a22 from 'nuxt_plugin_user_06367a22' // Source: ../plugins/mixins/user (mode: 'all')
+import nuxt_plugin_googleanalitics_21209aa6 from 'nuxt_plugin_googleanalitics_21209aa6' // Source: ../plugins/mixins/googleanalitics (mode: 'all')
 import nuxt_plugin_axios_5e891320 from 'nuxt_plugin_axios_5e891320' // Source: ../plugins/axios (mode: 'all')
+import nuxt_plugin_confirm_59fe1d7d from 'nuxt_plugin_confirm_59fe1d7d' // Source: ../plugins/confirm.js (mode: 'client')
 import nuxt_plugin_GoogleAnalytics_19a7b420 from 'nuxt_plugin_GoogleAnalytics_19a7b420' // Source: ../plugins/GoogleAnalytics.js (mode: 'client')
 import nuxt_plugin_vuedraggable_5e6a3519 from 'nuxt_plugin_vuedraggable_5e6a3519' // Source: ../plugins/vuedraggable.js (mode: 'client')
+import nuxt_plugin_editor_6c8367f8 from 'nuxt_plugin_editor_6c8367f8' // Source: ../plugins/editor (mode: 'client')
 import nuxt_plugin_plugin_26b8f770 from 'nuxt_plugin_plugin_26b8f770' // Source: ./auth/plugin.js (mode: 'all')
 
 // Component: <ClientOnly>
@@ -201,6 +205,10 @@ async function createApp (ssrContext) {
     await nuxt_plugin_pluginmain_2c871cc6(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_datefns_562b9c18 === 'function') {
+    await nuxt_plugin_datefns_562b9c18(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_axios_102abd98 === 'function') {
     await nuxt_plugin_axios_102abd98(app.context, inject)
   }
@@ -217,8 +225,16 @@ async function createApp (ssrContext) {
     await nuxt_plugin_user_06367a22(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_googleanalitics_21209aa6 === 'function') {
+    await nuxt_plugin_googleanalitics_21209aa6(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_axios_5e891320 === 'function') {
     await nuxt_plugin_axios_5e891320(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_confirm_59fe1d7d === 'function') {
+    await nuxt_plugin_confirm_59fe1d7d(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_GoogleAnalytics_19a7b420 === 'function') {
@@ -227,6 +243,10 @@ async function createApp (ssrContext) {
 
   if (process.client && typeof nuxt_plugin_vuedraggable_5e6a3519 === 'function') {
     await nuxt_plugin_vuedraggable_5e6a3519(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_editor_6c8367f8 === 'function') {
+    await nuxt_plugin_editor_6c8367f8(app.context, inject)
   }
 
   if (typeof nuxt_plugin_plugin_26b8f770 === 'function') {

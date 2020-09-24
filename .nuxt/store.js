@@ -12,47 +12,24 @@ let store = {};
 
   // If store is an exported method = classic mode (deprecated)
 
-  if (typeof store === 'function') {
-    return console.warn('Classic mode for store/ is deprecated and will be removed in Nuxt 3.')
-  }
-
   // Enforce store modules
   store.modules = store.modules || {}
 
   resolveStoreModules(require('../store/brands.js'), 'brands.js')
   resolveStoreModules(require('../store/categories.js'), 'categories.js')
   resolveStoreModules(require('../store/color.js'), 'color.js')
+  resolveStoreModules(require('../store/components.js'), 'components.js')
   resolveStoreModules(require('../store/menus.js'), 'menus.js')
   resolveStoreModules(require('../store/multimedia.js'), 'multimedia.js')
   resolveStoreModules(require('../store/nestedStore.js'), 'nestedStore.js')
+  resolveStoreModules(require('../store/pages.js'), 'pages.js')
   resolveStoreModules(require('../store/products.js'), 'products.js')
   resolveStoreModules(require('../store/sizes.js'), 'sizes.js')
+  resolveStoreModules(require('../store/user.js'), 'user.js')
   resolveStoreModules(require('../store/validation.js'), 'validation.js')
   resolveStoreModules(require('../store/wishListAndCart.js'), 'wishListAndCart.js')
 
   // If the environment supports hot reloading...
-
-  if (process.client && module.hot) {
-    // Whenever any Vuex module is updated...
-    module.hot.accept([
-      '..\\store\\brands.js',
-      '..\\store\\categories.js',
-      '..\\store\\color.js',
-      '..\\store\\index.js',
-      '..\\store\\menus.js',
-      '..\\store\\multimedia.js',
-      '..\\store\\nestedStore.js',
-      '..\\store\\products.js',
-      '..\\store\\sizes.js',
-      '..\\store\\validation.js',
-      '..\\store\\wishListAndCart.js',
-    ], () => {
-      // Update `root.modules` with the latest definitions.
-      updateModules()
-      // Trigger a hot update in the store.
-      window.$nuxt.$store.hotUpdate(store)
-    })
-  }
 })()
 
 // createStore
