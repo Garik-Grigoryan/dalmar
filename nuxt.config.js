@@ -43,7 +43,12 @@ export default {
     '~/node_modules/vee-validate',
     './plugins/mixins/validation',
     './plugins/mixins/user',
+    './plugins/mixins/googleanalitics',
     './plugins/axios',
+    {
+      src: './plugins/confirm.js',
+      mode: 'client'
+    },
     {
       src: './plugins/GoogleAnalytics.js',
       mode: 'client'

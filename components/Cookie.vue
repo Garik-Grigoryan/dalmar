@@ -65,12 +65,16 @@
         if (process.browser) {
           this.isOpen = false;
           localStorage.setItem("GDPR:accepted", true);
+          this.$ga.enable();
+          this.$ga.page(this.$route.fullPath);
         }
       },
       deny() {
         if (process.browser) {
           this.isOpen = false;
           localStorage.setItem("GDPR:accepted", false);
+          this.$ga.disable();
+
         }
       }
     }

@@ -55,37 +55,6 @@
         menu: false,
         message: false,
         hints: true,
-        leftSide: [
-          { title: 'Brands',
-            to: '/'
-          },
-          { title: 'Sales',
-            to: '/'
-          },
-          { title: 'News',
-            to: '/'
-          }
-        ],
-        rightSide: [
-          {
-            title: 'For Men',
-            to: '/'
-          },
-          {
-            title: 'For Women',
-            to: '/'
-          },
-          {
-            title: 'Contact Us',
-            to: '/'
-          }
-        ],
-        items: [
-          { title: 'Click Me' },
-          { title: 'Click Me' },
-          { title: 'Click Me' },
-          { title: 'Click Me 2' },
-        ],
         rightDrawer: false,
         title: 'Dalmar',
         windowSize: {

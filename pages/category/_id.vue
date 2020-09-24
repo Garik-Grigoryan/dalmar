@@ -33,7 +33,14 @@
   import productCard from "../../components/productCard";
   export default {
     watchQuery: ["page"],
-
+    head() {
+      return {
+        title: this.products.categoryName,
+        meta: [
+          { hid: 'Davmar - ' + this.products.categoryName, name: 'Davmar ' + this.products.categoryName, content: 'Davmar ' + this.products.categoryName }
+        ],
+      };
+    },
     async fetch({route, store}) {
       await store.dispatch('products/getProductByCategoryId', [route.params.id, route.query.page]);
       await store.dispatch('brands/fetch');

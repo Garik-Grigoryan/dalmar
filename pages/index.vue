@@ -16,6 +16,27 @@
           <Subscribe></Subscribe>
 
         </v-container>
+          <v-snackbar
+            v-model="snackbar"
+            :color="color"
+            :right="true"
+            :timeout="3000"
+            :top="true"
+            rounded="pill"
+          >
+            {{ notification }}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                dark
+                text
+                v-bind="attrs"
+                @click="snackbar = false"
+              >
+                <v-icon>mdi-close-circle-outline</v-icon>
+              </v-btn>
+            </template>
+          </v-snackbar>
       </div>
 </template>
 
@@ -28,7 +49,15 @@ import Subscribe from '~/components/Subscribe.vue'
 import MiddleBanner from "../components/MiddleBanner";
 
 export default {
-  async asyncData({store}){
+  head() {
+    return {
+      title: 'Home',
+      meta: [
+        { hid: 'Davmar - home', name: 'Davmar home', content: 'Buy online from anywhere.' }
+      ],
+    };
+  },
+  async fetch({store}){
     await store.dispatch('brands/fetch');
     await store.dispatch('products/filterAsType', ['new']);
     await store.dispatch('products/filterAsType', ['best']);
@@ -50,15 +79,31 @@ export default {
   data () {
     return {
       justifyCenter: 'center',
+      notification: '',
+      color: 'success',
+      snackbar: false
     }
   },
   async mounted() {
-    // await this.$store.dispatch('wishListAndCart/fetch');
-    // if(this.user){
-    //   await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
-    // }else{
-    //   await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
-    // }
+    console.log(this.$route.query.payment);
+    if(this.$route.query.payment){
+      if(this.$route.query.payment == 'success'){
+        this.color = 'success';
+        this.notification = 'Payment Successful';
+        this.snackbar = true;
+      }else if(this.$route.query.payment = 'fail'){
+        this.color = 'error';
+        this.notification = 'Payment Failed';
+        this.snackbar = true;
+      }
+    }
+
+      await this.$store.dispatch('wishListAndCart/fetch');
+      if(this.user){
+        await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
+      }else{
+        await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
+      }
   },
 }
 </script>

@@ -28,6 +28,14 @@
 <script>
   var PhoneNumber = require( 'awesome-phonenumber' );
     export default {
+      head() {
+        return {
+          title: this.name,
+          meta: [
+            { hid: 'Davmar - ' + this.name, name: 'Davmar ' + this.name, content: 'Davmar ' + this.name }
+          ],
+        };
+      },
         name: "account",
         middleware: 'userLogined',
       async asyncData({store}){
@@ -70,9 +78,8 @@
         },
       methods: {
         async save() {
-          console.log(this.$auth);
           await this.$axios.post('https://apidavmar.neoteric-software.com/api/user/checkPassword', {id: this.user.id, password: this.oldPassword}).then(response => {
-           console.log(response.data.success);
+
            if(response.data.success){
              this.passwordErrors = false;
              this.$store.dispatch('user/update', [this.user.id, this.name, this.email, this.password, this.phone, this.address]);

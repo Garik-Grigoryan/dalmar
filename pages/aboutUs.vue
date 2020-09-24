@@ -13,6 +13,14 @@
     export default {
         name: "aboutUs",
         layout: 'product',
+      head() {
+        return {
+          title: 'About Us',
+          meta: [
+            { hid: 'Davmar - About Us', name: 'Davmar About Us', content: 'Davmar About Us' }
+          ],
+        };
+      },
         data(){
             return {
               text: '',

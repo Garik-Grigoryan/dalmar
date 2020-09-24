@@ -4,7 +4,7 @@ export default {
   newProducts: 'Նոր տեսականի',
   subscribe: 'ԲԱԺԱՆՈՐԴԱԳՐՎԵԼ',
   subscribeText: 'Բաժանորդագրվեք Մեր նամակներին և առաջինը տեղեկացեք նորույթների, զեղչերի և ակցիաների վերաբերյալ:',
-  title: 'ԴավՄար',
+  title: 'Davmar',
   pages: {
     home: 'Գլխավոր',
     contacts: 'Կոնտակտներ'

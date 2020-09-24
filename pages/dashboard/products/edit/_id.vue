@@ -11,23 +11,7 @@
           <v-text-field v-model="name_am" :rules="nameRules" label="Name (am)" required ></v-text-field>
           <v-row >
             <v-col cols="6" >
-              <v-autocomplete v-model="category" :items="categories" label="Category" item-text="name" item-value="id">
-                <template v-slot:selection="category">
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      {{category.item.name_en}}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </template>
-                <template v-slot:item="category">
-                  <v-list-item-content>
-                    <v-list-item-title>{{category.item.name_en}}</v-list-item-title>
-                  </v-list-item-content>
-                </template>
-              </v-autocomplete>
-            </v-col>
-            <v-col cols="6" >
-              <v-autocomplete v-model="selectedBrand" :items="brands.brands" label="Brand" item-text="name" item-value="brand.id">
+              <v-autocomplete v-model="selectedBrand" :items="brands" label="Brand" item-text="name" item-value="brand.id">
                 <template v-slot:selection="brand">
                   <v-list-item-content>
                     <v-list-item-title>
@@ -40,6 +24,22 @@
                     <v-list-item-title>
                       {{brand.item.brand.name}}
                     </v-list-item-title>
+                  </v-list-item-content>
+                </template>
+              </v-autocomplete>
+            </v-col>
+            <v-col cols="6" >
+              <v-autocomplete v-model="category" :items="categories.filter(c => c.brand == selectedBrand)" label="Category" item-text="name" item-value="id">
+                <template v-slot:selection="category">
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      {{category.item.name_en}}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </template>
+                <template v-slot:item="category">
+                  <v-list-item-content>
+                    <v-list-item-title>{{category.item.name_en}}</v-list-item-title>
                   </v-list-item-content>
                 </template>
               </v-autocomplete>
@@ -356,7 +356,6 @@
       }
     },
     mounted() {
-      console.log(this.product);
       this.name_en = this.product.name_en;
       this.name_ru = this.product.name_ru;
       this.name_am = this.product.name_am;

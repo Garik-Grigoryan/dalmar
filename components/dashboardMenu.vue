@@ -45,6 +45,8 @@
           {text: 'Components', icon: 'mdi-shape-plus', url: '/dashboard/components'},
           {text: 'Regions', icon: 'mdi-google-maps', url: '/dashboard/regions'},
           {text: 'Settings', icon: 'mdi-cog', url: '/dashboard/settings'},
+          // {text: 'Subscribers', icon: 'mdi-email-outline', url: '/dashboard/subscribers'},
+          // {text: 'Settings', icon: 'mdi-cog', url: '/dashboard/settings'},
         ],
         select: [],
         mini: false,

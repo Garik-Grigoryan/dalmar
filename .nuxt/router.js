@@ -6,9 +6,9 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _ae04157a = () => interopDefault(import('..\\pages\\aboutUs.vue' /* webpackChunkName: "pages_aboutUs" */))
 const _399f897d = () => interopDefault(import('..\\pages\\account\\index.vue' /* webpackChunkName: "pages_account_index" */))
 const _1645f098 = () => interopDefault(import('..\\pages\\cart.vue' /* webpackChunkName: "pages_cart" */))
-const _026a004c = () => interopDefault(import('..\\pages\\category\\index.vue' /* webpackChunkName: "pages_category_index" */))
 const _674b9353 = () => interopDefault(import('..\\pages\\condition.vue' /* webpackChunkName: "pages_condition" */))
 const _20a27ab6 = () => interopDefault(import('..\\pages\\dashboard\\index.vue' /* webpackChunkName: "pages_dashboard_index" */))
+const _0af7b2be = () => interopDefault(import('..\\pages\\payment.vue' /* webpackChunkName: "pages_payment" */))
 const _b926c278 = () => interopDefault(import('..\\pages\\sales.vue' /* webpackChunkName: "pages_sales" */))
 const _629ee0bd = () => interopDefault(import('..\\pages\\wishlist.vue' /* webpackChunkName: "pages_wishlist" */))
 const _02ead36c = () => interopDefault(import('..\\pages\\account\\orders.vue' /* webpackChunkName: "pages_account_orders" */))
@@ -22,6 +22,7 @@ const _beaec19e = () => interopDefault(import('..\\pages\\dashboard\\orders\\ind
 const _ea3b624c = () => interopDefault(import('..\\pages\\dashboard\\pages\\index.vue' /* webpackChunkName: "pages_dashboard_pages_index" */))
 const _f6aacf5c = () => interopDefault(import('..\\pages\\dashboard\\products\\index.vue' /* webpackChunkName: "pages_dashboard_products_index" */))
 const _ee683282 = () => interopDefault(import('..\\pages\\dashboard\\regions\\index.vue' /* webpackChunkName: "pages_dashboard_regions_index" */))
+const _69e3e56f = () => interopDefault(import('..\\pages\\dashboard\\subscribers.vue' /* webpackChunkName: "pages_dashboard_subscribers" */))
 const _78442b8a = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 const _104c1fb8 = () => interopDefault(import('..\\pages\\dashboard\\brands\\new.vue' /* webpackChunkName: "pages_dashboard_brands_new" */))
 const _66ead368 = () => interopDefault(import('..\\pages\\dashboard\\categories\\new.vue' /* webpackChunkName: "pages_dashboard_categories_new" */))
@@ -66,10 +67,6 @@ export const routerOptions = {
     component: _1645f098,
     name: "cart___am"
   }, {
-    path: "/category",
-    component: _026a004c,
-    name: "category___am"
-  }, {
     path: "/condition",
     component: _674b9353,
     name: "condition___am"
@@ -77,6 +74,10 @@ export const routerOptions = {
     path: "/dashboard",
     component: _20a27ab6,
     name: "dashboard___am"
+  }, {
+    path: "/payment",
+    component: _0af7b2be,
+    name: "payment___am"
   }, {
     path: "/sales",
     component: _b926c278,
@@ -130,6 +131,10 @@ export const routerOptions = {
     component: _ee683282,
     name: "dashboard-regions___am"
   }, {
+    path: "/dashboard/subscribers",
+    component: _69e3e56f,
+    name: "dashboard-subscribers___am"
+  }, {
     path: "/en/",
     component: _78442b8a,
     name: "index___en"
@@ -146,10 +151,6 @@ export const routerOptions = {
     component: _1645f098,
     name: "cart___en"
   }, {
-    path: "/en/category",
-    component: _026a004c,
-    name: "category___en"
-  }, {
     path: "/en/condition",
     component: _674b9353,
     name: "condition___en"
@@ -157,6 +158,10 @@ export const routerOptions = {
     path: "/en/dashboard",
     component: _20a27ab6,
     name: "dashboard___en"
+  }, {
+    path: "/en/payment",
+    component: _0af7b2be,
+    name: "payment___en"
   }, {
     path: "/en/sales",
     component: _b926c278,
@@ -182,10 +187,6 @@ export const routerOptions = {
     component: _1645f098,
     name: "cart___ru"
   }, {
-    path: "/ru/category",
-    component: _026a004c,
-    name: "category___ru"
-  }, {
     path: "/ru/condition",
     component: _674b9353,
     name: "condition___ru"
@@ -193,6 +194,10 @@ export const routerOptions = {
     path: "/ru/dashboard",
     component: _20a27ab6,
     name: "dashboard___ru"
+  }, {
+    path: "/ru/payment",
+    component: _0af7b2be,
+    name: "payment___ru"
   }, {
     path: "/ru/sales",
     component: _b926c278,
@@ -262,6 +267,10 @@ export const routerOptions = {
     component: _ee683282,
     name: "dashboard-regions___en"
   }, {
+    path: "/en/dashboard/subscribers",
+    component: _69e3e56f,
+    name: "dashboard-subscribers___en"
+  }, {
     path: "/ru/account/orders",
     component: _02ead36c,
     name: "account-orders___ru"
@@ -305,6 +314,10 @@ export const routerOptions = {
     path: "/ru/dashboard/regions",
     component: _ee683282,
     name: "dashboard-regions___ru"
+  }, {
+    path: "/ru/dashboard/subscribers",
+    component: _69e3e56f,
+    name: "dashboard-subscribers___ru"
   }, {
     path: "/en/dashboard/brands/new",
     component: _104c1fb8,
@@ -414,7 +427,7 @@ export const routerOptions = {
     component: _db41b9ea,
     name: "brand-id___en"
   }, {
-    path: "/en/category/:id",
+    path: "/en/category/:id?",
     component: _8e58b498,
     name: "category-id___en"
   }, {
@@ -426,7 +439,7 @@ export const routerOptions = {
     component: _db41b9ea,
     name: "brand-id___ru"
   }, {
-    path: "/ru/category/:id",
+    path: "/ru/category/:id?",
     component: _8e58b498,
     name: "category-id___ru"
   }, {
@@ -438,7 +451,7 @@ export const routerOptions = {
     component: _db41b9ea,
     name: "brand-id___am"
   }, {
-    path: "/category/:id",
+    path: "/category/:id?",
     component: _8e58b498,
     name: "category-id___am"
   }, {

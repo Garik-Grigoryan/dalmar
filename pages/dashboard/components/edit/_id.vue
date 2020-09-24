@@ -150,7 +150,6 @@
                 this.$store.dispatch('multimedia/fetch')
               }
             ).catch(e => {
-              console.log(e);
             })
           },
           removeImage(event, i) {
