@@ -2,7 +2,7 @@ export default {
   orders: 'Мои заказы',
   bestSales: 'Лучшие Продажи',
   newProducts: 'Новые Товары',
-  subscribe: 'Подписатся',
+  subscribe: 'Подписаться',
   subscribeText: 'Подпишитесь на нашу рассылку и первыми узнавайте о новинках, скидках и акциях.',
   title: 'Davmar',
   pages: {
@@ -21,7 +21,7 @@ export default {
   name: 'Имя',
   password: 'Пароль',
   oldPassword: 'Старый Пароль',
-  repeatPassword: 'Подтвердить ароль',
+  repeatPassword: 'Подтвердить пароль',
   nameLastName: 'Имя Фамилия',
   phone: 'Телефонный номер',
   address: 'Адрес',
@@ -36,9 +36,10 @@ export default {
   toCart: 'В Корзину',
   image: 'Картина',
   size: 'Размер',
-  color: 'Цвет',
+  colors: 'Цвета',
   count: 'Количество',
   price: 'Стоимость',
   remove: 'Удалить',
-  close: 'Закрыть'
+  close: 'Закрыть',
+  region: 'Регион'
 }

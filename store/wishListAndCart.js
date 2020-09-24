@@ -60,6 +60,9 @@ export const actions = {
     let cookieResWishList = this.$cookies.get('davmar_wishlist');
     if(user_id !== 0){
       let wishlistData = await this.$axios.post('https://apidavmar.neoteric-software.com/api/wishlist/getItem/', {'user_id': user_id});
+
+      // commit('setWishListData', wishlistData.data.data);
+
       if(wishlistData.data.data){
         commit('setWishListData', wishlistData.data.data);
         commit('setWishListLength', wishlistData.data.data.length);
@@ -70,6 +73,8 @@ export const actions = {
       commit('setWishList', wishlistData.data.id);
     }else if(cookieResWishList !== undefined){
       let wishlistData = await this.$axios.post('https://apidavmar.neoteric-software.com/api/wishlist/getItem/', {'wishlist_id': cookieResWishList});
+      // commit('setWishListData', wishlistData.data.data);
+
       if(wishlistData.data.data){
         commit('setWishListData', wishlistData.data.data);
         commit('setWishListLength', wishlistData.data.data.length);

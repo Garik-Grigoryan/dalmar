@@ -68,6 +68,14 @@
                     required
                   ></v-select>
                 </v-list-item>
+                <v-list-item v-if="settings">
+                  <v-select
+                    :items="all_regions"
+                    :label="$t('region')"
+                    v-model="selected_region"
+                    required
+                  ></v-select>
+                </v-list-item>
                 <v-list-item three-line>
                   <v-list-item-action>
                     <v-checkbox :rules="requiredField" v-model="agree" color="primary"></v-checkbox>
@@ -140,6 +148,7 @@
     },
     async fetch({store}){
       await store.dispatch('brands/fetch');
+      await store.dispatch('regions/fetch');
 
       // await store.dispatch('wishListAndCart/fetch');
       // if(this.user){
@@ -201,6 +210,8 @@
         desserts: [
 
         ],
+        selected_region: '',
+        all_regions: []
       }
     },
     computed: {
@@ -222,6 +233,9 @@
       },
       conditionsPage() {
         return this.$store.getters['pages/page'];
+      },
+      regions() {
+        return this.$store.getters['regions/regions'];
       }
     },
     async mounted() {
@@ -247,41 +261,50 @@
         await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
       }
       this.cartData.forEach((elem, key) => {
-      if(this.$i18n.locale == 'ru'){
-        this.desserts.push({
-          image: JSON.parse(elem.product.images)[0],
-          name: elem.product.nam_rue,
-          size: elem.size && elem.size[0] !== undefined ? elem.size : '',
-          color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
-          count: elem.count,
-          price: elem.product.price,
-          remove: key,
-        })
-      }else if(this.$i18n.locale == 'am'){
-        this.desserts.push({
-          image: JSON.parse(elem.product.images)[0],
-          name: elem.product.name_am,
-          size: elem.size && elem.size[0] !== undefined ? elem.size : '',
-          color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
-          count: elem.count,
-          price: elem.product.price,
-          remove: key,
-        })
-      }else if(this.$i18n.locale == 'en'){
-        this.desserts.push({
-          image: JSON.parse(elem.product.images)[0],
-          name: elem.product.name_en,
-          size: elem.size && elem.size[0] !== undefined ? elem.size : '',
-          color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
-          count: elem.count,
-          price: elem.product.price,
-          remove: key,
-        })
-      }
+        if(this.$i18n.locale == 'ru'){
+          this.desserts.push({
+            image: JSON.parse(elem.product.images)[0],
+            name: elem.product.nam_rue,
+            size: elem.size && elem.size[0] !== undefined ? elem.size : '',
+            color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
+            count: elem.count,
+            price: elem.product.price,
+            remove: key,
+          })
+        }else if(this.$i18n.locale == 'am'){
+          this.desserts.push({
+            image: JSON.parse(elem.product.images)[0],
+            name: elem.product.name_am,
+            size: elem.size && elem.size[0] !== undefined ? elem.size : '',
+            color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
+            count: elem.count,
+            price: elem.product.price,
+            remove: key,
+          })
+        }else if(this.$i18n.locale == 'en'){
+          this.desserts.push({
+            image: JSON.parse(elem.product.images)[0],
+            name: elem.product.name_en,
+            size: elem.size && elem.size[0] !== undefined ? elem.size : '',
+            color: elem.color && elem.color.length > 0 ? elem.color[0] : '#000000',
+            count: elem.count,
+            price: elem.product.price,
+            remove: key,
+          })
+        }
 
       });
       await this.summCount();
 
+      this.regions.forEach((elem, key) => {
+        if(this.$i18n.locale == 'ru'){
+          this.all_regions.push(elem.name_ru);
+        } else if(this.$i18n.locale == 'am'){
+          this.all_regions.push(elem.name_am);
+        } else if(this.$i18n.locale == 'en'){
+          this.all_regions.push(elem.name_en);
+        }
+      });
     },
     methods: {
       buy() {

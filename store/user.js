@@ -28,6 +28,10 @@ export const actions = {
   },
   async buy(ctx, [user_id, cartId, totalPrice, address, payment, nameLastName, email, count, phone]){
     let cookieRes = this.$cookies.remove('davmar_cart');
+
+    // await this.$axios.$post('https://apidavmar.neoteric-software.com/api/order/store', {user_id, cartId, totalPrice, address, payment, nameLastName, email, count, phone});
+    // return true;
+
     let result = await this.$axios.$post('https://apidavmar.neoteric-software.com/api/order/store', {user_id, cartId, totalPrice, address, payment, nameLastName, email, count, phone});
     return result;
   },
