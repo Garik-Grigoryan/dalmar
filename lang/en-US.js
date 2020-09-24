@@ -36,9 +36,10 @@ export default {
   toCart: 'Cart',
   image: 'Image',
   size: 'Size',
-  color: 'Color',
+  colors: 'Colors',
   count: 'Count',
   price: 'Price',
   remove: 'Remove',
-  close: 'Close'
+  close: 'Close',
+  region: 'Region'
 }

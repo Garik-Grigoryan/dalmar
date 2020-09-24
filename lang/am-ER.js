@@ -36,9 +36,10 @@ export default {
   toCart: 'Զամբյուղ',
   image: 'Նկար',
   size: 'Չափս',
-  color: 'Գույն',
+  colors: 'Գույներ',
   count: 'Քանակ',
   price: 'Արչեք',
   remove: 'Ջնջել',
-  close: 'Փակել'
+  close: 'Փակել',
+  region: 'Մարզ'
 }

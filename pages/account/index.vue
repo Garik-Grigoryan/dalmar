@@ -79,6 +79,7 @@
       methods: {
         async save() {
           await this.$axios.post('https://apidavmar.neoteric-software.com/api/user/checkPassword', {id: this.user.id, password: this.oldPassword}).then(response => {
+
            if(response.data.success){
              this.passwordErrors = false;
              this.$store.dispatch('user/update', [this.user.id, this.name, this.email, this.password, this.phone, this.address]);

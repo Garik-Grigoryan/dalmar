@@ -22,11 +22,15 @@ let store = {};
   resolveStoreModules(require('..\\store\\brands.js'), 'brands.js')
   resolveStoreModules(require('..\\store\\categories.js'), 'categories.js')
   resolveStoreModules(require('..\\store\\color.js'), 'color.js')
+  resolveStoreModules(require('..\\store\\components.js'), 'components.js')
   resolveStoreModules(require('..\\store\\menus.js'), 'menus.js')
   resolveStoreModules(require('..\\store\\multimedia.js'), 'multimedia.js')
   resolveStoreModules(require('..\\store\\nestedStore.js'), 'nestedStore.js')
+  resolveStoreModules(require('..\\store\\pages.js'), 'pages.js')
   resolveStoreModules(require('..\\store\\products.js'), 'products.js')
+  resolveStoreModules(require('..\\store\\regions.js'), 'regions.js')
   resolveStoreModules(require('..\\store\\sizes.js'), 'sizes.js')
+  resolveStoreModules(require('..\\store\\user.js'), 'user.js')
   resolveStoreModules(require('..\\store\\validation.js'), 'validation.js')
   resolveStoreModules(require('..\\store\\wishListAndCart.js'), 'wishListAndCart.js')
 
@@ -38,12 +42,16 @@ let store = {};
       '..\\store\\brands.js',
       '..\\store\\categories.js',
       '..\\store\\color.js',
+      '..\\store\\components.js',
       '..\\store\\index.js',
       '..\\store\\menus.js',
       '..\\store\\multimedia.js',
       '..\\store\\nestedStore.js',
+      '..\\store\\pages.js',
       '..\\store\\products.js',
+      '..\\store\\regions.js',
       '..\\store\\sizes.js',
+      '..\\store\\user.js',
       '..\\store\\validation.js',
       '..\\store\\wishListAndCart.js',
     ], () => {

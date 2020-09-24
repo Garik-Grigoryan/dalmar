@@ -12,15 +12,22 @@ import NuxtError from '..\\layouts\\error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
+import '..\\node_modules\\quill\\dist\\quill.core.css'
+
+import '..\\node_modules\\quill\\dist\\quill.snow.css'
+
+import '..\\node_modules\\quill\\dist\\quill.bubble.css'
+
 import '..\\node_modules\\vuetify\\dist\\vuetify.css'
 
 import _771ac951 from '..\\layouts\\brand.vue'
 import _5ab0f2f4 from '..\\layouts\\category.vue'
 import _5fa3735e from '..\\layouts\\dashboard.vue'
 import _6f6c098b from '..\\layouts\\default.vue'
+import _77430317 from '..\\layouts\\empty.vue'
 import _00e60039 from '..\\layouts\\product.vue'
 
-const layouts = { "_brand": sanitizeComponent(_771ac951),"_category": sanitizeComponent(_5ab0f2f4),"_dashboard": sanitizeComponent(_5fa3735e),"_default": sanitizeComponent(_6f6c098b),"_product": sanitizeComponent(_00e60039) }
+const layouts = { "_brand": sanitizeComponent(_771ac951),"_category": sanitizeComponent(_5ab0f2f4),"_dashboard": sanitizeComponent(_5fa3735e),"_default": sanitizeComponent(_6f6c098b),"_empty": sanitizeComponent(_77430317),"_product": sanitizeComponent(_00e60039) }
 
 export default {
   render (h, props) {
