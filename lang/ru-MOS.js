@@ -41,5 +41,7 @@ export default {
   price: 'Стоимость',
   remove: 'Удалить',
   close: 'Закрыть',
-  region: 'Регион'
+  region: 'Регион',
+  delivery: 'Стоимость доставки',
+  freeDelivery: 'Бесплатная доставка'
 }

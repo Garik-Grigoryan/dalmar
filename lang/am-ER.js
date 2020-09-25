@@ -41,5 +41,7 @@ export default {
   price: 'Արչեք',
   remove: 'Ջնջել',
   close: 'Փակել',
-  region: 'Մարզ'
+  region: 'Մարզ',
+  delivery: 'Առաքման արժեքը',
+  freeDelivery: 'Առաքումը անվճար'
 }

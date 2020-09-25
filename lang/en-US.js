@@ -41,5 +41,7 @@ export default {
   price: 'Price',
   remove: 'Remove',
   close: 'Close',
-  region: 'Region'
+  region: 'Region',
+  delivery: 'Cost of delivery',
+  freeDelivery: 'Free delivery'
 }

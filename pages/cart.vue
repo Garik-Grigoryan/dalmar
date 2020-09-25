@@ -73,6 +73,7 @@
                     :items="all_regions"
                     :label="$t('region')"
                     v-model="selected_region"
+                    @change="onChangeSelectedRegion"
                     required
                   ></v-select>
                 </v-list-item>
@@ -87,6 +88,24 @@
                 </v-list-item>
               </v-list-item-group>
             </v-card-text>
+            <v-list v-if="selected_region !== ''">
+              <v-list-item-group>
+                <v-list-item v-if="selected_region_price !== '0'" style="font-size: 18px;">
+                  <v-list-item-icon>
+                    {{$t('delivery')}}
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title> {{selected_region_price}} AMD</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item v-else style="font-size: 18px;">
+                  <v-list-item-icon>
+                    {{$t('freeDelivery')}}
+                  </v-list-item-icon>
+                  <v-list-item-content></v-list-item-content>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
             <v-list disabled>
               <v-list-item-group>
                 <v-list-item style="font-size: 18px;">
@@ -211,6 +230,8 @@
 
         ],
         selected_region: '',
+        selected_region_price: '',
+        cost_of_delivery: '0',
         all_regions: []
       }
     },
@@ -417,6 +438,22 @@
           this.count += parseInt(elem.count);
           this.totalPrice += elem.price * elem.count;
         })
+      },
+      onChangeSelectedRegion() {
+        let region_en = this.regions.find(o => o.name_en === this.selected_region);
+        let region_am = this.regions.find(o => o.name_am === this.selected_region);
+        let region_ru = this.regions.find(o => o.name_ru === this.selected_region);
+        if(region_en !== undefined) {
+          this.selected_region_price = region_en.delivery_price;
+          this.totalPrice = this.totalPrice - parseInt(this.cost_of_delivery) + parseInt(region_en.delivery_price);
+          this.cost_of_delivery = region_en.delivery_price;
+        } else if(region_am !== undefined) {
+          this.selected_region_price = region_am.delivery_price;
+          this.totalPrice = this.totalPrice + parseInt(region_am.delivery_price);
+        } else if(region_ru !== undefined) {
+          this.selected_region_price = region_ru.delivery_price;
+          this.totalPrice = this.totalPrice + parseInt(region_ru.delivery_price);
+        }
       }
     }
   }
