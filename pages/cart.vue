@@ -449,10 +449,12 @@
           this.cost_of_delivery = region_en.delivery_price;
         } else if(region_am !== undefined) {
           this.selected_region_price = region_am.delivery_price;
-          this.totalPrice = this.totalPrice + parseInt(region_am.delivery_price);
+          this.totalPrice = this.totalPrice - parseInt(this.cost_of_delivery) + parseInt(region_am.delivery_price);
+          this.cost_of_delivery = region_am.delivery_price;
         } else if(region_ru !== undefined) {
           this.selected_region_price = region_ru.delivery_price;
-          this.totalPrice = this.totalPrice + parseInt(region_ru.delivery_price);
+          this.totalPrice = this.totalPrice - parseInt(this.cost_of_delivery) + parseInt(region_ru.delivery_price);
+          this.cost_of_delivery = region_ru.delivery_price;
         }
       }
     }
