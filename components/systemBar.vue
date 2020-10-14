@@ -13,11 +13,11 @@
                   {{ item.title }}
                 </a>
               </template>
-              <v-list>
+              <v-list class="mobile-category-menu">
                 <v-list-item
                   v-for="(item1, index) in item.items"
                   :key="index"
-                  style="width:100%"
+                  class="category-block"
                 >
                   <v-list-item exact :to="localePath(item1.to)" style="background-color: rgb(1, 35, 94); color: white !important;">
                     <v-list-item-title>{{ item1.title }}</v-list-item-title>
@@ -643,6 +643,16 @@
   @media (max-width: 959px) {
     .show-in-lg{
       display: none;
+    }
+
+    .category-block {
+      display: block !important;
+      width: 100%;
+    }
+
+    .mobile-category-menu {
+      height: 400px;
+      overflow-y: scroll;
     }
   }
 
