@@ -5,8 +5,9 @@
       <nuxt />
     </v-content>
 
-    <v-footer>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+    <v-footer style="justify-content: center"
+    >
+      <span class="m-auto"> Davmar.ma &copy; {{ new Date().getFullYear() }} All rights reserved</span>
     </v-footer>
   </v-app>
 </template>

@@ -43,5 +43,7 @@ export default {
   close: 'Close',
   region: 'Region',
   delivery: 'Cost of delivery',
-  freeDelivery: 'Free delivery'
+  freeDelivery: 'Free delivery',
+  relatedProducts: 'Related Products',
+
 }

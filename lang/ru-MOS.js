@@ -43,5 +43,6 @@ export default {
   close: 'Закрыть',
   region: 'Регион',
   delivery: 'Стоимость доставки',
-  freeDelivery: 'Бесплатная доставка'
+  freeDelivery: 'Бесплатная доставка',
+  relatedProducts: 'Похожие товары',
 }

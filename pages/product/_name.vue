@@ -1,7 +1,7 @@
 <template>
   <div>
     <productDetail></productDetail>
-    <h2 class="text-center">Related Products</h2>
+    <h2 class="text-center">{{ $t('relatedProducts') }}</h2>
     <PromoProducts :count="7" type="best"></PromoProducts>
 <!--    <deliveryBaner></deliveryBaner>-->
     <Subscribe></Subscribe>

@@ -43,5 +43,6 @@ export default {
   close: 'Փակել',
   region: 'Մարզ',
   delivery: 'Առաքման արժեքը',
-  freeDelivery: 'Առաքումը անվճար'
+  freeDelivery: 'Առաքումը անվճար',
+  relatedProducts: 'Նման Ապրաքներ',
 }

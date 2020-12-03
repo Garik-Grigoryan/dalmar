@@ -8,9 +8,9 @@
     </v-content>
 
     <MainDividers></MainDividers>
-    <v-footer app
+    <v-footer style="justify-content: center"
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span class="m-auto"> Davmar.ma &copy; {{ new Date().getFullYear() }} All rights reserved</span>
     </v-footer>
     <client-only>
       <Cookie />

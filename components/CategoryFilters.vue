@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <v-btn class="icon_filter" type="button" v-if="!drawer" icon @click.stop="drawer = !drawer" style="">
+      <v-icon>mdi-filter-plus</v-icon>
+    </v-btn>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant.sync="mini"
@@ -13,28 +17,29 @@
           </v-range-slider>
         </v-list-item>
         <v-list-item v-for="item in items" :key="item.title" >
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-              <div v-if="item.type === 'color'">
-                <v-item-group :multiple="true" >
-                  <v-row class="colors">
-                    <v-item  v-for="(color, n) in item.data"  :key="n" v-slot:default="{ active, toggle }">
-                      <v-card  :color="color.toLowerCase()" class="d-flex text-center align-center mx-3" dark height="30" :data-value="color.toLowerCase()" width="30" @click="toggle(), filter($event)" >
-                        <v-scroll-y-transition>
-                          <v-icon v-if="active" :data-value="color.toLowerCase()" color="white" size="27" v-text="'mdi-close-circle-outline'" class="mx-auto" ></v-icon>
-                        </v-scroll-y-transition>
-                      </v-card>
-                    </v-item>
-                  </v-row>
-                </v-item-group>
-              </div>
-              <v-combobox v-else @change="filter($event)" v-model="item.select" :items="item.data" label="" dense chips small-chips multiple >
+          <v-list-item-content style="flex-direction: column">
+            <v-list-item-title style="align-self: flex-start;">{{ item.title }}</v-list-item-title>
+            <div v-if="item.type === 'color'">
+              <v-item-group :multiple="true" >
+                <v-row class="colors">
+                  <v-item  v-for="(color, n) in item.data"  :key="n" v-slot:default="{ active, toggle }">
+                    <v-card  :color="color.toLowerCase()" class="d-flex text-center align-center mx-3  my-2" dark height="30" :data-value="color.toLowerCase()" width="30" @click="toggle(), filter($event)" >
+                      <v-scroll-y-transition>
+                        <v-icon v-if="active" :data-value="color.toLowerCase()" color="white" size="27" v-text="'mdi-close-circle-outline'" class="mx-auto" ></v-icon>
+                      </v-scroll-y-transition>
+                    </v-card>
+                  </v-item>
+                </v-row>
+              </v-item-group>
+            </div>
+            <v-combobox v-else @change="filter($event)" v-model="item.select" :items="item.data" label="" dense chips small-chips multiple >
 
-              </v-combobox>
+            </v-combobox>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+  </div>
 </template>
 <script>
   export default {
@@ -69,6 +74,13 @@
       this.range = [this.min, this.max];
     },
     methods: {
+      icon_filter() {
+        if(document.getElementsByClassName("product_filter")[0].className.indexOf('v-navigation-drawer--close') === -1) {
+          document.getElementsByClassName("icon_filter")[0].style.left = "auto";
+        } else {
+          document.getElementsByClassName("icon_filter")[0].style.left = "260px";
+        }
+      },
       filter(e) {
         if(e.target !== undefined){
           if(e.target.tagName === 'DIV' || e.target.tagName === 'I'){
@@ -98,3 +110,22 @@
     }
   }
 </script>
+<style scoped>
+.v-list-item__content{
+  display: initial;
+}
+/*@media (max-width: 1266px) {*/
+.icon_filter {
+  display: block !important;
+  position: fixed;
+  top: 50%;
+  left: 15px;
+  z-index: 10;
+  width: 56px;
+  height: 56px;
+  color: #ffffff !important;
+  border: 1px solid rgb(1, 35, 94);
+  background-color: rgb(1, 35, 94);
+}
+/*}*/
+</style>

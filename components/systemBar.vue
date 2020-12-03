@@ -114,7 +114,7 @@
         </v-list-item-content>
       </v-list>
     </v-navigation-drawer>
-    <v-system-bar height="64" color="#01235E" fixed app dark id="create" >
+    <v-system-bar height="64" style="z-index: 5;" color="#01235E" fixed app dark id="create" >
       <v-col lg="5" md="5">
         <v-row justify="end" class="hidden-sm-and-down" no-gutters >
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in leftSide" dark :key="i">
@@ -651,7 +651,7 @@
     }
 
     .mobile-category-menu {
-      height: 400px;
+      height: 100vh;
       overflow-y: scroll;
     }
   }

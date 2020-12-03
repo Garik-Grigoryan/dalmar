@@ -29,14 +29,14 @@
             <v-card-text>
 
               <v-list-item-group >
-                <v-list-item>
-                  <v-list-item-action>
-                    <v-checkbox v-model="settings" color="primary"></v-checkbox>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                    <v-list-item-title>{{$t('withDelivery')}}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
+<!--                <v-list-item>-->
+<!--                  <v-list-item-action>-->
+<!--                    <v-checkbox v-model="settings" color="primary"></v-checkbox>-->
+<!--                  </v-list-item-action>-->
+<!--                  <v-list-item-content>-->
+<!--                    <v-list-item-title>{{$t('withDelivery')}}</v-list-item-title>-->
+<!--                  </v-list-item-content>-->
+<!--                </v-list-item>-->
                 <v-list-item>
                   <v-text-field v-model="nameLastName" :rules="requiredField" :label="$t('nameLastName')" required ></v-text-field>
                 </v-list-item>

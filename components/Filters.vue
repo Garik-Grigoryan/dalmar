@@ -34,7 +34,7 @@
               <v-item-group :multiple="true" >
                 <v-row class="colors">
                   <v-item  v-for="(color, n) in item.data"  :key="n" v-slot:default="{ active, toggle }">
-                    <v-card  :color="color.toLowerCase()" class="d-flex text-center align-center mx-3" dark height="30" :data-value="color.toLowerCase()" width="30" @click="toggle(), filter($event)" >
+                    <v-card  :color="color.toLowerCase()" class="d-flex text-center align-center mx-3 my-2" dark height="30" :data-value="color.toLowerCase()" width="30" @click="toggle(), filter($event)" >
                       <v-scroll-y-transition>
                         <v-icon v-if="active" :data-value="color.toLowerCase()" color="white" size="27" v-text="'mdi-close-circle-outline'" class="mx-auto" ></v-icon>
                       </v-scroll-y-transition>
