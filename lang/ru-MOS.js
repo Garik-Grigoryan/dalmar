@@ -4,7 +4,7 @@ export default {
   newProducts: 'Новые Товары',
   subscribe: 'Подписаться',
   subscribeText: 'Подпишитесь на нашу рассылку и первыми узнавайте о новинках, скидках и акциях.',
-  title: 'Davmar',
+  title: 'DAVMAR',
   pages: {
     home: 'Главная',
     contacts: 'Контакты'

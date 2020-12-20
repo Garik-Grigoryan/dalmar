@@ -372,6 +372,7 @@
       this.sex = this.product.sex;
       this.isNew = this.product.isNew;
       this.discountType = this.product.discountType;
+      this.hasDiscount = this.product.discountType != 'none' ? true : false,
       this.discount = this.product.discount;
       this.description_en = this.product.description_en;
       this.description_ru = this.product.description_ru;

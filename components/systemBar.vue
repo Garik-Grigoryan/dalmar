@@ -197,7 +197,8 @@
       </v-col>
       <v-col lg="2" md="2" class="text-center">
         <nuxt-link :to="localePath('/')" style="text-decoration: none;">
-          <v-toolbar-title class="font-weight-bold" style="color: #b20839; font-size: 35px" v-text="$t('title')" />
+          <v-toolbar-title class="font-weight-bold" style="color: #ffffff; font-size: 35px; line-height: 0.8; padding-top: 5px;" v-text="$t('title')" />
+          <v-toolbar-title class="font-weight-bold" style="color: #ffffff; font-size: 20px" v-text="subTitle" />
         </nuxt-link>
       </v-col>
       <v-col lg="5" md="5">
@@ -371,6 +372,7 @@
       },
       data () {
         return {
+          subTitle: 'Sub Title here',
           on: false,
           wishlistCount: 0,
           cartCount: 0,

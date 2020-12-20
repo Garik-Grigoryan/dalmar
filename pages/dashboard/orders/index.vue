@@ -137,6 +137,7 @@
         for (let el in this.getUserOrders) {
           for (let elem in this.getUserOrders[el].productItem.data) {
             this.getUserOrders[el].mainProducts = []
+            if(this.getUserOrders[el].productItem.data[elem].product != null){
               this.getUserOrders[el].mainProducts.push({
                 image: JSON.parse(this.getUserOrders[el].productItem.data[elem].product.images)[0],
                 name: this.getUserOrders[el].productItem.data[elem].product.name_en,
@@ -145,6 +146,7 @@
                 count: this.getUserOrders[el].productItem.data[elem].count,
                 price: this.getUserOrders[el].productItem.data[elem].product.price,
               })
+            }
 
           }
         }

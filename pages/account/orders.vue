@@ -95,36 +95,38 @@
       async mounted() {
         await this.$store.dispatch('wishListAndCart/fetch');
         for(let el in this.getUserOrders){
-          for(let elem in this.getUserOrders[el].productItem.data){
-            this.getUserOrders[el].mainProducts = []
-                  if (this.$i18n.locale == 'ru') {
-                    this.getUserOrders[el].mainProducts.push({
-                      image: JSON.parse(this.getUserOrders[el].productItem.data[elem].product.images)[0],
-                      name: this.getUserOrders[el].productItem.data[elem].product.name_ru,
-                      size: this.getUserOrders[el].productItem.data[elem].size[0] !== undefined ? this.getUserOrders[el].productItem.data[elem].size[0] : '',
-                      color: this.getUserOrders[el].productItem.data[elem].color[0] !== undefined ? this.getUserOrders[el].productItem.data[elem].color[0] : '',
-                      count: this.getUserOrders[el].productItem.data[elem].count,
-                      price: this.getUserOrders[el].productItem.data[elem].product.price,
-                    })
-                  } else if (this.$i18n.locale == 'am') {
-                    this.getUserOrders[el].mainProducts.push({
-                      image: JSON.parse(this.getUserOrders[el].productItem.data[elem].product.images)[0],
-                      name: this.getUserOrders[el].productItem.data[elem].product.name_am,
-                      size: this.getUserOrders[el].productItem.data[elem].size[0] !== undefined ? this.getUserOrders[el].productItem.data[elem].size[0] : '',
-                      color: this.getUserOrders[el].productItem.data[elem].color[0] !== undefined ? this.getUserOrders[el].productItem.data[elem].color[0] : '',
-                      count: this.getUserOrders[el].productItem.data[elem].count,
-                      price: this.getUserOrders[el].productItem.data[elem].product.price,
-                    })
-                  } else if (this.$i18n.locale == 'en') {
-                    this.getUserOrders[el].mainProducts.push({
-                      image: JSON.parse(this.getUserOrders[el].productItem.data[elem].product.images)[0],
-                      name: this.getUserOrders[el].productItem.data[elem].product.name_en,
-                      size: this.getUserOrders[el].productItem.data[elem].size[0] !== undefined ? elem.size[0] : '',
-                      color: this.getUserOrders[el].productItem.data[elem].color[0] !== undefined ? elem.color[0] : '',
-                      count: this.getUserOrders[el].productItem.data[elem].count,
-                      price: this.getUserOrders[el].productItem.data[elem].product.price,
-                    })
-                  }
+          this.getUserOrders[el].mainProducts = []
+            for(let elem in this.getUserOrders[el].productItem.data){
+              if(this.getUserOrders[el].productItem.data[elem].product != null){
+                if (this.$i18n.locale == 'ru') {
+                  this.getUserOrders[el].mainProducts.push({
+                    image: JSON.parse(this.getUserOrders[el].productItem.data[elem].product.images)[0],
+                    name: this.getUserOrders[el].productItem.data[elem].product.name_ru,
+                    size: this.getUserOrders[el].productItem.data[elem].size[0] !== undefined ? this.getUserOrders[el].productItem.data[elem].size[0] : '',
+                    color: this.getUserOrders[el].productItem.data[elem].color[0] !== undefined ? this.getUserOrders[el].productItem.data[elem].color[0] : '',
+                    count: this.getUserOrders[el].productItem.data[elem].count,
+                    price: this.getUserOrders[el].productItem.data[elem].product.price,
+                  })
+                } else if (this.$i18n.locale == 'am') {
+                  this.getUserOrders[el].mainProducts.push({
+                    image: JSON.parse(this.getUserOrders[el].productItem.data[elem].product.images)[0],
+                    name: this.getUserOrders[el].productItem.data[elem].product.name_am,
+                    size: this.getUserOrders[el].productItem.data[elem].size[0] !== undefined ? this.getUserOrders[el].productItem.data[elem].size[0] : '',
+                    color: this.getUserOrders[el].productItem.data[elem].color[0] !== undefined ? this.getUserOrders[el].productItem.data[elem].color[0] : '',
+                    count: this.getUserOrders[el].productItem.data[elem].count,
+                    price: this.getUserOrders[el].productItem.data[elem].product.price,
+                  })
+                } else if (this.$i18n.locale == 'en') {
+                  this.getUserOrders[el].mainProducts.push({
+                    image: JSON.parse(this.getUserOrders[el].productItem.data[elem].product.images)[0],
+                    name: this.getUserOrders[el].productItem.data[elem].product.name_en,
+                    size: this.getUserOrders[el].productItem.data[elem].size[0] !== undefined ? elem.size[0] : '',
+                    color: this.getUserOrders[el].productItem.data[elem].color[0] !== undefined ? elem.color[0] : '',
+                    count: this.getUserOrders[el].productItem.data[elem].count,
+                    price: this.getUserOrders[el].productItem.data[elem].product.price,
+                  })
+                }
+              }
           }
         }
         if(this.user){

@@ -4,7 +4,7 @@ export default {
   newProducts: 'Նոր տեսականի',
   subscribe: 'ԲԱԺԱՆՈՐԴԱԳՐՎԵԼ',
   subscribeText: 'Բաժանորդագրվեք Մեր նամակներին և առաջինը տեղեկացեք նորույթների, զեղչերի և ակցիաների վերաբերյալ:',
-  title: 'Davmar',
+  title: 'DAVMAR',
   pages: {
     home: 'Գլխավոր',
     contacts: 'Կոնտակտներ'
@@ -38,7 +38,7 @@ export default {
   size: 'Չափս',
   colors: 'Գույներ',
   count: 'Քանակ',
-  price: 'Արչեք',
+  price: 'Արժեք',
   remove: 'Ջնջել',
   close: 'Փակել',
   region: 'Մարզ',

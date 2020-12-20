@@ -14,10 +14,10 @@
           <v-col cols="12" style="position:relative;">
             <v-row>
               <v-col cols="5" class="pl-0">
-                <v-text-field type="text" v-model="elem.name" :rules="reqRules" label="Name" required ></v-text-field>
+                <v-text-field type="text" v-model="elem.name" :rules="reqRules" label="Name" ></v-text-field>
               </v-col>
               <v-col cols="5" class="pl-0">
-                <v-text-field type="text" v-model="elem.url" :rules="reqRules" label="URL" required ></v-text-field>
+                <v-text-field type="text" v-model="elem.url" :rules="reqRules" label="URL" ></v-text-field>
               </v-col>
             </v-row>
             <v-row>

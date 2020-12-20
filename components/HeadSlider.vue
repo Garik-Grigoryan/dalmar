@@ -18,7 +18,7 @@
           align="center"
           justify="center"
         >
-          <div class="display-3" :style="{color: slide.color}">{{ slide.text }} Slide</div>
+          <div class="display-3" :style="{color: slide.color}">{{ slide.text }}</div>
         </v-row>
 
     </v-carousel-item>
