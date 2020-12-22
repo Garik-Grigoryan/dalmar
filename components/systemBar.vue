@@ -187,7 +187,7 @@
                 </v-list>
                 <v-list-item-group style="width: min-content; ">
                   <v-list-item disabled>
-                    <v-img src="/men.jpg" max-width="250" min-height="400" cover></v-img>
+                    <v-img style="background-position: -70px !important;" position="-70px" src="/men.jpg" max-width="250" min-height="400" cover></v-img>
                   </v-list-item>
                 </v-list-item-group>
               </v-list-item-content>
@@ -372,7 +372,7 @@
       },
       data () {
         return {
-          subTitle: 'Sub Title here',
+          subTitle: 'Retail Company',
           on: false,
           wishlistCount: 0,
           cartCount: 0,
