@@ -32,7 +32,7 @@
       return {
         slides: [
         ],
-        sliderMaxWidth:  750,
+        sliderMaxWidth:  600,
       }
     },
     mounted () {
