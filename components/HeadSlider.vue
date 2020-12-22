@@ -53,7 +53,7 @@
         if(window.innerWidth <= 960){
           this.sliderMaxWidth = 550;
         }else{
-          this.sliderMaxWidth = 750;
+          this.sliderMaxWidth = 600;
         }
         this.windowSize = { x: window.innerWidth, y: window.innerHeight }
       },
