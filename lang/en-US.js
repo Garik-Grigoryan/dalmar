@@ -45,5 +45,5 @@ export default {
   delivery: 'Cost of delivery',
   freeDelivery: 'Free delivery',
   relatedProducts: 'Related Products',
-
+  sex: 'Sex'
 }

@@ -45,4 +45,5 @@ export default {
   delivery: 'Стоимость доставки',
   freeDelivery: 'Бесплатная доставка',
   relatedProducts: 'Похожие товары',
+  sex: 'Пол'
 }

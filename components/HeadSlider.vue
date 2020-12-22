@@ -14,11 +14,11 @@
     >
 
         <v-row
-          class="fill-height"
+          class="fill-height px-5 py-5"
           align="center"
-          justify="center"
+          justify="start"
         >
-          <div class="display-3" :style="{color: slide.color}">{{ slide.text }}</div>
+          <div class="display-3" style="align-self: flex-end; color: #fff;">{{ slide.text }}</div>
         </v-row>
 
     </v-carousel-item>

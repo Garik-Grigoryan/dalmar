@@ -45,4 +45,5 @@ export default {
   delivery: 'Առաքման արժեքը',
   freeDelivery: 'Առաքումը անվճար',
   relatedProducts: 'Նման Ապրաքներ',
+  sex: 'Սեռ'
 }

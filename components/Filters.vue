@@ -70,9 +70,9 @@
         range: [15000, 30000],
         drawer: true,
         items: [
-          { title: 'Sex', icon: 'mdi-home-city', data: ['Men', 'Women',], select: [], type: 'sex' },
-          { title: 'Size', icon: 'mdi-account', data: [], select: [], type: 'size'},
-          { title: 'Color', icon: 'mdi-account-group-outline', data: [], select: [], type: 'color'},
+          { title: this.$t('sex'), icon: 'mdi-home-city', data: ['Men', 'Women',], select: [], type: 'sex' },
+          { title: this.$t('size'), icon: 'mdi-account', data: [], select: [], type: 'size'},
+          { title: this.$t('colors'), icon: 'mdi-account-group-outline', data: [], select: [], type: 'color'},
         ],
         select: [],
         mini: false,
