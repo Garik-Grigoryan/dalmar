@@ -3,7 +3,7 @@
     <productDetail></productDetail>
     <h2 class="text-center">{{ $t('relatedProducts') }}</h2>
     <PromoProducts :count="7" type="best"></PromoProducts>
-<!--    <deliveryBaner></deliveryBaner>-->
+    <deliveryBaner></deliveryBaner>
     <Subscribe></Subscribe>
   </div>
 </template>

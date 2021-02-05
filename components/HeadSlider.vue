@@ -51,7 +51,7 @@
     methods: {
       onResize () {
         if(window.innerWidth <= 960){
-          this.sliderMaxWidth = 550;
+          this.sliderMaxWidth = 400;
         }else{
           this.sliderMaxWidth = 600;
         }

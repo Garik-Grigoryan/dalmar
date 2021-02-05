@@ -45,5 +45,14 @@ export default {
   delivery: 'Cost of delivery',
   freeDelivery: 'Free delivery',
   relatedProducts: 'Related Products',
-  sex: 'Sex'
+  sex: 'Sex',
+  systemBarText: 'Free Shipping - Everywhere in Armenia.',
+  freeDeliveryTitle: 'FREE SHIPPING',
+  freeDeliveryText: 'Free shipping and Free Return on ALL orders',
+  support: 'CUSTOMER SUPPORT',
+  supportText: 'Contact us from 10:00 - 22:00, 7 days a week',
+  returnTitle: '14 DAYS RETURN',
+  returnText: 'Simply return it within 14 days for an exchange.',
+  secureTitle: '100% Payment Secure',
+  secureText: 'We ensure 100% secure payment transactions',
 }

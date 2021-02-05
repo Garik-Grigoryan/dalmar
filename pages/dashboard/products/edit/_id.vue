@@ -116,17 +116,17 @@
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-textarea solo label="Description (eng)" v-model="description_en" ></v-textarea>
+            <Editor v-model="description_en"/>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-textarea solo label="Description (rus)" v-model="description_ru" ></v-textarea>
+            <Editor v-model="description_ru"/>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-textarea solo label="Description (am)" v-model="description_am" ></v-textarea>
+            <Editor v-model="description_am"/>
             </v-col>
           </v-row>
           <v-row>
@@ -256,149 +256,154 @@
 </template>
 
 <script>
-  export default {
-    name: "new",
-    layout: 'dashboard',
-    middleware: 'admin',
-    async fetch({store, route}) {
-      await store.dispatch('multimedia/fetch');
-      await store.dispatch('categories/fetch');
-      await store.dispatch('brands/fetch');
-      await store.dispatch('color/fetch');
-      await store.dispatch('sizes/fetch');
-      await store.dispatch('products/getProduct', [route.params.id]);
+  import Editor from "~/components/Editor.vue";
+export default {
+  name: "new",
+  layout: 'dashboard',
+  middleware: 'admin',
+  async fetch({store, route}) {
+    await store.dispatch('multimedia/fetch');
+    await store.dispatch('categories/fetch');
+    await store.dispatch('brands/fetch');
+    await store.dispatch('color/fetch');
+    await store.dispatch('sizes/fetch');
+    await store.dispatch('products/getProduct', [route.params.id]);
+  },
+  components: {
+    Editor
+  },
+  data () {
+    return {
+      valid: true,
+      imageUpladForm: true,
+      name_en: '',
+      name_ru: '',
+      name_am: '',
+      isNew: false,
+      imageName: '',
+      dialog: false,
+      uploadDialog: false,
+      selectedImages: [],
+      selectedSizes: [],
+      color: '',
+      selectedBrand: '',
+      colorName: '',
+      price: '',
+      description_en: '',
+      description_ru: '',
+      description_am: '',
+      selectedColors: [],
+      sex: 'men',
+      hasDiscount: false,
+      colorDialog: false,
+      colorSelectDialog: false,
+      nameRules: [
+        v => !!v || 'Field is required',
+      ],
+      files: [],
+      fileRules: [
+        v => !!v || 'File is required',
+        v => !!v && v.size < 500000 || 'File should be les then 500 KB',
+      ],
+      category: 0,
+      discountType: 'none',
+      discount: '',
+    }
+  },
+  methods: {
+    removeImage(event, i) {
+      this.$delete(this.selectedImages, i);
     },
-    data () {
-      return {
-        valid: true,
-        imageUpladForm: true,
-        name_en: '',
-        name_ru: '',
-        name_am: '',
-        isNew: false,
-        imageName: '',
-        dialog: false,
-        uploadDialog: false,
-        selectedImages: [],
-        selectedSizes: [],
-        color: '',
-        selectedBrand: '',
-        colorName: '',
-        price: '',
-        description_en: '',
-        description_ru: '',
-        description_am: '',
-        selectedColors: [],
-        sex: 'men',
-        hasDiscount: false,
-        colorDialog: false,
-        colorSelectDialog: false,
-        nameRules: [
-          v => !!v || 'Field is required',
-        ],
-        files: [],
-        fileRules: [
-          v => !!v || 'File is required',
-          v => !!v && v.size < 500000 || 'File should be les then 500 KB',
-        ],
-        category: 0,
-        discountType: 'none',
-        discount: '',
-      }
+    removeColor(event, i) {
+      this.$delete(this.selectedColors, i);
     },
-    methods: {
-      removeImage(event, i) {
-        this.$delete(this.selectedImages, i);
-      },
-      removeColor(event, i) {
-        this.$delete(this.selectedColors, i);
-      },
-      selectImage(event, imageUrl) {
-        this.dialog = false;
-        this.selectedImages.push(imageUrl);
-      },
-      selectColor(event, color) {
-        this.colorSelectDialog = false;
-        this.selectedColors.push(color);
-      },
-      uploadImage() {
-        this.uploadDialog = false;
-        let data = new FormData();
-        data.append('name', this.imageName);
-        data.append('image', this.files);
-        this.$axios.$post('https://apidavmar.neoteric-software.com/api/multimedia/upload', data).then(
-          response => {
-            this.files = []
-            this.$store.dispatch('multimedia/fetch')
-          }
-        ).catch(e => {
-          console.log(e);
-        })
-      },
-      uploadColor() {
-        this.colorDialog = false;
-        let data = new FormData();
-        data.append('name', this.colorName);
-        data.append('color', this.color);
-        this.$axios.$post('https://apidavmar.neoteric-software.com/api/color/add', data).then(
-          response => {
-            this.files = []
-            this.$store.dispatch('color/fetch')
-          }
-        ).catch(e => {
-          console.log(e);
-        })
-      },
-      updateProduct() {
-        this.$store.dispatch('products/updateProduct', [this.$route.params.id, this.name_en, this.name_ru, this.name_am, this.category, this.price, this.selectedImages, this.selectedColors, this.selectedSizes, this.selectedBrand, this.sex, this.isNew, this.discountType, this.discount, this.description_en, this.description_ru, this.description_am]).then(r => {
-          this.$router.push('/dashboard/products')
-        })
-      }
+    selectImage(event, imageUrl) {
+      this.dialog = false;
+      this.selectedImages.push(imageUrl);
     },
-    mounted() {
-      this.name_en = this.product.name_en;
-      this.name_ru = this.product.name_ru;
-      this.name_am = this.product.name_am;
-      this.category = this.product.category;
-      this.price = this.product.price;
-      this.selectedImages = JSON.parse(this.product.images);
-      this.product.product_color.forEach(elem => {
-        this.selectedColors.push(elem.color)
-      });
-      this.product.product_size.forEach(elem => {
-        this.selectedSizes.push(elem.id)
-      });
-      this.selectedBrand = this.product.brand;
-      this.sex = this.product.sex;
-      this.isNew = this.product.isNew;
-      this.discountType = this.product.discountType;
-      this.hasDiscount = this.product.discountType != 'none' ? true : false,
+    selectColor(event, color) {
+      this.colorSelectDialog = false;
+      this.selectedColors.push(color);
+    },
+    uploadImage() {
+      this.uploadDialog = false;
+      let data = new FormData();
+      data.append('name', this.imageName);
+      data.append('image', this.files);
+      this.$axios.$post('https://apidavmar.neoteric-software.com/api/multimedia/upload', data).then(
+        response => {
+          this.files = []
+          this.$store.dispatch('multimedia/fetch')
+        }
+      ).catch(e => {
+        console.log(e);
+      })
+    },
+    uploadColor() {
+      this.colorDialog = false;
+      let data = new FormData();
+      data.append('name', this.colorName);
+      data.append('color', this.color);
+      this.$axios.$post('https://apidavmar.neoteric-software.com/api/color/add', data).then(
+        response => {
+          this.files = []
+          this.$store.dispatch('color/fetch')
+        }
+      ).catch(e => {
+        console.log(e);
+      })
+    },
+    updateProduct() {
+      this.$store.dispatch('products/updateProduct', [this.$route.params.id, this.name_en, this.name_ru, this.name_am, this.category, this.price, this.selectedImages, this.selectedColors, this.selectedSizes, this.selectedBrand, this.sex, this.isNew, this.discountType, this.discount, this.description_en, this.description_ru, this.description_am]).then(r => {
+        this.$router.push('/dashboard/products')
+      })
+    }
+  },
+  mounted() {
+    this.name_en = this.product.name_en;
+    this.name_ru = this.product.name_ru;
+    this.name_am = this.product.name_am;
+    this.category = this.product.category;
+    this.price = this.product.price;
+    this.selectedImages = JSON.parse(this.product.images);
+    this.product.product_color.forEach(elem => {
+      this.selectedColors.push(elem.color)
+    });
+    this.product.product_size.forEach(elem => {
+      this.selectedSizes.push(elem.id)
+    });
+    this.selectedBrand = this.product.brand;
+    this.sex = this.product.sex;
+    this.isNew = this.product.isNew;
+    this.discountType = this.product.discountType;
+    this.hasDiscount = this.product.discountType != 'none' ? true : false,
       this.discount = this.product.discount;
-      this.description_en = this.product.description_en;
-      this.description_ru = this.product.description_ru;
-      this.description_am = this.product.description_am;
+    this.description_en = this.product.description_en;
+    this.description_ru = this.product.description_ru;
+    this.description_am = this.product.description_am;
+  },
+  computed: {
+    images() {
+      return this.$store.getters['multimedia/images'];
     },
-    computed: {
-      images() {
-        return this.$store.getters['multimedia/images'];
-      },
-      categories() {
-        return this.$store.getters['categories/categories'];
-      },
-      brands() {
-        return this.$store.getters['brands/brands'];
-      },
-      colors() {
-        return this.$store.getters['color/colors'];
-      },
-      sizes() {
-        return this.$store.getters['sizes/sizes'];
-      },
-      product() {
-        return this.$store.getters['products/product']
-      }
+    categories() {
+      return this.$store.getters['categories/categories'];
     },
-  }
+    brands() {
+      return this.$store.getters['brands/brands'];
+    },
+    colors() {
+      return this.$store.getters['color/colors'];
+    },
+    sizes() {
+      return this.$store.getters['sizes/sizes'];
+    },
+    product() {
+      return this.$store.getters['products/product']
+    }
+  },
+}
+
 </script>
 
 <style scoped>

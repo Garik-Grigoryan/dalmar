@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <v-navigation-drawer v-resize="onResize" v-model="drawerForHeader" :mini-variant="miniVariant" :clipped="clipped" :right="right" fixed app >
       <v-list style="padding-bottom: 0">
         <v-list-item v-for="(item, i) in leftSide" :key="i" router exact >
@@ -114,7 +115,13 @@
         </v-list-item-content>
       </v-list>
     </v-navigation-drawer>
-    <v-system-bar height="64" style="z-index: 5;" color="#01235E" fixed app dark id="create" >
+    <v-system-bar height="105" style="z-index: 5;" color="#01235E" fixed app dark id="create" >
+      <v-col lg="12" md="12" cols="12" style="display: flex; flex-wrap: wrap; padding: 0">
+        <h3 class="col-md-6 col-sm-12 col-lg-6 col-12 text-lg-left py-0 text-md-center responsive-text" >{{ $t('systemBarText') }}</h3>
+        <h3 class="col-md-6 col-sm-12 col-lg-6 col-12 text-lg-right py-0 text-md-center responsive-text" >
+          Phone: <a href="tel:+37455459550" style="color: #fff;">+37455459550</a> E-Mail: <a href="mailto:info@davmar.am" style="color: #fff;">info@davmar.am</a>
+        </h3>
+      </v-col>
       <v-col lg="5" md="5">
         <v-row justify="end" class="hidden-sm-and-down" no-gutters >
           <v-menu :open-on-hover="true" bottom offset-y v-for="(item, i) in leftSide" dark :key="i">
@@ -197,7 +204,7 @@
       </v-col>
       <v-col lg="2" md="2" class="text-center">
         <nuxt-link :to="localePath('/')" style="text-decoration: none;">
-          <v-toolbar-title class="font-weight-bold" style="color: #ffffff; font-size: 35px; line-height: 0.8; padding-top: 5px;" v-text="$t('title')" />
+          <v-toolbar-title class="font-weight-bold" style="color: #ffffff; font-size: 35px; line-height: 0.8; padding-top: 5px; " v-text="$t('title')" />
           <v-toolbar-title class="font-weight-bold" style="color: #ffffff; font-size: 20px" v-text="subTitle" />
         </nuxt-link>
       </v-col>
@@ -624,6 +631,9 @@
   .v-input__slot {
     border-color: transparent !important;
   }
+  #create{
+    flex-wrap: wrap;
+  }
   #create .v-speed-dial {
     position: absolute;
   }
@@ -645,6 +655,14 @@
   @media (max-width: 959px) {
     .show-in-lg{
       display: none;
+    }
+    .responsive-text{
+      text-align: center !important;
+      white-space: nowrap;
+      padding: 0;
+    }
+    .v-system-bar{
+      height: 140px !important;
     }
 
     .category-block {

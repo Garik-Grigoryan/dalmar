@@ -1,5 +1,6 @@
 <template>
   <v-app dark>
+
     <SystemBar></SystemBar>
     <v-content>
         <nuxt />

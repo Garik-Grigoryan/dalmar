@@ -26,14 +26,11 @@
         <h2 v-if="$i18n.locale === 'ru'" class="text-center">{{product.name_ru}}</h2>
 
         <v-col md="12" lg="12">
-          <p v-if="$i18n.locale === 'am'">
-            {{product.description_am}}
+          <p v-if="$i18n.locale === 'am'" v-html="product.description_am">
           </p>
-          <p v-if="$i18n.locale === 'en'">
-            {{product.description_en}}
+          <p v-if="$i18n.locale === 'en'" v-html="product.description_en">
           </p>
-          <p v-if="$i18n.locale === 'ru'">
-            {{product.description_ru}}
+          <p v-if="$i18n.locale === 'ru'" v-html="product.description_ru">
           </p>
           <div class="mt-5">
             <p class="ma-0">{{ $t('colors') }}</p>
@@ -122,6 +119,18 @@
                 @click="addToWishlist($event, product.id)"
               >
                 <v-icon left>mdi-heart</v-icon> {{ $t('wishList') }}
+              </v-btn>
+            </div>
+          </div>
+          <div class="mt-5 pl-0">
+            <div class="text-left">
+              <v-btn
+                color="#009212"
+                class="white--text"
+                rounded
+                href="tel:+37455459550"
+              >
+                <v-icon left>mdi-phone</v-icon> 055-45-95-50
               </v-btn>
             </div>
           </div>

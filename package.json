@@ -20,6 +20,7 @@
     "nuxt-i18n": "^6.11.0",
     "nuxt-validate": "^1.0.1",
     "swiper": "^5.3.8",
+    "tiptap-vuetify": "^2.24.0",
     "vee-validate": "^3.3.0",
     "vue-analytics": "^5.22.1",
     "vue-quill-editor": "^3.0.6",

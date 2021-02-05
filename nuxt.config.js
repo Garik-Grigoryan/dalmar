@@ -45,6 +45,7 @@ export default {
     './plugins/mixins/user',
     './plugins/mixins/googleanalitics',
     './plugins/axios',
+    '~/plugins/TiptapVuetify',
     {
       src: './plugins/confirm.js',
       mode: 'client'
@@ -159,7 +160,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    transpile: ["vee-validate/dist/rules"],
+    transpile: ["vee-validate/dist/rules", 'vuetify/lib', "tiptap-vuetify"],
     extend (config, ctx) {
     }
   }

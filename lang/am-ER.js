@@ -45,5 +45,15 @@ export default {
   delivery: 'Առաքման արժեքը',
   freeDelivery: 'Առաքումը անվճար',
   relatedProducts: 'Նման Ապրաքներ',
-  sex: 'Սեռ'
+  sex: 'Սեռ',
+  systemBarText: 'Անվճար Առաքում - Ողջ ՀՀ Տարածքով!',
+  freeDeliveryTitle: 'ԱՆՎՃԱՐ ԱՌԱՔՈՒՄ',
+  freeDeliveryText: 'Անվճար առաքում և վերադարձ ԲՈԼՈՐ պատվերների համար:',
+  support: 'ՍՊԱՍԱՐԿՈՒՄ',
+  supportText: 'Կապվեք Մեզ հետ ցանկացած հարցով՝ ամեն օր 10:00 - 22:00',
+  returnTitle: '14 ՕՐ ՎԵՐԱԴԱՐՁ',
+  returnText: 'Վերադարձրեք մոդելները ԱՆՎՃԱՐ՝ 14 օրվա ընթացքում:',
+  secureTitle: 'ՎՃԱՐՈՒՄ',
+  secureText: 'Ապահովում ենք 100% ապահով քարտային վճարումներ:',
+
 }

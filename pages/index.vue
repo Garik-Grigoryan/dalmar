@@ -10,9 +10,10 @@
           <PromoProducts :count="7" type="new"></PromoProducts>
           <v-row justify="center">
             <v-col lg="12" md="12" style="padding: 12px 45px;">
-              <v-img src="/baner.png" contain  width="100%" max-height="640" aspect-ratio="1"></v-img>
+<!--              <v-img src="/baner.png" contain  width="100%" max-height="640" aspect-ratio="1"></v-img>-->
             </v-col>
           </v-row>
+          <deliveryBaner></deliveryBaner>
           <Subscribe></Subscribe>
 
         </v-container>
@@ -47,6 +48,7 @@ import ProductsSlider from '~/components/ProductsSlider.vue'
 import PromoProducts from '~/components/PromoProducts.vue'
 import Subscribe from '~/components/Subscribe.vue'
 import MiddleBanner from "../components/MiddleBanner";
+import deliveryBaner from "../components/deliveryBaner";
 
 export default {
   head() {
@@ -74,7 +76,8 @@ export default {
     ProductsSlider,
     PromoProducts,
     Subscribe,
-    MiddleBanner
+    MiddleBanner,
+    deliveryBaner
   },
   data () {
     return {

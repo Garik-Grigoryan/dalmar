@@ -117,17 +117,17 @@
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-textarea solo label="Description (eng)" v-model="description_en" ></v-textarea>
+              <Editor v-model="description_en"/>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-textarea solo label="Description (rus)" v-model="description_ru" ></v-textarea>
+              <Editor v-model="description_ru"/>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-textarea solo label="Description (am)" v-model="description_am" ></v-textarea>
+              <Editor v-model="description_am"/>
             </v-col>
           </v-row>
           <v-row>
@@ -257,6 +257,7 @@
 </template>
 
 <script>
+import Editor from "~/components/Editor.vue";
   export default {
     name: "new",
     layout: 'dashboard',
@@ -267,6 +268,9 @@
         await store.dispatch('brands/fetch');
         await store.dispatch('color/fetch');
         await store.dispatch('sizes/fetch');
+    },
+    components: {
+      Editor
     },
     data () {
       return {
