@@ -48,7 +48,13 @@
           <h3 v-if="$i18n.locale === 'am'" class=" font-weight-light font-weight-bold white--text mb-2">{{title_am}}</h3>
           <h3 v-if="$i18n.locale === 'en'" class=" font-weight-light font-weight-bold white--text mb-2">{{title_en}}</h3>
           <h3 v-if="$i18n.locale === 'ru'" class=" font-weight-light font-weight-bold white--text mb-2">{{title_ru}}</h3>
-          <p class="price white--text"><span class="font-weight-bold">{{ $t('price') }}</span> {{price}} AMD</p>
+          <p class="price white--text">
+            <span class="font-weight-bold">{{ $t('price') }}</span>
+            <span v-if="discountType == 'percent'"><span class="discount">{{price}}</span> {{price - (price * discount)/100}}</span>
+            <span v-else-if="discountType == 'price'">{{price - discount}}</span>
+            <span v-else>{{price}}</span>
+            AMD
+          </p>
         </nuxt-link>
       </v-card-text>
     </v-slide-y-reverse-transition>
@@ -58,7 +64,7 @@
 
 <script>
     export default {
-      props: ['image', 'id', 'title_en', 'title_ru', 'title_am', 'price'],
+      props: ['image', 'id', 'title_en', 'title_ru', 'title_am', 'price', 'discountType', 'discount'],
       name: "productCard",
       methods: {
         addToWishlist(e, id) {
@@ -67,10 +73,17 @@
         addToCart(e, id) {
           this.$store.dispatch('wishListAndCart/setCArt', [id])
         }
-      },
+      }
     }
 </script>
 
+
 <style scoped>
 
+.discount{
+  opacity: 0.8;
+  text-decoration: line-through;
+  color: #dbdbdb;
+}
 </style>
+

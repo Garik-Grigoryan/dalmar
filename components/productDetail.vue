@@ -97,10 +97,13 @@
           </div>
           <div class="pl-0">
             <p class="ma-0">
-              <span>
-                {{ $t('price') }}: {{product.price}} AMD
-              </span>
+              <span class="font-weight-bold">{{ $t('price') }}</span>
+              <span v-if="product.discountType == 'percent'"><span class="discount">{{product.price}}</span> {{product.price - (product.price * product.discount)/100}}</span>
+              <span v-else-if="product.discountType == 'price'">{{product.price - product.discount}}</span>
+              <span v-else>{{product.price}}</span>
+              AMD
             </p>
+
           </div>
           <div class="mt-5 pl-0">
             <div class="text-left">
@@ -155,8 +158,8 @@
       return {
         productColors: [],
         productSizes: [],
-        selectedColor: [],
-        selectedSize: [],
+        selectedColor: '',
+        selectedSize: '',
         cycle: false,
         count: 1,
       }
@@ -188,9 +191,10 @@
         if(e.target !== undefined){
           if(e.target.tagName === 'DIV' || e.target.tagName === 'I'){
             if(e.target.tagName === 'I'){
-              this.$delete(this.selectedColor, this.selectedColor.indexOf(e.target.getAttribute('data-value')));
+              this.selectedColor = ''
+              // this.$delete(this.selectedColor, this.selectedColor.indexOf(e.target.getAttribute('data-value')));
             }else{
-              this.selectedColor.push(e.target.getAttribute('data-value'));
+              this.selectedColor = e.target.getAttribute('data-value');
             }
           }
         }
@@ -198,9 +202,9 @@
       selectSize(e) {
         if(e.target !== undefined){
           if(e.target.getAttribute('data-active') === 'active'){
-            this.$delete(this.selectedSize, this.selectedSize.indexOf(e.target.getAttribute('data-value')));
+            // this.$delete(this.selectedSize, this.selectedSize.indexOf(e.target.getAttribute('data-value')));
           }else{
-            this.selectedSize.push(e.target.getAttribute('data-value'));
+            this.selectedSize = e.target.getAttribute('data-value');
           }
         }
       }
@@ -212,3 +216,12 @@
     },
   }
 </script>
+
+
+<style scoped>
+.discount{
+  opacity: 0.8;
+  text-decoration: line-through;
+  color:#888888;
+}
+</style>

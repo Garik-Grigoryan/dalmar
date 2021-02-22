@@ -62,7 +62,13 @@
                 <h3 v-if="$i18n.locale === 'am'" class=" font-weight-light font-weight-bold white--text mb-2" v-text="product.name_am"></h3>
                 <h3 v-if="$i18n.locale === 'en'" class=" font-weight-light font-weight-bold white--text mb-2" v-text="product.name_en"></h3>
                 <h3 v-if="$i18n.locale === 'ru'" class=" font-weight-light font-weight-bold white--text mb-2" v-text="product.name_ru"></h3>
-                <p class="price white--text"><span class="font-weight-bold">{{ $t('price') }}</span> {{product.price}} AMD</p>
+                  <p class="price white--text">
+                    <span class="font-weight-bold">{{ $t('price') }}</span>
+                    <span v-if="product.discountType == 'percent'"><span class="discount">{{product.price}}</span> {{product.price - (product.price * product.discount)/100}}</span>
+                    <span v-else-if="product.discountType == 'price'">{{product.price - product.discount}}</span>
+                    <span v-else>{{product.price}}</span>
+                    AMD
+                  </p>
                 </nuxt-link>
               </v-card-text>
             </v-slide-y-reverse-transition>
@@ -106,6 +112,9 @@
           return this.$store.getters['products/salesProducts'];
         }
       },
+    },
+    mounted() {
+      console.log(this.products)
     }
   }
 </script>
@@ -126,5 +135,10 @@
     justify-content: center;
     position: absolute;
     width: 100%;
+  }
+  .discount{
+    opacity: 0.8;
+    text-decoration: line-through;
+    color: #dbdbdb;
   }
 </style>
