@@ -10,6 +10,8 @@
         :title_ru="product.name_ru"
         :title_am="product.name_am"
         :price="product.price"
+        :discountType="product.discountType"
+        :discount="product.discount"
       ></productCard>
 
     </v-row>

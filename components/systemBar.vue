@@ -163,33 +163,12 @@
                     </v-list-item>
                   </v-list-item-content>
                 </v-list-item-group>
-                <v-list style="display: flex; background: transparent; text-align: center; width: max-content;">
+                <v-list style=" background: transparent; text-align: center; width: max-content;">
                   <v-list-item-group v-for="(item1, index) in item.items" :key="index" style="width:100%">
                         <v-list-item exact :to="localePath(item1.to)">
                           <v-list-item-title>{{ item1.title }}</v-list-item-title>
                         </v-list-item>
-
                         <v-divider style="background: white"></v-divider>
-
-                        <v-list style="display: flex; background: transparent;">
-                          <v-list-item-group v-for="(item2, index) in item.items2" :key="index">
-                                <v-list-item v-if="item1.id === item2.brand" exact :to="localePath(item2.to)">
-                                  <v-list-item-title v-if="$i18n.locale === 'am'">{{ item2.title_am }}</v-list-item-title>
-                                  <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item2.title_ru }}</v-list-item-title>
-                                  <v-list-item-title v-if="$i18n.locale === 'en'">{{ item2.title_en }}</v-list-item-title>
-                                </v-list-item>
-
-                                <v-list v-if="item1.id === item2.brand" style="background: transparent; border-right: 2px solid #b20839;">
-                                  <v-list-item-group v-for="(item3, index) in item.items3" :key="index">
-                                        <v-list-item v-if="item2.id === item3.parent && item1.id === item2.brand" exact :to="localePath(item3.to)">
-                                          <v-list-item-title v-if="$i18n.locale === 'am'">{{ item3.title_am }}</v-list-item-title>
-                                          <v-list-item-title v-if="$i18n.locale === 'ru'">{{ item3.title_ru }}</v-list-item-title>
-                                          <v-list-item-title v-if="$i18n.locale === 'en'">{{ item3.title_en }}</v-list-item-title>
-                                        </v-list-item>
-                                  </v-list-item-group>
-                                </v-list>
-                          </v-list-item-group>
-                        </v-list>
                   </v-list-item-group>
                 </v-list>
                 <v-list-item-group style="width: min-content; ">

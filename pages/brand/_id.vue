@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TopMenu></TopMenu>
     <v-container>
       <v-row justify="center">
         <productCard
@@ -29,29 +30,33 @@
 
 <script>
   import productCard from "../../components/productCard";
+  import TopMenu from '../../components/Topmenu'
     export default {
       watchQuery: ["page"],
 
       async fetch({route, store}) {
-        await store.dispatch('brands/getBrand', [route.params.id]);
         await store.dispatch('products/getProductByBrandId', [route.params.id, route.query.page]);
         await store.dispatch('brands/getBrandFilters', [route.params.id]);
         await store.dispatch('brands/fetch');
-
         await store.dispatch('menus/fetch');
+        await store.dispatch('brands/getBrand', [route.params.id]);
       },
       layout: 'brand',
       components: {
-        productCard
+        productCard,
+        TopMenu
       },
       data () {
         return {
-          page: 1,
+          page: parseInt(this.$route.query.page),
         }
       },
       computed: {
         products() {
           return this.$store.getters['products/productByBrand'];
+        },
+        async categories() {
+          return this.$store.getters['categories/categories'];
         },
       },
       beforeRouteLeave (to, from, next) {
@@ -74,12 +79,14 @@
         },
       },
       async mounted() {
+        console.log(123, this.$route.params.id)
+        await this.$store.dispatch('brands/getBrand', [this.$route.params.id]);
         await this.$store.dispatch('wishListAndCart/fetch');
         if(this.user){
           await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [this.user.id]);
         }else{
           await this.$store.dispatch('wishListAndCart/getWishListAndCartData', [0]);
         }
-      }
+      },
     }
 </script>

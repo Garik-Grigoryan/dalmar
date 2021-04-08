@@ -54,20 +54,14 @@
 
 <script>
     export default {
-        name: "Topmenu",
+      name: "Topmenu",
       data () {
         return {
           clipped: true,
           left: true,
           miniVariant: false,
           drawer: false,
-          items: [
-            // {title: 'Shoes', to: '/'},
-            // {title: 'Clothing', to: '/'},
-            // {title: 'Bags', to: '/'},
-            // {title: 'Eyewear', to: '/'},
-            // {title: 'Watches', to: '/'},
-          ],
+          items: [],
           items2: [],
         }
       },
@@ -79,9 +73,8 @@
           return this.$store.getters['categories/categories'];
         },
       },
-      mounted () {
+      async mounted() {
         this.onResize();
-
         this.brands.forEach(elem => {
           if(elem.categories !== undefined) {
             elem.categories.forEach(elem2 => {
@@ -109,30 +102,6 @@
                     )
                   })
                 }
-              // } else {
-              //   this.items.push(
-              //     {
-              //       id: elem2.id,
-              //       brand: elem2.brand,
-              //       title_am: elem2.name_am,
-              //       title_ru: elem2.name_ru,
-              //       title_en: elem2.name_en,
-              //       to: '/category/'+elem2.id+'?page=1',
-              //     }
-              //   )
-              //   if(elem2.subcategories !== undefined) {
-              //     elem2.subcategories.forEach(elem3 => {
-              //       this.items2.push(
-              //         {
-              //           parent: elem3.parent,
-              //           title_am: elem3.name_am,
-              //           title_ru: elem3.name_ru,
-              //           title_en: elem3.name_en,
-              //           to: '/category/'+elem3.id+'?page=1',
-              //         }
-              //       )
-              //     })
-              //   }
               }
             })
           }

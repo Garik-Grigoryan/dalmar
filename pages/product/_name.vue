@@ -14,7 +14,7 @@ import deliveryBaner from "../../components/deliveryBaner";
 import Subscribe from '~/components/Subscribe.vue'
 
 export default {
-    layout: 'product',
+  layout: 'product',
   async fetch({route, store}) {
     await store.dispatch('brands/fetch');
 

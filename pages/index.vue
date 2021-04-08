@@ -88,7 +88,6 @@ export default {
     }
   },
   async mounted() {
-    console.log(this.$route.query.payment);
     if(this.$route.query.payment){
       if(this.$route.query.payment == 'success'){
         this.color = 'success';

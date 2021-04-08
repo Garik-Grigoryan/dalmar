@@ -31,6 +31,7 @@ export const actions = {
   },
 
   async updateBrand({commit}, [id, name, order, image, color]){
+    // this.$axios.defaults.baseURL
     const brand = await this.$axios.$put(`https://apidavmar.neoteric-software.com/api/brand/update/${id}`, {'name': name, 'order': order, 'image': image, 'color': color});
   },
   async delete({commit}, [id]){

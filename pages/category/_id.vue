@@ -56,7 +56,7 @@
     },
     data () {
       return {
-        page: 1,
+        page: parseInt(this.$route.query.page),
       }
     },
     computed: {

@@ -11,7 +11,7 @@
     </NuxtLink>
     <v-footer style="justify-content: center"
     >
-      <span class="m-auto"> Davmar.ma &copy; {{ new Date().getFullYear() }} All rights reserved</span>
+      <span class="m-auto"> Davmar.am &copy; {{ new Date().getFullYear() }} All rights reserved</span>
     </v-footer>
   </v-app>
 

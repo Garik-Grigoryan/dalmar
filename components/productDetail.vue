@@ -150,7 +150,17 @@
       return {
         title: this.product.name_am,
         meta: [
-          { hid: 'Davmar - ' + this.product.name_am, name: 'Davmar ' + this.product.name_am, content: 'Davmar ' + this.product.description_am }
+          { hid: 'Davmar - ' + this.product.name_am, name: 'Davmar ' + this.product.name_am, content: 'Davmar ' + this.product.description_am },
+          {
+            hid: "og:image",
+            property: "og:image",
+            content: JSON.parse(this.product.images)[0],
+          },
+          {
+            hid: "description",
+            name: "description",
+            content: this.product.description_am,
+          },
         ],
       };
     },
@@ -165,6 +175,7 @@
       }
     },
     mounted() {
+      console.log(JSON.parse(this.product.images)[0])
       this.product.product_color.forEach(elem => {
         this.productColors.push(elem.color)
       });

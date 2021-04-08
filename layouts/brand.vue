@@ -1,16 +1,14 @@
 <template>
   <v-app dark>
     <SystemBar></SystemBar>
-    <TopMenu></TopMenu>
     <Filters></Filters>
     <v-content>
       <nuxt />
     </v-content>
 
     <MainDividers></MainDividers>
-    <v-footer style="justify-content: center"
-    >
-      <span class="m-auto"> Davmar.ma &copy; {{ new Date().getFullYear() }} All rights reserved</span>
+    <v-footer style="justify-content: center">
+      <span class="m-auto"> Davmar.am &copy; {{ new Date().getFullYear() }} All rights reserved</span>
     </v-footer>
     <client-only>
       <Cookie />
@@ -20,8 +18,8 @@
 
 <script>
   import MainDividers from "../components/MainDividers";
-  import  SystemBar from '../components/systemBar'
-  import TopMenu from '../components/Topmenu'
+  import SystemBar from '../components/systemBar'
+
   import Filters from "../components/Filters";
   import Cookie from "../components/Cookie.vue";
 
@@ -30,7 +28,6 @@
       MainDividers,
       Filters,
       SystemBar,
-      TopMenu,
       Cookie
     },
     data () {

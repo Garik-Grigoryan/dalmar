@@ -123,7 +123,7 @@
                     {{$t('totalPrice')}}
                   </v-list-item-icon>
                   <v-list-item-content>
-                    <v-list-item-title style="color: #e60000; font-weight: 600"> {{totalPrice}} AMD</v-list-item-title>
+                    <v-list-item-title style="color: #e60000; font-weight: 600; min-width: 100px"> {{totalPrice}} AMD</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
@@ -180,11 +180,6 @@
 
     },
     name: "cart",
-    head() {
-      return {
-        title: 'Cart'
-      };
-    },
     data () {
       return {
         conditions: '',
