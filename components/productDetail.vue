@@ -13,9 +13,7 @@
         <h2 v-if="$i18n.locale === 'ru'" class="text-center">{{product.name_ru}}</h2>
 
         <v-col md="12" lg="12">
-          <p v-if="$i18n.locale === 'am'" v-html="product.description_am" />
-          <p v-if="$i18n.locale === 'en'" v-html="product.description_en" />
-          <p v-if="$i18n.locale === 'ru'" v-html="product.description_ru" />
+          <p v-if="$i18n.locale === 'am'"> {{product.description_am}}</p>
           <div class="mt-5">
             <p class="ma-0">{{ $t('colors') }}</p>
             <v-item-group :multiple="false">
