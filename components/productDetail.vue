@@ -13,7 +13,7 @@
         <h2 v-if="$i18n.locale === 'ru'" class="text-center">{{product.name_ru}}</h2>
 
         <v-col md="12" lg="12">
-          <p v-if="$i18n.locale === 'am'"> {{product.description_am}}</p>
+          <p id="productDescription"></p>
           <div class="mt-5">
             <p class="ma-0">{{ $t('colors') }}</p>
             <v-item-group :multiple="false">
@@ -125,6 +125,13 @@
       this.product.product_size.forEach(elem => {
         this.productSizes.push(elem.name)
       });
+      if(this.$i18n.locale === 'am'){
+        document.getElementById('productDescription').innerHTML = this.product.description_am
+      }else if(this.$i18n.locale === 'en'){
+        document.getElementById('productDescription').innerHTML = this.product.description_en
+      }else if(this.$i18n.locale === 'ru'){
+        document.getElementById('productDescription').innerHTML = this.product.description_ru
+      }
     },
     methods: {
       addToWishlist(e, id) {
