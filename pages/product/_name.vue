@@ -17,7 +17,6 @@ export default {
   layout: 'product',
   async fetch({route, store}) {
     await store.dispatch('brands/fetch');
-
     await store.dispatch('menus/fetch');
     await store.dispatch('products/filterAsType', ['best']);
     await store.dispatch('products/getProduct', [route.params.name]);

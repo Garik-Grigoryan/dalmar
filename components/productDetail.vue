@@ -2,21 +2,8 @@
   <div>
     <v-row>
       <v-col md="6" sm="12">
-        <v-carousel
-          :continuous="false"
-          :cycle="cycle"
-          hide-delimiter-background
-          delimiter-icon="mdi-minus"
-          show-arrows-on-hover
-          height="100%"
-          style="max-height: 600px;"
-        >
-          <v-carousel-item
-            v-for="(slide, i) in JSON.parse(product.images)"
-            :key="i"
-            :src="slide"
-            top
-          >
+        <v-carousel :continuous="false" :cycle="cycle" hide-delimiter-background delimiter-icon="mdi-minus" show-arrows-on-hover height="100%" style="max-height: 600px;">
+          <v-carousel-item v-for="(slide, i) in JSON.parse(product.images)" :key="i" :src="slide" top>
           </v-carousel-item>
         </v-carousel>
       </v-col>
@@ -26,37 +13,17 @@
         <h2 v-if="$i18n.locale === 'ru'" class="text-center">{{product.name_ru}}</h2>
 
         <v-col md="12" lg="12">
-          <p v-if="$i18n.locale === 'am'" v-html="product.description_am">
-          </p>
-          <p v-if="$i18n.locale === 'en'" v-html="product.description_en">
-          </p>
-          <p v-if="$i18n.locale === 'ru'" v-html="product.description_ru">
-          </p>
+          <p v-if="$i18n.locale === 'am'" v-html="product.description_am" />
+          <p v-if="$i18n.locale === 'en'" v-html="product.description_en" />
+          <p v-if="$i18n.locale === 'ru'" v-html="product.description_ru" />
           <div class="mt-5">
             <p class="ma-0">{{ $t('colors') }}</p>
-            <v-item-group
-              :multiple="false"
-            >
+            <v-item-group :multiple="false">
               <v-row>
                 <v-item  v-for="(color, n) in productColors" :key="n" v-slot:default="{ active, toggle }">
-                  <v-card
-                    :color="color.toLowerCase()"
-                    class="d-flex text-center align-center mx-3"
-                    dark
-                    height="30"
-                    width="30"
-                    :data-value="color.toLowerCase()"
-                    @click="toggle(), selectColor($event)"
-                  >
+                  <v-card :color="color.toLowerCase()" class="d-flex text-center align-center mx-3" dark height="30" width="30" :data-value="color.toLowerCase()" @click="toggle(), selectColor($event)">
                     <v-scroll-y-transition>
-                      <v-icon
-                        v-if="active"
-                        color="white"
-                        size="20"
-                        v-text="'mdi-check-circle-outline'"
-                        class="mx-auto"
-                        :data-value="color.toLowerCase()"
-                      ></v-icon>
+                      <v-icon v-if="active" color="white" size="20" v-text="'mdi-check-circle-outline'" class="mx-auto" :data-value="color.toLowerCase()" />
                     </v-scroll-y-transition>
                   </v-card>
                 </v-item>
@@ -65,19 +32,10 @@
           </div>
           <div class="mt-5">
             <p class="ma-0">{{ $t('size') }}</p>
-            <v-item-group
-              :multiple="false"
-            >
+            <v-item-group :multiple="false" >
               <v-row>
                 <v-item  v-for="(size, n) in productSizes" :key="n" v-slot:default="{ active, toggle }">
-                  <v-card
-                    class="d-flex text-center align-center mx-3 justify-center"
-                    :color="active? 'green' : '#fff'"
-                    height="30"
-                    width="30"
-                    :data-value="size"
-                    @click="toggle(), selectSize($event)"
-                  >
+                  <v-card class="d-flex text-center align-center mx-3 justify-center" :color="active? 'green' : '#fff'" height="30" width="30" :data-value="size" @click="toggle(), selectSize($event)">
                     {{size}}
                   </v-card>
                 </v-item>
@@ -88,11 +46,7 @@
           <div class="mt-5 pl-0">
             <p class="ma-0">{{ $t('count') }}</p>
             <v-col cols="2" class="pl-0">
-              <v-text-field
-                type="number"
-                placeholder="0"
-                v-model="count"
-              ></v-text-field>
+              <v-text-field type="number" placeholder="0" v-model="count" />
             </v-col>
           </div>
           <div class="pl-0">
@@ -107,38 +61,22 @@
           </div>
           <div class="mt-5 pl-0">
             <div class="text-left">
-              <v-btn
-                color="#01235e"
-                class="white--text"
-                rounded
-                @click="addToCart($event, product.id)"
-              >
+              <v-btn color="#01235e" class="white--text" rounded @click="addToCart($event, product.id)" >
                 <v-icon left>mdi-cart</v-icon> {{ $t('cart') }}
               </v-btn>
-              <v-btn
-                color="#01235e"
-                class="white--text"
-                rounded
-                @click="addToWishlist($event, product.id)"
-              >
+              <v-btn color="#01235e" class="white--text" rounded @click="addToWishlist($event, product.id)" >
                 <v-icon left>mdi-heart</v-icon> {{ $t('wishList') }}
               </v-btn>
             </div>
           </div>
           <div class="mt-5 pl-0">
             <div class="text-left">
-              <v-btn
-                color="#009212"
-                class="white--text"
-                rounded
-                href="tel:+37455459550"
-              >
+              <v-btn color="#009212" class="white--text" rounded href="tel:+37455459550" >
                 <v-icon left>mdi-phone</v-icon> 055-45-95-50
               </v-btn>
             </div>
           </div>
         </v-col>
-
       </v-col>
     </v-row>
   </div>
@@ -146,6 +84,12 @@
 <script>
 
   export default {
+    async fetch({route, store}) {
+      await store.dispatch('brands/fetch');
+      await store.dispatch('menus/fetch');
+      await store.dispatch('products/filterAsType', ['best']);
+      await store.dispatch('products/getProduct', [route.params.name]);
+    },
     head() {
       return {
         title: this.product.name_am,
@@ -161,6 +105,7 @@
             name: "description",
             content: this.product.description_am,
           },
+
         ],
       };
     },

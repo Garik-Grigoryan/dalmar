@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col lg="9" md="12">
+      <v-col lg="8" md="12">
         <v-data-table :headers="headers" :items="desserts" hide-default-footer class="elevation-1" >
           <template v-slot:item.image="{ item }">
             <v-img :src="item.image" :contain="true" width="100" height="100" ></v-img>
@@ -18,7 +18,7 @@
           </template>
         </v-data-table>
       </v-col>
-      <v-col lg="3" md="12">
+      <v-col lg="4" md="12">
         <v-card>
           <v-form v-model="formValid">
             <v-toolbar color="#b20839" dark>

@@ -17,8 +17,19 @@ export const actions = {
     const sizes = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/size/get');
     commit('setSizes', sizes);
   },
-  async addBrand(ctx, [name, color]){
-    await this.$axios.$post('https://apidavmar.neoteric-software.com/api/size/add', {'name': name, 'color': color});
+  async getSize({commit}, [id]){
+    const size = await this.$axios.$get(`https://apidavmar.neoteric-software.com/api/size/get/${id}`);
+    commit('setSize', size)
+  },
+
+  async updateSize({commit}, [id, name]){
+    const size = await this.$axios.$put(`https://apidavmar.neoteric-software.com/api/size/update/${id}`, {'name': name});
+  },
+  async delete({commit}, [id]){
+    const size = await this.$axios.$delete(`https://apidavmar.neoteric-software.com/api/size/delete/${id}`);
+  },
+  async addSize(ctx, [name]){
+    await this.$axios.$post('https://apidavmar.neoteric-software.com/api/size/add', {'name': name});
   }
 }
 

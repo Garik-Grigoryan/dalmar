@@ -27,6 +27,21 @@
             <v-list-item-title v-text="item.text"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-group no-action value="true"
+        >
+          <template v-slot:activator>
+            <v-list-item-icon>
+              <v-icon>mdi-cog</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Settings</v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <v-list-item to="/dashboard/settings/sizes">
+            <v-list-item-title>Sizes</v-list-item-title>
+          </v-list-item>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
 </template>
@@ -44,8 +59,8 @@
           {text: 'Orders', icon: 'mdi-cart', url: '/dashboard/orders'},
           {text: 'Components', icon: 'mdi-shape-plus', url: '/dashboard/components'},
           {text: 'Regions', icon: 'mdi-google-maps', url: '/dashboard/regions'},
-          {text: 'Settings', icon: 'mdi-cog', url: '/dashboard/settings'},
-          // {text: 'Subscribers', icon: 'mdi-email-outline', url: '/dashboard/subscribers'},
+          // {text: 'Settings', icon: 'mdi-cog', url: '/dashboard/settings'},
+          {text: 'Subscribers', icon: 'mdi-email-outline', url: '/dashboard/subscribers'},
           // {text: 'Settings', icon: 'mdi-cog', url: '/dashboard/settings'},
         ],
         select: [],
