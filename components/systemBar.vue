@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <v-navigation-drawer v-resize="onResize" v-model="drawerForHeader" :mini-variant="miniVariant" :clipped="clipped" :right="right" fixed app >
+    <v-navigation-drawer v-resize="onResize" v-model="drawerForHeader" :mini-variant="miniVariant" :clipped="clipped" :right="right" fixed app temporary>
       <v-list style="padding-bottom: 0">
         <v-list-item v-for="(item, i) in leftSide" :key="i" router exact >
           <v-list-item-content class="leftSide-menu">
