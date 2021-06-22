@@ -14,22 +14,22 @@ export const mutations = {
 
 export const actions = {
   async fetch({commit}) {
-    const sizes = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/size/get');
+    const sizes = await this.$axios.$get(this.$axios.defaults.baseURL+'/size/get');
     commit('setSizes', sizes);
   },
   async getSize({commit}, [id]){
-    const size = await this.$axios.$get(`https://apidavmar.neoteric-software.com/api/size/get/${id}`);
+    const size = await this.$axios.$get(this.$axios.defaults.baseURL+`/size/get/${id}`);
     commit('setSize', size)
   },
 
   async updateSize({commit}, [id, name]){
-    const size = await this.$axios.$put(`https://apidavmar.neoteric-software.com/api/size/update/${id}`, {'name': name});
+    const size = await this.$axios.$put(this.$axios.defaults.baseURL+`/size/update/${id}`, {'name': name});
   },
   async delete({commit}, [id]){
-    const size = await this.$axios.$delete(`https://apidavmar.neoteric-software.com/api/size/delete/${id}`);
+    const size = await this.$axios.$delete(this.$axios.defaults.baseURL+`/size/delete/${id}`);
   },
   async addSize(ctx, [name]){
-    await this.$axios.$post('https://apidavmar.neoteric-software.com/api/size/add', {'name': name});
+    await this.$axios.$post(this.$axios.defaults.baseURL+'/size/add', {'name': name});
   }
 }
 

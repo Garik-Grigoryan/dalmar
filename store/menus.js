@@ -8,12 +8,11 @@ export const mutations = {
 };
 export const actions = {
   async fetch({commit}) {
-    // apidavmar.neoteric-software.com
-    const menus = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/menus/get');
+    const menus = await this.$axios.$get(this.$axios.defaults.baseURL+'/menus/get');
     commit("setMenus", menus);
   },
   async saveMenu({commit}, [menuConstruct]){
-    await this.$axios.post('https://apidavmar.neoteric-software.com/api/menus/add', {'menusConstruct': menuConstruct})
+    await this.$axios.post(this.$axios.defaults.baseURL+'/menus/add', {'menusConstruct': menuConstruct})
   }
 };
 export const getters = {

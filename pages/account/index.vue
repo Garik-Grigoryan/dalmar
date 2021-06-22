@@ -78,7 +78,7 @@
         },
       methods: {
         async save() {
-          await this.$axios.post('https://apidavmar.neoteric-software.com/api/user/checkPassword', {id: this.user.id, password: this.oldPassword}).then(response => {
+          await this.$axios.post(this.$axios.defaults.baseURL+'/user/checkPassword', {id: this.user.id, password: this.oldPassword}).then(response => {
 
            if(response.data.success){
              this.passwordErrors = false;

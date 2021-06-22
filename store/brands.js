@@ -18,27 +18,27 @@ export const mutations = {
 
 export const actions = {
   async fetch({commit}) {
-      const brands = await this.$axios.$get('https://apidavmar.neoteric-software.com/api/brand/get');
+      const brands = await this.$axios.$get(this.$axios.defaults.baseURL+'/brand/get');
     commit('setBrands', brands);
   },
   async getBrand({commit}, [id]){
-    const brand = await this.$axios.$get(`https://apidavmar.neoteric-software.com/api/brand/get/${id}`);
+    const brand = await this.$axios.$get(this.$axios.defaults.baseURL+`/brand/get/${id}`);
     commit('setBrand', brand)
   },
   async getBrandFilters({commit}, [id]){
-    const brandFilters = await this.$axios.$get(`https://apidavmar.neoteric-software.com/api/product/getFilters/${id}`);
+    const brandFilters = await this.$axios.$get(this.$axios.defaults.baseURL+`/product/getFilters/${id}`);
     commit('setBrandFilters', brandFilters)
   },
 
   async updateBrand({commit}, [id, name, order, image, color]){
     // this.$axios.defaults.baseURL
-    const brand = await this.$axios.$put(`https://apidavmar.neoteric-software.com/api/brand/update/${id}`, {'name': name, 'order': order, 'image': image, 'color': color});
+    const brand = await this.$axios.$put(this.$axios.defaults.baseURL+`/brand/update/${id}`, {'name': name, 'order': order, 'image': image, 'color': color});
   },
   async delete({commit}, [id]){
-    const brand = await this.$axios.$delete(`https://apidavmar.neoteric-software.com/api/brand/delete/${id}`);
+    const brand = await this.$axios.$delete(this.$axios.defaults.baseURL+`/brand/delete/${id}`);
   },
   async addBrand(ctx, [name, nameRu, order, image, color]){
-   await this.$axios.$post('https://apidavmar.neoteric-software.com/api/brand/add', {'name': name, 'nameRu': nameRu, 'order': order, 'image': image, 'color': color});
+   await this.$axios.$post(this.$axios.defaults.baseURL+'/brand/add', {'name': name, 'nameRu': nameRu, 'order': order, 'image': image, 'color': color});
   }
 }
 
