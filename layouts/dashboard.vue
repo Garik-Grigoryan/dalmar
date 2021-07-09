@@ -1,9 +1,9 @@
 <template>
   <v-app dark>
     <dashboardMenu></dashboardMenu>
-    <v-content>
+    <v-main app>
       <nuxt />
-    </v-content>
+    </v-main>
     <v-footer style="justify-content: center"
     >
       <span class="m-auto"> Davmar.am &copy; {{ new Date().getFullYear() }} All rights reserved</span>

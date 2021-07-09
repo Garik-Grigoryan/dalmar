@@ -1,9 +1,9 @@
 <template>
   <v-app dark>
 
-    <v-content>
+    <v-main app>
       <nuxt />
-    </v-content>
+    </v-main>
 
     <v-footer style="justify-content: center"
     >

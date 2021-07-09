@@ -3,9 +3,9 @@
 
       <SystemBar></SystemBar>
       <!-- <TopMenu></TopMenu> -->
-      <v-content>
+      <v-main app>
         <nuxt />
-      </v-content>
+      </v-main>
 
       <MainDividers></MainDividers>
       <v-footer style="justify-content: center"
