@@ -3,7 +3,7 @@
     <v-row>
       <v-col md="6" sm="12">
         <v-carousel :continuous="false" :cycle="cycle" hide-delimiter-background delimiter-icon="mdi-minus" show-arrows-on-hover height="100%" style="max-height: 600px;">
-          <v-carousel-item v-for="(slide, i) in JSON.parse(product.images)" :key="i" :src="slide" top>
+          <v-carousel-item v-for="(slide, i) in JSON.parse(product.images)" :key="i" :src="slide" cover top>
           </v-carousel-item>
         </v-carousel>
       </v-col>
@@ -15,7 +15,7 @@
         <v-col md="12" lg="12">
           <p id="productDescription"></p>
           <div class="mt-5">
-            <p class="ma-0">{{ $t('colors') }}</p>
+            <p class="">{{ $t('colors') }}</p>
             <v-item-group :multiple="false">
               <v-row>
                 <v-item  v-for="(color, n) in productColors" :key="n" v-slot:default="{ active, toggle }">
@@ -29,7 +29,7 @@
             </v-item-group>
           </div>
           <div class="mt-5">
-            <p class="ma-0">{{ $t('size') }}</p>
+            <p class="">{{ $t('size') }}</p>
             <v-item-group :multiple="false" >
               <v-row>
                 <v-item  v-for="(size, n) in productSizes" :key="n" v-slot:default="{ active, toggle }">
@@ -83,8 +83,8 @@
 
   export default {
     async fetch({route, store}) {
-      await store.dispatch('brands/fetch');
       await store.dispatch('menus/fetch');
+      await store.dispatch('brands/fetch');
       await store.dispatch('products/filterAsType', ['best']);
       await store.dispatch('products/getProduct', [route.params.name]);
     },
