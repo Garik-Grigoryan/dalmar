@@ -3,7 +3,7 @@
     <v-row>
       <v-col md="6" sm="12">
         <v-carousel :continuous="false" :cycle="cycle" hide-delimiter-background delimiter-icon="mdi-minus" show-arrows-on-hover height="100%" style="max-height: 600px;">
-          <v-carousel-item v-for="(slide, i) in JSON.parse(product.images)" :key="i" :src="slide" cover top>
+          <v-carousel-item v-for="(slide, i) in JSON.parse(product.images)" :key="i" :src="slide" contain top>
           </v-carousel-item>
         </v-carousel>
       </v-col>
