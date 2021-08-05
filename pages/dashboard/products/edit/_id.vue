@@ -183,7 +183,18 @@
         <v-card-title  style="display: flex; justify-content: space-between;" class="headline">Choose image <v-btn small @click.stop="uploadDialog = true" dark color="purple" >Add new image</v-btn></v-card-title>
         <v-container fluid>
           <v-row>
-            <v-col v-for="(image, i) in images" :key="i" class="d-flex child-flex" cols="3" >
+            <!-- <v-col v-for="(image, i) in images" :key="i" class="d-flex child-flex" cols="3" >
+              <v-card flat tile class="d-flex" :data-url="image.path" @click="selectImage($event, image.path)">
+                <v-img :src="image.path" aspect-ratio="1" class="grey lighten-2" >
+                  <template v-slot:placeholder>
+                    <v-row class="fill-height ma-0" align="center" justify="center" >
+                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                    </v-row>
+                  </template>
+                </v-img>
+              </v-card>
+            </v-col> -->
+            <v-col v-for="(image, i) in records" :key="i" class="d-flex child-flex" cols="3" >
               <v-card flat tile class="d-flex" :data-url="image.path" @click="selectImage($event, image.path)">
                 <v-img :src="image.path" aspect-ratio="1" class="grey lighten-2" >
                   <template v-slot:placeholder>
@@ -194,6 +205,15 @@
                 </v-img>
               </v-card>
             </v-col>
+
+            <div v-if="recordsLength > 1" class="text-center" style="width: 100%; margin: 10px 0;">
+              <v-pagination
+                v-model="page"
+                :length="recordsLength"
+                :total-visible="7"
+                @input="getPage"
+              ></v-pagination>
+            </div>
           </v-row>
         </v-container>
         <v-card-actions>
@@ -308,6 +328,10 @@ export default {
       category: 0,
       discountType: 'none',
       discount: '',
+      page: 1,
+      perPage: 20,
+      records: [],
+      recordsLength: 0
     }
   },
   methods: {
@@ -357,7 +381,24 @@ export default {
       this.$store.dispatch('products/updateProduct', [this.$route.params.id, this.name_en, this.name_ru, this.name_am, this.category, this.price, this.selectedImages, this.selectedColors, this.selectedSizes, this.selectedBrand, this.sex, this.isNew, this.discountType, this.discount, this.description_en, this.description_ru, this.description_am]).then(r => {
         this.$router.push('/dashboard/products')
       })
+    },
+    getPage(page) {
+      this.records = [];
+      const startIndex = this.perPage * (page - 1) + 1;
+      const endIndex = startIndex + this.perPage - 1;
+      for (let i = startIndex; i <= endIndex; i++) {
+        if(this.images[i] !== undefined) {
+          this.records.push(this.images[i]);
+        }
+      }
+    },
+    getRecordsLength() {
+      this.recordsLength = Math.ceil(this.images.length/this.perPage);
     }
+  },
+  created() {
+    this.getRecordsLength();
+    this.getPage(this.page);
   },
   mounted() {
     this.name_en = this.product.name_en;
